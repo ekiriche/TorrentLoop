@@ -20,5 +20,9 @@
         "popper.js": "^1.12",
         "react": "^16.2.0",
         "react-dom": "^16.2.0"
+    },
+    "dependencies": {
+        "react-collapsible": "^2.2.0",
+        "react-materialize": "^2.3.3"
     }
 }

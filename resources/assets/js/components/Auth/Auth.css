@@ -1,0 +1,13 @@
+.auth-flex {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.CardPanel-right {
+    display: flex;
+}
+
+.card-background {
+    background-color: #e7dfdd !important;
+}
