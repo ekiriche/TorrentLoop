@@ -62368,7 +62368,8 @@ var Navbar = function (_Component) {
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						'a',
 						{ href: '#', className: 'brand-logo' },
-						'Hypertube'
+						'Hypertube',
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-film  fa-2x', 'aria-hidden': 'true' })
 					)
 				)
 			);
@@ -63323,7 +63324,7 @@ var OAuth = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'li',
             { className: 'facebook' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-facebook fa-2x', 'aria-hidden': 'true' })
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fab fa-facebook-f fa-2x', 'aria-hidden': 'true' })
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'li',
@@ -63333,7 +63334,7 @@ var OAuth = function (_Component) {
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'li',
             { className: 'google' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fa fa-google fa-2x', 'aria-hidden': 'true' })
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fab fa-google-plus-g fa-2x', 'aria-hidden': 'true' })
           )
         )
       );
@@ -63385,7 +63386,7 @@ exports = module.exports = __webpack_require__(110)(false);
 
 
 // module
-exports.push([module.i, ".wrapper {\n  width: auto;\n}\n\n/* Style the Un-order list by setting its list-style to none */\n.wrapper ul {\n  list-style: none;\n}\n\n/* Style the list items inside the UL list, by setting its width, height and line-height\n  and float them to left and set its border and border-radius.\n */\n.wrapper ul li {\n  width: 75px;\n  height: 75px;\n  line-height: 75px;\n  margin: 0 10px;\n  text-align: center;\n  cursor: pointer;\n  border-radius: 50%;\n  /*border: 5px solid #D8E2DC;*/\n  float: left;\n  transition: all 0.5s ease;\n}\n\n/* Style the icons by setting its color and margin-top value to 20px\nto align it properly */\n.wrapper ul li .fa {\n  color: #4717F6;\n  margin-top: 20px;\n  transition: all 0.5s ease;\n}\n\n/* Now target the specific li classes for styling and use box-shadow effect to border and text-shadow effect\n  to icons for glowing effect and use transition property for smooth transition effect. */\n/*facebook*/\n.wrapper ul li:hover.facebook {\n  border: 5px solid #3b5998 ;\n  box-shadow: 0 0 15px #3b5998;\n  transition: all 0.5s ease;\n}\n\n.wrapper ul li:hover .fa-facebook {\n  color: #3b5998;\n  text-shadow: 0 0 15px #3b5998;\n  transition: all 0.5s ease;\n}\n\n/*twitter*/\n.wrapper ul li:hover.twitter {\n  border: 5px solid #00aced;\n  box-shadow: 0 0 15px #00aced;\n  transition: all 0.5s ease;\n}\n\n.wrapper ul li:hover .fa-twitter {\n  color: #00aced;\n  text-shadow: 0 0 15px #00aced;\n  transition: all 0.5s ease;\n}\n\n/* instagram */\n.wrapper ul li:hover.instagram {\n  border: 5px solid #bc2a8d;\n  box-shadow: 0 0 15px #bc2a8d;\n  transition: all 0.5s ease;\n}\n\n.wrapper ul li:hover .fa-instagram {\n  color: #bc2a8d;\n  text-shadow: 0 0 15px #bc2a8d;\n  transition: all 0.5s ease;\n}\n\n/* google */\n.wrapper ul li:hover.google {\n  border: 5px solid #dd4b39;\n  box-shadow: 0 0 15px #dd4b39;\n  transition: all 0.5s ease;\n}\n\n.wrapper ul li:hover .fa-google {\n  color: #dd4b39;\n  text-shadow: 0 0 15px #dd4b39;\n  transition: all 0.5s ease;\n}\n\n/* whatsapp */\n.wrapper ul li:hover.whatsapp {\n  border: 5px solid #4dc247;\n  box-shadow: 0 0 15px #4dc247;\n  transition: all 0.5s ease;\n}\n\n.wrapper ul li:hover .fa-whatsapp {\n  color: #4dc247;\n  text-shadow: 0 0 15px #4dc247;\n  transition: all 0.5s ease;\n}\n\n/* media queries */\n\n@media screen and (max-width: 640px){\n  .wrapper {\n      width: 350px;\n  }\n  /*\n  .wrapper ul li{\n      margin-top: 10px;\n  }\n  .wrapper ul li.google{\n      margin-left: 60px;\n  }\n  */\n}\n\n@media screen and (max-width: 340px){\n  .wrapper {\n      width: 150px;\n  }\n  .wrapper ul li{\n      margin:15px;\n  }\n  .wrapper ul li.google{\n      margin-left: 15px;\n  }\n}\n\n/* youtube link */\n.youtube{\n  position: fixed;\n  bottom: 10px;\n  right: 10px;\n  width: 160px;\n  text-align: center;\n  padding: 15px 10px;\n  background: #bb0000;\n  border-radius: 5px;\n}\n\n.youtube a{\n  text-decoration: none;\n  color: #fff;\n  text-transform: capitalize;\n  letter-spacing: 1px;\n}\n", ""]);
+exports.push([module.i, ".wrapper {\n  width: auto;\n}\n\n/* Style the Un-order list by setting its list-style to none */\n.wrapper ul {\n  list-style: none;\n}\n\n/* Style the list items inside the UL list, by setting its width, height and line-height\n  and float them to left and set its border and border-radius.\n */\n.wrapper ul li {\n  width: 75px;\n  height: 75px;\n  line-height: 75px;\n  margin: 0 10px;\n  text-align: center;\n  cursor: pointer;\n  border-radius: 50%;\n  /*border: 5px solid #D8E2DC;*/\n  float: left;\n  transition: all 0.5s ease;\n}\n\n/* Style the icons by setting its color and margin-top value to 20px\nto align it properly */\n.wrapper ul li .fa {\n  color: #4717F6;\n  margin-top: 20px;\n  transition: all 0.5s ease;\n}\n\n/* Now target the specific li classes for styling and use box-shadow effect to border and text-shadow effect\n  to icons for glowing effect and use transition property for smooth transition effect. */\n/*facebook*/\n.wrapper ul li:hover.facebook {\n  border: 5px solid #3b5998 ;\n  box-shadow: 0 0 15px #3b5998;\n  transition: all 0.5s ease;\n}\n\n.wrapper ul li:hover .fa-facebook-f {\n  color: #3b5998;\n  text-shadow: 0 0 15px #3b5998;\n  transition: all 0.5s ease;\n}\n\n/*twitter*/\n.wrapper ul li:hover.twitter {\n  border: 5px solid #00aced;\n  box-shadow: 0 0 15px #00aced;\n  transition: all 0.5s ease;\n}\n\n.wrapper ul li:hover .fa-twitter {\n  color: #00aced;\n  text-shadow: 0 0 15px #00aced;\n  transition: all 0.5s ease;\n}\n\n\n\n/* google */\n.wrapper ul li:hover.google {\n  border: 5px solid #dd4b39;\n  box-shadow: 0 0 15px #dd4b39;\n  transition: all 0.5s ease;\n}\n\n.wrapper ul li:hover .fa-google-plus-g {\n  color: #dd4b39;\n  text-shadow: 0 0 15px #dd4b39;\n  transition: all 0.5s ease;\n}\n\n\n/* media queries */\n\n@media screen and (max-width: 640px){\n  .wrapper {\n      width: 350px;\n  }\n  /*\n  .wrapper ul li{\n      margin-top: 10px;\n  }\n  .wrapper ul li.google{\n      margin-left: 60px;\n  }\n  */\n}\n\n@media screen and (max-width: 340px){\n  .wrapper {\n      width: 150px;\n  }\n  .wrapper ul li{\n      margin:15px;\n  }\n  .wrapper ul li.google{\n      margin-left: 15px;\n  }\n}\n\n/* youtube link */\n.youtube{\n  position: fixed;\n  bottom: 10px;\n  right: 10px;\n  width: 160px;\n  text-align: center;\n  padding: 15px 10px;\n  background: #bb0000;\n  border-radius: 5px;\n}\n\n.youtube a{\n  text-decoration: none;\n  color: #fff;\n  text-transform: capitalize;\n  letter-spacing: 1px;\n}\n", ""]);
 
 // exports
 
