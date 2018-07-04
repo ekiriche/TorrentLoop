@@ -104,12 +104,14 @@ to align it properly */
   .wrapper {
       width: 350px;
   }
+  /*
   .wrapper ul li{
       margin-top: 10px;
   }
   .wrapper ul li.google{
       margin-left: 60px;
   }
+  */
 }
 
 @media screen and (max-width: 340px){
