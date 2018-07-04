@@ -62425,26 +62425,26 @@ var Foot = function (_Component) {
 					{ className: 'footer-copyright' },
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						'div',
-						{ className: 'container' },
+						{ className: 'container footer-text-position' },
 						'\xA9 2018 Creat by',
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 							'a',
-							{ className: 'grey-text text-lighten-4 right creat-margin', target: '_blank', href: 'http://www.unit.ua' },
+							{ className: 'grey-text text-lighten-4 right creat-margin', target: '_blank', href: 'https://github.com/Dornat' },
 							'dpolosuh'
 						),
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 							'a',
-							{ className: 'grey-text text-lighten-4 right creat-margin', target: '_blank', href: 'http://www.unit.ua' },
+							{ className: 'grey-text text-lighten-4 right creat-margin', target: '_blank', href: 'https://github.com/Madranko' },
 							'mmotov'
 						),
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 							'a',
-							{ className: 'grey-text text-lighten-4 right creat-margin', target: '_blank', href: 'http://www.unit.ua' },
+							{ className: 'grey-text text-lighten-4 right creat-margin', target: '_blank', href: 'http://www.github.com/Gryshchenko' },
 							'vgryshch'
 						),
 						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 							'a',
-							{ className: 'grey-text text-lighten-4 right creat-margin', target: '_blank', href: 'http://www.unit.ua' },
+							{ className: 'grey-text text-lighten-4 right creat-margin', target: '_blank', href: 'http://www.github.com/ekiriche' },
 							'ekiriche'
 						)
 					)
@@ -62498,7 +62498,7 @@ exports = module.exports = __webpack_require__(110)(false);
 
 
 // module
-exports.push([module.i, ".page-footer {\n  padding-top: 0 !important;\n}\n.creat-margin {\n  margin: 0 10px ;\n}\n\nfooter.page-footer {\n    margin-top: 20px;\n    background-color:  #0E0B18 !important;\n}\n\nfooter.page-footer .footer-copyright {\n    min-height: 64px !important;\n}\n", ""]);
+exports.push([module.i, ".page-footer {\n  padding-top: 0 !important;\n}\n.creat-margin {\n  margin: 0 10px ;\n}\n\nfooter.page-footer {\n    margin-top: 20px;\n    background-color:  #0E0B18 !important;\n}\n\nfooter.page-footer .footer-copyright {\n    min-height: 64px !important;\n}\n\n.footer-text-position {\n  display: flex;\n  justify-content: center;\n}\n", ""]);
 
 // exports
 
@@ -63477,7 +63477,7 @@ exports = module.exports = __webpack_require__(110)(false);
 
 
 // module
-exports.push([module.i, ".active {\n    color: #A239CA !important;\n}\ninput:not([type]):focus:not([readonly]),\ninput[type=text]:focus:not([readonly]),\ninput[type=password]:focus:not([readonly]),\ninput[type=email]:focus:not([readonly]),\ninput[type=url]:focus:not([readonly]),\ninput[type=time]:focus:not([readonly]),\ninput[type=date]:focus:not([readonly]),\ninput[type=datetime]:focus:not([readonly]),\ninput[type=datetime-local]:focus:not([readonly]),\ninput[type=tel]:focus:not([readonly]),\ninput[type=number]:focus:not([readonly]),\ninput[type=search]:focus:not([readonly]),\ntextarea.materialize-textarea:focus:not([readonly]) {\n    border-bottom: 1px solid #A239CA;\n    box-shadow: 0 1px 0 0 #A239CA;\n}\n\n.btn {\n    background-color: #4717F6;\n}\n", ""]);
+exports.push([module.i, ".active {\n    color: #A239CA !important;\n}\ninput:not([type]):focus:not([readonly]),\ninput[type=text]:focus:not([readonly]),\ninput[type=password]:focus:not([readonly]),\ninput[type=email]:focus:not([readonly]),\ninput[type=url]:focus:not([readonly]),\ninput[type=time]:focus:not([readonly]),\ninput[type=date]:focus:not([readonly]),\ninput[type=datetime]:focus:not([readonly]),\ninput[type=datetime-local]:focus:not([readonly]),\ninput[type=tel]:focus:not([readonly]),\ninput[type=number]:focus:not([readonly]),\ninput[type=search]:focus:not([readonly]),\ntextarea.materialize-textarea:focus:not([readonly]) {\n    border-bottom: 1px solid #A239CA;\n    box-shadow: 0 1px 0 0 #A239CA;\n}\n\n.btn {\n    background-color: #4717F6;\n}\n\nh5 {\n    padding: 0 .75rem !important;\n}\n", ""]);
 
 // exports
 
@@ -63522,7 +63522,7 @@ exports = module.exports = __webpack_require__(110)(false);
 
 
 // module
-exports.push([module.i, "nav {\n    color: #fff;\n    background-color: #0E0B18 !important;\n}\n", ""]);
+exports.push([module.i, "nav {\n    color: #fff;\n    background-color: #0E0B18 !important;\n}\n.fa-film {\n  color: #4717F6;\n}\n", ""]);
 
 // exports
 

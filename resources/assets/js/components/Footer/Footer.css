@@ -13,3 +13,8 @@ footer.page-footer {
 footer.page-footer .footer-copyright {
     min-height: 64px !important;
 }
+
+.footer-text-position {
+  display: flex;
+  justify-content: center;
+}

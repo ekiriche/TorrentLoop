@@ -21,3 +21,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
 .btn {
     background-color: #4717F6;
 }
+
+h5 {
+    padding: 0 .75rem !important;
+}

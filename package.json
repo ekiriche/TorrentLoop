@@ -23,6 +23,7 @@
     },
     "dependencies": {
         "react-collapsible": "^2.2.0",
-        "react-materialize": "^2.3.3"
+        "react-materialize": "^2.3.3",
+        "redux-form": "^7.4.2"
     }
 }
