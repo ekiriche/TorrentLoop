@@ -62332,6 +62332,8 @@ module.exports = function (css) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Navbar_css__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Navbar_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Navbar_css__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -62339,6 +62341,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
 
 
 
@@ -62628,6 +62632,8 @@ exports.push([module.i, "", ""]);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__PasswordRecovery_PasswordRecovery__ = __webpack_require__(122);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Auth_css__ = __webpack_require__(128);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Auth_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__Auth_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Global_css__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Global_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__Global_css__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -62635,6 +62641,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -62732,7 +62739,7 @@ exports = module.exports = __webpack_require__(110)(false);
 
 
 // module
-exports.push([module.i, ".auth-flex {\n    height: 100vh;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n}\n.CardPanel-right {\n    display: flex;\n}\n\n.card-background {\n    background-color: #e7dfdd !important;\n}\n", ""]);
+exports.push([module.i, ".auth-flex {\n    height: 100vh;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n}\n.CardPanel-right {\n    display: flex;\n}\n\n.card-background {\n    background-color: #e7dfdd !important;\n}\n.active {\n    color: #4717F6 !important;\n}\ninput:not([type]):focus:not([readonly]),\ninput[type=text]:focus:not([readonly]),\ninput[type=password]:focus:not([readonly]),\ninput[type=email]:focus:not([readonly]),\ninput[type=url]:focus:not([readonly]),\ninput[type=time]:focus:not([readonly]),\ninput[type=date]:focus:not([readonly]),\ninput[type=datetime]:focus:not([readonly]),\ninput[type=datetime-local]:focus:not([readonly]),\ninput[type=tel]:focus:not([readonly]),\ninput[type=number]:focus:not([readonly]),\ninput[type=search]:focus:not([readonly]),\ntextarea.materialize-textarea:focus:not([readonly]) {\n    border-bottom: 1px solid #4717F6;\n    box-shadow: 0 1px 0 0 #4717F6;\n}\n", ""]);
 
 // exports
 
@@ -63087,7 +63094,7 @@ exports = module.exports = __webpack_require__(110)(false);
 
 
 // module
-exports.push([module.i, ".Collapsible {\n  background-color: white; }\n\n.Collapsible__contentInner {\n  padding: 10px;\n  border: 1px solid #ebebeb;\n  border-top: 0; }\n\n.Collapsible__contentInner p {\n  margin-bottom: 10px;\n  font-size: 14px;\n  line-height: 20px; }\n\n.Collapsible__contentInner p:last-child {\n  margin-bottom: 0; }\n\n.Collapsible__trigger {\n  display: block;\n  font-weight: 400;\n  text-decoration: none;\n  position: relative;\n  padding: 10px;\n  color: #9e9e9e; }\n\n.Collapsible__trigger.is-disabled {\n  opacity: 0.5;\n  background-color: grey; }\n\n\n  /*Icon rotate*/\n/*\n.Collapsible__trigger:after {\n  font-family: 'FontAwesome';\n  content: '\\f107';\n  position: absolute;\n  right: 10px;\n  top: 10px;\n  display: block;\n  transition: transform 300ms; }\n\n.Collapsible__trigger.is-open:after {\n  transform: rotateZ(180deg); }\n*/\n/*\n.CustomTriggerCSS {\n  background-color: lightcoral;\n  transition: background-color 200ms ease; }\n\n.CustomTriggerCSS--open {\n  background-color: darkslateblue; }\n\n.Collapsible__custom-sibling {\n  padding: 5px;\n  font-size: 12px;\n  background-color: #CBB700;\n  color: black; }\n*/\n", ""]);
+exports.push([module.i, ".Collapsible {\n  background-color: white; }\n\n.Collapsible__contentInner {\n  padding: 10px;\n  /*border: 1px solid #ebebeb;*/\n  border-top: 0; }\n.Collapsible__contentOuter {\n  background-color: #e7dfdd;\n}\n\n.Collapsible__contentInner p {\n  margin-bottom: 10px;\n  font-size: 14px;\n  line-height: 20px; }\n\n.Collapsible__contentInner p:last-child {\n  margin-bottom: 0; }\n\n.Collapsible__trigger {\n  display: block;\n  font-weight: 400;\n  text-decoration: none;\n  position: relative;\n  padding: 10px;\n  color: #9e9e9e;\n  background-color: #e7dfdd; }\n\n.Collapsible__trigger.is-disabled {\n  opacity: 0.5;\n  background-color: grey; }\n\n\n  /*Icon rotate*/\n/*\n.Collapsible__trigger:after {\n  font-family: 'FontAwesome';\n  content: '\\f107';\n  position: absolute;\n  right: 10px;\n  top: 10px;\n  display: block;\n  transition: transform 300ms; }\n\n.Collapsible__trigger.is-open:after {\n  transform: rotateZ(180deg); }\n*/\n/*\n.CustomTriggerCSS {\n  background-color: lightcoral;\n  transition: background-color 200ms ease; }\n\n.CustomTriggerCSS--open {\n  background-color: darkslateblue; }\n\n.Collapsible__custom-sibling {\n  padding: 5px;\n  font-size: 12px;\n  background-color: #CBB700;\n  color: black; }\n*/\n", ""]);
 
 // exports
 
@@ -63378,7 +63385,7 @@ exports = module.exports = __webpack_require__(110)(false);
 
 
 // module
-exports.push([module.i, ".wrapper {\n  width: auto;\n}\n\n/* Style the Un-order list by setting its list-style to none */\n.wrapper ul {\n  list-style: none;\n}\n\n/* Style the list items inside the UL list, by setting its width, height and line-height\n  and float them to left and set its border and border-radius.\n */\n.wrapper ul li {\n  width: 75px;\n  height: 75px;\n  line-height: 75px;\n  margin: 0 10px;\n  text-align: center;\n  cursor: pointer;\n  border-radius: 50%;\n  /*border: 5px solid #D8E2DC;*/\n  float: left;\n  transition: all 0.5s ease;\n}\n\n/* Style the icons by setting its color and margin-top value to 20px\nto align it properly */\n.wrapper ul li .fa {\n  color: #D8E2DC;\n  margin-top: 20px;\n  transition: all 0.5s ease;\n}\n\n/* Now target the specific li classes for styling and use box-shadow effect to border and text-shadow effect\n  to icons for glowing effect and use transition property for smooth transition effect. */\n/*facebook*/\n.wrapper ul li:hover.facebook {\n  border: 5px solid #3b5998 ;\n  box-shadow: 0 0 15px #3b5998;\n  transition: all 0.5s ease;\n}\n\n.wrapper ul li:hover .fa-facebook {\n  color: #3b5998;\n  text-shadow: 0 0 15px #3b5998;\n  transition: all 0.5s ease;\n}\n\n/*twitter*/\n.wrapper ul li:hover.twitter {\n  border: 5px solid #00aced;\n  box-shadow: 0 0 15px #00aced;\n  transition: all 0.5s ease;\n}\n\n.wrapper ul li:hover .fa-twitter {\n  color: #00aced;\n  text-shadow: 0 0 15px #00aced;\n  transition: all 0.5s ease;\n}\n\n/* instagram */\n.wrapper ul li:hover.instagram {\n  border: 5px solid #bc2a8d;\n  box-shadow: 0 0 15px #bc2a8d;\n  transition: all 0.5s ease;\n}\n\n.wrapper ul li:hover .fa-instagram {\n  color: #bc2a8d;\n  text-shadow: 0 0 15px #bc2a8d;\n  transition: all 0.5s ease;\n}\n\n/* google */\n.wrapper ul li:hover.google {\n  border: 5px solid #dd4b39;\n  box-shadow: 0 0 15px #dd4b39;\n  transition: all 0.5s ease;\n}\n\n.wrapper ul li:hover .fa-google {\n  color: #dd4b39;\n  text-shadow: 0 0 15px #dd4b39;\n  transition: all 0.5s ease;\n}\n\n/* whatsapp */\n.wrapper ul li:hover.whatsapp {\n  border: 5px solid #4dc247;\n  box-shadow: 0 0 15px #4dc247;\n  transition: all 0.5s ease;\n}\n\n.wrapper ul li:hover .fa-whatsapp {\n  color: #4dc247;\n  text-shadow: 0 0 15px #4dc247;\n  transition: all 0.5s ease;\n}\n\n/* media queries */\n\n@media screen and (max-width: 640px){\n  .wrapper {\n      width: 350px;\n  }\n  .wrapper ul li{\n      margin-top: 10px;\n  }\n  .wrapper ul li.google{\n      margin-left: 60px;\n  }\n}\n\n@media screen and (max-width: 340px){\n  .wrapper {\n      width: 150px;\n  }\n  .wrapper ul li{\n      margin:15px;\n  }\n  .wrapper ul li.google{\n      margin-left: 15px;\n  }\n}\n\n/* youtube link */\n.youtube{\n  position: fixed;\n  bottom: 10px;\n  right: 10px;\n  width: 160px;\n  text-align: center;\n  padding: 15px 10px;\n  background: #bb0000;\n  border-radius: 5px;\n}\n\n.youtube a{\n  text-decoration: none;\n  color: #fff;\n  text-transform: capitalize;\n  letter-spacing: 1px;\n}\n", ""]);
+exports.push([module.i, ".wrapper {\n  width: auto;\n}\n\n/* Style the Un-order list by setting its list-style to none */\n.wrapper ul {\n  list-style: none;\n}\n\n/* Style the list items inside the UL list, by setting its width, height and line-height\n  and float them to left and set its border and border-radius.\n */\n.wrapper ul li {\n  width: 75px;\n  height: 75px;\n  line-height: 75px;\n  margin: 0 10px;\n  text-align: center;\n  cursor: pointer;\n  border-radius: 50%;\n  /*border: 5px solid #D8E2DC;*/\n  float: left;\n  transition: all 0.5s ease;\n}\n\n/* Style the icons by setting its color and margin-top value to 20px\nto align it properly */\n.wrapper ul li .fa {\n  color: #4717F6;\n  margin-top: 20px;\n  transition: all 0.5s ease;\n}\n\n/* Now target the specific li classes for styling and use box-shadow effect to border and text-shadow effect\n  to icons for glowing effect and use transition property for smooth transition effect. */\n/*facebook*/\n.wrapper ul li:hover.facebook {\n  border: 5px solid #3b5998 ;\n  box-shadow: 0 0 15px #3b5998;\n  transition: all 0.5s ease;\n}\n\n.wrapper ul li:hover .fa-facebook {\n  color: #3b5998;\n  text-shadow: 0 0 15px #3b5998;\n  transition: all 0.5s ease;\n}\n\n/*twitter*/\n.wrapper ul li:hover.twitter {\n  border: 5px solid #00aced;\n  box-shadow: 0 0 15px #00aced;\n  transition: all 0.5s ease;\n}\n\n.wrapper ul li:hover .fa-twitter {\n  color: #00aced;\n  text-shadow: 0 0 15px #00aced;\n  transition: all 0.5s ease;\n}\n\n/* instagram */\n.wrapper ul li:hover.instagram {\n  border: 5px solid #bc2a8d;\n  box-shadow: 0 0 15px #bc2a8d;\n  transition: all 0.5s ease;\n}\n\n.wrapper ul li:hover .fa-instagram {\n  color: #bc2a8d;\n  text-shadow: 0 0 15px #bc2a8d;\n  transition: all 0.5s ease;\n}\n\n/* google */\n.wrapper ul li:hover.google {\n  border: 5px solid #dd4b39;\n  box-shadow: 0 0 15px #dd4b39;\n  transition: all 0.5s ease;\n}\n\n.wrapper ul li:hover .fa-google {\n  color: #dd4b39;\n  text-shadow: 0 0 15px #dd4b39;\n  transition: all 0.5s ease;\n}\n\n/* whatsapp */\n.wrapper ul li:hover.whatsapp {\n  border: 5px solid #4dc247;\n  box-shadow: 0 0 15px #4dc247;\n  transition: all 0.5s ease;\n}\n\n.wrapper ul li:hover .fa-whatsapp {\n  color: #4dc247;\n  text-shadow: 0 0 15px #4dc247;\n  transition: all 0.5s ease;\n}\n\n/* media queries */\n\n@media screen and (max-width: 640px){\n  .wrapper {\n      width: 350px;\n  }\n  .wrapper ul li{\n      margin-top: 10px;\n  }\n  .wrapper ul li.google{\n      margin-left: 60px;\n  }\n}\n\n@media screen and (max-width: 340px){\n  .wrapper {\n      width: 150px;\n  }\n  .wrapper ul li{\n      margin:15px;\n  }\n  .wrapper ul li.google{\n      margin-left: 15px;\n  }\n}\n\n/* youtube link */\n.youtube{\n  position: fixed;\n  bottom: 10px;\n  right: 10px;\n  width: 160px;\n  text-align: center;\n  padding: 15px 10px;\n  background: #bb0000;\n  border-radius: 5px;\n}\n\n.youtube a{\n  text-decoration: none;\n  color: #fff;\n  text-transform: capitalize;\n  letter-spacing: 1px;\n}\n", ""]);
 
 // exports
 
@@ -63424,6 +63431,97 @@ exports = module.exports = __webpack_require__(110)(false);
 
 // module
 exports.push([module.i, ".OAuth-position {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 142 */,
+/* 143 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(144);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(111)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../node_modules/css-loader/index.js!./Global.css", function() {
+			var newContent = require("!!../../../../node_modules/css-loader/index.js!./Global.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 144 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(110)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".active {\n    color: #A239CA !important;\n}\ninput:not([type]):focus:not([readonly]),\ninput[type=text]:focus:not([readonly]),\ninput[type=password]:focus:not([readonly]),\ninput[type=email]:focus:not([readonly]),\ninput[type=url]:focus:not([readonly]),\ninput[type=time]:focus:not([readonly]),\ninput[type=date]:focus:not([readonly]),\ninput[type=datetime]:focus:not([readonly]),\ninput[type=datetime-local]:focus:not([readonly]),\ninput[type=tel]:focus:not([readonly]),\ninput[type=number]:focus:not([readonly]),\ninput[type=search]:focus:not([readonly]),\ntextarea.materialize-textarea:focus:not([readonly]) {\n    border-bottom: 1px solid #A239CA;\n    box-shadow: 0 1px 0 0 #A239CA;\n}\n\n.btn {\n    background-color: #4717F6;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 145 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(146);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(111)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./Navbar.css", function() {
+			var newContent = require("!!../../../../../node_modules/css-loader/index.js!./Navbar.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 146 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(110)(false);
+// imports
+
+
+// module
+exports.push([module.i, "nav {\n    color: #fff;\n    background-color: #0E0B18 !important;\n}\n", ""]);
 
 // exports
 

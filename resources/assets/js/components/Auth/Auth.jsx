@@ -8,6 +8,7 @@ import Signup from '../Signup/Signup';
 import PasswordRecovery from '../PasswordRecovery/PasswordRecovery';
 
 import './Auth.css';
+import '../Global.css';
 
 class Auth extends Component  {
 
