@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -19,9 +20,13 @@ class LoginController extends Controller
     |
     */
 
-    public function attempt(Request $request)
+    public function attemptLogin(Request $request)
     {
-
-      return $request->input('login');
+      $user = User::where('login', $request->input('login'))->first();
+      if ($user == '')
+        return "User not found";
+      if (Hash::check($request->input('password'), $user->password))
+        return "OK";
+      return "Password is wrong";
     }
 }
