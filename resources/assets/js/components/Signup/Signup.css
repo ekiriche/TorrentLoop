@@ -1,0 +1,5 @@
+.invalidInput {
+  color: red;
+  list-style-type: none;
+  padding: 0 .75rem !important;
+}
