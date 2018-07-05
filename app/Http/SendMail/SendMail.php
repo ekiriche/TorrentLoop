@@ -20,8 +20,8 @@ class SendMail
 		$header .= "Date: ".date("r (T)")." \r\n";
 		$header .= iconv_mime_encode("Subject", $subject, $subject_preferences);
 		if (mail($email, $subject, $content, $header))
-      return "OK";
-    return "NE OK";
+      return "delivered";
+    return "not delivered";
 	}
 }
 

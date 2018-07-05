@@ -17,3 +17,4 @@ Route::get('/', function () {
 
 Route::post('signin', 'Auth\LoginController@attemptLogin');
 Route::post('signup', 'Auth\RegisterController@attemptRegister');
+Route::get('confirm', 'Auth\RegisterController@ConfirmViaEmail');
