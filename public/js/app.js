@@ -37818,29 +37818,29 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var App = function (_Component) {
-	_inherits(App, _Component);
+  _inherits(App, _Component);
 
-	function App() {
-		_classCallCheck(this, App);
+  function App() {
+    _classCallCheck(this, App);
 
-		return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
-	}
+    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+  }
 
-	_createClass(App, [{
-		key: 'render',
-		value: function render() {
-			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Auth_Auth__["a" /* default */], null);
-		}
-	}]);
+  _createClass(App, [{
+    key: 'render',
+    value: function render() {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Auth_Auth__["a" /* default */], null);
+    }
+  }]);
 
-	return App;
+  return App;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
 
 
 if (document.getElementById('root')) {
-	__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(App, null), document.getElementById('root'));
+  __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(App, null), document.getElementById('root'));
 }
 
 /***/ }),
@@ -62257,46 +62257,46 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var Auth = function (_Component) {
-	_inherits(Auth, _Component);
+    _inherits(Auth, _Component);
 
-	function Auth() {
-		_classCallCheck(this, Auth);
+    function Auth() {
+        _classCallCheck(this, Auth);
 
-		return _possibleConstructorReturn(this, (Auth.__proto__ || Object.getPrototypeOf(Auth)).apply(this, arguments));
-	}
+        return _possibleConstructorReturn(this, (Auth.__proto__ || Object.getPrototypeOf(Auth)).apply(this, arguments));
+    }
 
-	_createClass(Auth, [{
-		key: 'render',
-		value: function render() {
-			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-				'div',
-				{ className: 'auth-flex backgroundAuth' },
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Navbar_Navbar__["a" /* default */], null),
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					'div',
-					{ className: 'container' },
-					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-						__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Row"],
-						{ className: 'CardPanel-right' },
-						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-							__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Col"],
-							{ s: 12, m: 8, l: 6, xl: 4 },
-							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-								__WEBPACK_IMPORTED_MODULE_1_react_materialize__["CardPanel"],
-								{ className: 'teal card-background' },
-								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Signin_Signin__["a" /* default */], null),
-								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Signup_Signup__["a" /* default */], null),
-								__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__PasswordRecovery_PasswordRecovery__["a" /* default */], null)
-							)
-						)
-					)
-				),
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Footer_Footer__["a" /* default */], null)
-			);
-		}
-	}]);
+    _createClass(Auth, [{
+        key: 'render',
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'auth-flex backgroundAuth' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__Navbar_Navbar__["a" /* default */], null),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'container' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        __WEBPACK_IMPORTED_MODULE_1_react_materialize__["Row"],
+                        { className: 'CardPanel-right' },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                            __WEBPACK_IMPORTED_MODULE_1_react_materialize__["Col"],
+                            { s: 12, m: 8, l: 6, xl: 4 },
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                                __WEBPACK_IMPORTED_MODULE_1_react_materialize__["CardPanel"],
+                                { className: 'teal card-background' },
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__Signin_Signin__["a" /* default */], null),
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Signup_Signup__["a" /* default */], null),
+                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__PasswordRecovery_PasswordRecovery__["a" /* default */], null)
+                            )
+                        )
+                    )
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__Footer_Footer__["a" /* default */], null)
+            );
+        }
+    }]);
 
-	return Auth;
+    return Auth;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (Auth);
@@ -62326,35 +62326,35 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var Navbar = function (_Component) {
-	_inherits(Navbar, _Component);
+  _inherits(Navbar, _Component);
 
-	function Navbar() {
-		_classCallCheck(this, Navbar);
+  function Navbar() {
+    _classCallCheck(this, Navbar);
 
-		return _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).apply(this, arguments));
-	}
+    return _possibleConstructorReturn(this, (Navbar.__proto__ || Object.getPrototypeOf(Navbar)).apply(this, arguments));
+  }
 
-	_createClass(Navbar, [{
-		key: 'render',
-		value: function render() {
-			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-				'nav',
-				null,
-				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-					'div',
-					{ className: 'nav-wrapper container' },
-					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-						'a',
-						{ href: '#', className: 'brand-logo' },
-						'Hypertube',
-						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-film  fa-2x', 'aria-hidden': 'true' })
-					)
-				)
-			);
-		}
-	}]);
+  _createClass(Navbar, [{
+    key: 'render',
+    value: function render() {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'nav',
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'nav-wrapper container' },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'a',
+            { href: '#', className: 'brand-logo' },
+            'Hypertube',
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-film  fa-2x', 'aria-hidden': 'true' })
+          )
+        )
+      );
+    }
+  }]);
 
-	return Navbar;
+  return Navbar;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (Navbar);
@@ -62876,134 +62876,134 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var Signup = function (_Component) {
-  _inherits(Signup, _Component);
+	_inherits(Signup, _Component);
 
-  function Signup(props) {
-    _classCallCheck(this, Signup);
+	function Signup(props) {
+		_classCallCheck(this, Signup);
 
-    var _this = _possibleConstructorReturn(this, (Signup.__proto__ || Object.getPrototypeOf(Signup)).call(this, props));
+		var _this = _possibleConstructorReturn(this, (Signup.__proto__ || Object.getPrototypeOf(Signup)).call(this, props));
 
-    _this.state = {
-      firstname: '',
-      lastname: '',
-      email: '',
-      login: '',
-      password: '',
-      firstnameError: '',
-      lastnameError: '',
-      emailError: '',
-      loginError: '',
-      passwordError: ''
-    };
-    _this.formValueCheck = _this.formValueCheck.bind(_this);
-    _this.handleSubmit = _this.handleSubmit.bind(_this);
-    //this.checkValue = this.checkValue.bind(this);
-    _this.getValueFromForm = _this.getValueFromForm.bind(_this);
-    return _this;
-  }
+		_this.state = {
+			firstname: '',
+			lastname: '',
+			email: '',
+			login: '',
+			password: '',
+			firstnameError: '',
+			lastnameError: '',
+			emailError: '',
+			loginError: '',
+			passwordError: ''
+		};
+		_this.formValueCheck = _this.formValueCheck.bind(_this);
+		_this.handleSubmit = _this.handleSubmit.bind(_this);
+		//this.checkValue = this.checkValue.bind(this);
+		_this.getValueFromForm = _this.getValueFromForm.bind(_this);
+		return _this;
+	}
 
-  _createClass(Signup, [{
-    key: 'getValueFromForm',
-    value: function getValueFromForm(event) {
-      this.formValueCheck(event);
-      if (event.target.name === 'login') {
-        this.setState(_defineProperty({}, event.target.name, this.state.login.toLowerCase()));
-        this.setState(_defineProperty({}, event.target.name, event.target.value));
-      } else this.setState(_defineProperty({}, event.target.name, event.target.value));
-    }
-  }, {
-    key: 'formValueCheck',
-    value: function formValueCheck(event) {
-      var validateMessage = Object(__WEBPACK_IMPORTED_MODULE_2__formValueCheck__["a" /* FormValueValidation */])(event);
+	_createClass(Signup, [{
+		key: 'getValueFromForm',
+		value: function getValueFromForm(event) {
+			this.formValueCheck(event);
+			if (event.target.name === 'login') {
+				this.setState(_defineProperty({}, event.target.name, this.state.login.toLowerCase()));
+				this.setState(_defineProperty({}, event.target.name, event.target.value));
+			} else this.setState(_defineProperty({}, event.target.name, event.target.value));
+		}
+	}, {
+		key: 'formValueCheck',
+		value: function formValueCheck(event) {
+			var validateMessage = Object(__WEBPACK_IMPORTED_MODULE_2__formValueCheck__["a" /* FormValueValidation */])(event);
 
-      if (validateMessage !== undefined && event.target.name === 'firstname') {
-        this.setState({ firstnameError: 'First name ' + validateMessage });
-      } else if (validateMessage === undefined && event.target.name === 'firstname') this.setState({ firstnameError: '' });
-      if (validateMessage !== undefined && event.target.name === 'lastname') {
-        this.setState({ lastnameError: 'Last name ' + validateMessage });
-      } else if (validateMessage === undefined && event.target.name === 'lastname') this.setState({ lastnameError: '' });
-      if (validateMessage !== undefined && event.target.name === 'email') {
-        this.setState({ emailError: validateMessage });
-      } else if (validateMessage === undefined && event.target.name === 'email') this.setState({ emailError: '' });
-      if (validateMessage !== undefined && event.target.name === 'login') {
-        this.setState({ loginError: 'Login ' + validateMessage });
-      } else if (validateMessage === undefined && event.target.name === 'login') this.setState({ loginError: '' });
-      if (validateMessage !== undefined && event.target.name === 'password') {
-        this.setState({ passwordError: validateMessage });
-      } else if (validateMessage === undefined && event.target.name === 'password') this.setState({ passwordError: '' });
-    }
-  }, {
-    key: 'handleSubmit',
-    value: function handleSubmit(event) {
-      event.preventDefault();
-      console.log(this.state.firstname);
-      console.log(this.state.lastname);
-      console.log(this.state.email);
-      console.log(this.state.login);
-      console.log(this.state.password);
-      Object(__WEBPACK_IMPORTED_MODULE_3__PostData__["a" /* PostData */])(this.state).then(function (result) {
-        console.log(result);
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_1_react_materialize__["Row"],
-        null,
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'form',
-          { onSubmit: this.handleSubmit },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'h5',
-            null,
-            'Sign up'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { s: 6, name: 'firstname', label: 'First Name', required: true, onChange: this.getValueFromForm }),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { s: 6, name: 'lastname', label: 'Last Name', required: true, onChange: this.getValueFromForm }),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { name: 'login', label: 'Login', s: 6, required: true, onChange: this.getValueFromForm }),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { type: 'email', name: 'email', label: 'Email', s: 6, required: true, onChange: this.getValueFromForm }),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { type: 'password', name: 'password', label: 'Password', s: 12, required: true, onChange: this.getValueFromForm }),
-          this.state.firstnameError && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            { className: 'invalidInput' },
-            this.state.firstnameError
-          ),
-          this.state.lastnameError && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            { className: 'invalidInput' },
-            this.state.lastnameError
-          ),
-          this.state.loginError && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            { className: 'invalidInput' },
-            this.state.loginError
-          ),
-          this.state.emailError && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            { className: 'invalidInput' },
-            this.state.emailError
-          ),
-          this.state.passwordError && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'li',
-            { className: 'invalidInput' },
-            this.state.passwordError
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: 'col input-field s12' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_1_react_materialize__["Button"],
-              { waves: 'light' },
-              'Sign up'
-            )
-          )
-        )
-      );
-    }
-  }]);
+			if (validateMessage !== undefined && event.target.name === 'firstname') {
+				this.setState({ firstnameError: 'First name ' + validateMessage });
+			} else if (validateMessage === undefined && event.target.name === 'firstname') this.setState({ firstnameError: '' });
+			if (validateMessage !== undefined && event.target.name === 'lastname') {
+				this.setState({ lastnameError: 'Last name ' + validateMessage });
+			} else if (validateMessage === undefined && event.target.name === 'lastname') this.setState({ lastnameError: '' });
+			if (validateMessage !== undefined && event.target.name === 'email') {
+				this.setState({ emailError: validateMessage });
+			} else if (validateMessage === undefined && event.target.name === 'email') this.setState({ emailError: '' });
+			if (validateMessage !== undefined && event.target.name === 'login') {
+				this.setState({ loginError: 'Login ' + validateMessage });
+			} else if (validateMessage === undefined && event.target.name === 'login') this.setState({ loginError: '' });
+			if (validateMessage !== undefined && event.target.name === 'password') {
+				this.setState({ passwordError: validateMessage });
+			} else if (validateMessage === undefined && event.target.name === 'password') this.setState({ passwordError: '' });
+		}
+	}, {
+		key: 'handleSubmit',
+		value: function handleSubmit(event) {
+			event.preventDefault();
+			console.log(this.state.firstname);
+			console.log(this.state.lastname);
+			console.log(this.state.email);
+			console.log(this.state.login);
+			console.log(this.state.password);
+			Object(__WEBPACK_IMPORTED_MODULE_3__PostData__["a" /* PostData */])(this.state).then(function (result) {
+				console.log(result);
+			});
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Row"],
+				null,
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					'form',
+					{ onSubmit: this.handleSubmit },
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'h5',
+						null,
+						'Sign up'
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { s: 6, name: 'firstname', label: 'First Name', required: true, onChange: this.getValueFromForm }),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { s: 6, name: 'lastname', label: 'Last Name', required: true, onChange: this.getValueFromForm }),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { name: 'login', label: 'Login', s: 6, required: true, onChange: this.getValueFromForm }),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { type: 'email', name: 'email', label: 'Email', s: 6, required: true, onChange: this.getValueFromForm }),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { type: 'password', name: 'password', label: 'Password', s: 12, required: true, onChange: this.getValueFromForm }),
+					this.state.firstnameError && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'li',
+						{ className: 'invalidInput' },
+						this.state.firstnameError
+					),
+					this.state.lastnameError && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'li',
+						{ className: 'invalidInput' },
+						this.state.lastnameError
+					),
+					this.state.loginError && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'li',
+						{ className: 'invalidInput' },
+						this.state.loginError
+					),
+					this.state.emailError && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'li',
+						{ className: 'invalidInput' },
+						this.state.emailError
+					),
+					this.state.passwordError && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'li',
+						{ className: 'invalidInput' },
+						this.state.passwordError
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ className: 'col input-field s12' },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Button"],
+							{ waves: 'light' },
+							'Sign up'
+						)
+					)
+				)
+			);
+		}
+	}]);
 
-  return Signup;
+	return Signup;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (Signup);
