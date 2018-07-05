@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->boolean('access_level')->default(0);
             $table->string('reg_link');
-            $table->rememberToken();
+            $table->string('access_token')->nullable();
             $table->timestamps();
         });
     }
