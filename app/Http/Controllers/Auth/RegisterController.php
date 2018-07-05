@@ -45,4 +45,17 @@ class RegisterController extends Controller
         $SendMail = new SendMail();
         return $SendMail->send_mail($request->input('email'), "Click on the link to confirm your account: http://localhost:8100/confirm?email=" . $request->input('email') . "&reg_link=" . $hashed_link, "User creation");
     }
+
+    public function confirmViaEmail()
+    {
+      $user = User::where('email', $_GET['email'])->first();
+      if ($user == '')
+        return "User not found";
+      if ($user->reg_link != $_GET['reg_link'])
+        return "Reg link is wrong";
+      $user->access_level = 1;
+      $user->save();
+      header("Location: http://localhost:8100");
+      die();
+    }
 }
