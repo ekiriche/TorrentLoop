@@ -3,7 +3,7 @@ import { Row, Input, Button } from 'react-materialize';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import { FortyTwoPost } from './FortyTwoPost.jsx';
-
+import axios from 'axios';
 
 import './OAuth.css';
 
@@ -14,6 +14,7 @@ class OAuth extends Component  {
     super();
     var path = window.location.href;
     var code = path.slice(path.indexOf('=') + 1);
+    code = code.replace("#/", '');
     this.state ={
       grant_type: 'authorization_code',
       client_id: '424d0c7fac1ed02048e197dda88a5e1a8fb60bd8a4420659d6096f8fbb2a1c73',
@@ -35,12 +36,25 @@ class OAuth extends Component  {
 
   responseGoogle(event)
   {
-    console.log(event);
+    return ;
   }
 
-  responseFacebook(event)
+  registerViaFacebook(event)
   {
+    if (event.error)
+      return ;
     console.log(event);
+  /*  axios.post('http://localhost:8100/osignup', {email : event.profileObj.email, firstname : event.profileObj.givenName, lastname : event.profileObj.familyName}).then(response => {
+      console.log(response.data);
+    })*/
+  }
+
+  registerViaGoogle(event)
+  {
+    console.log(event.profileObj.imageUrl);
+    axios.post('http://localhost:8100/auth/osignup', {email : event.profileObj.email, firstname : event.profileObj.givenName, lastname : event.profileObj.familyName, img : event.profileObj.imageUrl}).then(response => {
+      console.log(response.data);
+    })
   }
 
   render() {
@@ -54,13 +68,13 @@ class OAuth extends Component  {
         <GoogleLogin
           clientId="895850780881-s18dg7en9bq0hr32an5t4bl164l43iih.apps.googleusercontent.com"
           buttonText="Login"
-          onSuccess={this.responseGoogle}
+          onSuccess={this.registerViaGoogle}
           onFailure={this.responseGoogle}
         />
         <FacebookLogin
           appId="241030700020959"
           fields="name,email,picture"
-          callback={this.responseFacebook}
+          callback={this.registerViaFacebook}
         />
         <a href="https://api.intra.42.fr/oauth/authorize?client_id=424d0c7fac1ed02048e197dda88a5e1a8fb60bd8a4420659d6096f8fbb2a1c73&redirect_uri=http%3A%2F%2Flocalhost%3A8100&response_type=code&scope=public">42 lul</a>
       </div>
