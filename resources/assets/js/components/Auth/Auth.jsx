@@ -22,8 +22,8 @@ class Auth extends Component  {
 
 		this.props.initialize({
 			languages: [
-				{ name: "English", code: "en" },
-				{ name: "French", code: "fr" }
+				{ name: "EN", code: "en" },
+				{ name: "UA", code: "ua" }
 			],
 			translation: globalTranslations,
 			options: { renderToStaticMarkup }
