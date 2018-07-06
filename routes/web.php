@@ -4,9 +4,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('signin', 'Auth\LoginController@attemptLogin');
-Route::post('signup', 'Auth\RegisterController@attemptRegister');
-Route::post('osignup', 'Auth\RegisterController@oauthRegister');
-Route::post('update-pass', 'Auth\ResetPasswordController@update');
-Route::post('reset-pass', 'Auth\ResetPasswordController@reset');
-Route::get('confirm', 'Auth\RegisterController@ConfirmViaEmail');
+Route::post('auth/signin', 'Auth\LoginController@attemptLogin');
+Route::post('auth/signup', 'Auth\RegisterController@attemptRegister');
+Route::post('auth/osignup', 'Auth\RegisterController@oauthRegister');
+Route::post('auth/update-pass', 'Auth\ResetPasswordController@update');
+Route::post('auth/update-pass-oauth', 'Auth\ResetPasswordController@updateOAuth');
+Route::post('auth/reset-pass', 'Auth\ResetPasswordController@reset');
+Route::post('profile/save-history', 'UserProfile\MovieHistoryController@saveMovieToHistory');
+Route::post('profile/get-history', 'UserProfile\MovieHistoryController@getHistory');
+Route::post('profile/get-user-info', 'UserProfile\ProfileController@getUserInfo');
+Route::post('profile/set-picture', 'UserProfile\ProfileController@setPicture');
+Route::get('auth/confirm', 'Auth\RegisterController@ConfirmViaEmail');
