@@ -1,0 +1,17 @@
+{
+  "signin": [
+    "My Article title",
+    "Увійти",
+    "My Article title ES"
+  ],
+  "login": [
+    null,
+    "Логін",
+    "Hola ${name}!"
+  ],
+  "password": [
+    null,
+    "Пароль",
+    "Hola ${name}!"
+  ]
+}
