@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
 import Collapsible from 'react-collapsible';
+import { withLocalize, Translate } from 'react-localize-redux';
 import { PostData } from './PostData';
 
 import './PasswordRecovery.css';
@@ -42,13 +43,13 @@ class PasswordRecovery extends Component  {
 	render() {
 		return (
 			<Row>
-				<Collapsible trigger="Forgot password">
+				<Collapsible trigger={<Translate id="forgotpassword">Forgot password ?</Translate>}>
 					<form onSubmit={this.handleSubmit} className="forgotPassword-text" >
 						<Input type="email" name="email" required label="Email" s={12} onChange={this.getValueFromForm} />
 						{	this.state.registrationFalse && ( <span className="alert alert-danger">{this.state.registrationFalse}</span>)	}
 						{	this.state.registrationSuccess && ( <span className="alert alert-success">{this.state.registrationSuccess}</span>)	}
 						<div className="col input-field s12">
-							<Button waves='light'>Send me new password</Button>
+							<Button waves='light'><Translate id="forgotpasswordButton">Send me mail</Translate></Button>
 						</div>
 					</form>
 				</Collapsible>
@@ -56,4 +57,4 @@ class PasswordRecovery extends Component  {
 		);
 	}
 }
-export default PasswordRecovery;
+export default withLocalize(PasswordRecovery);

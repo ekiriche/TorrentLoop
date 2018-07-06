@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
+
 import {checkString,checkValue,FormValueValidation} from './formValueCheck';
+
+import { withLocalize, Translate } from 'react-localize-redux';
+
 import { PostData } from './PostData';
 
 import './Signup.css';
@@ -86,12 +90,12 @@ class Signup extends Component  {
 		return (
 			<Row>
 				<form onSubmit={this.handleSubmit} className="signUp-text">
-					<h5 className="signUp-title">Sign up</h5>
-					<Input s={6} name="firstname" label="First Name" required  onChange={this.getValueFromForm} />
-					<Input s={6} name="lastname" label="Last Name" required  onChange={this.getValueFromForm} />
-					<Input name="login" label="Login" s={6} required  onChange={this.getValueFromForm} />
-					<Input type="email" name="email" label="Email" s={6} required  onChange={this.getValueFromForm} />
-					<Input type="password" name="password" label="Password" s={12} required  onChange={this.getValueFromForm} />
+					<h5 className="signUp-title"><Translate id="signup">Sign up</Translate></h5>
+					<Input label={<Translate id="firstname">First name</Translate>} s={6} name="firstname" required  onChange={this.getValueFromForm} />
+					<Input label={<Translate id="lastname">Last name</Translate>} s={6} name="lastname" required  onChange={this.getValueFromForm} />
+					<Input label={<Translate id="login">Login</Translate>} name="login" s={6} required  onChange={this.getValueFromForm} />
+					<Input label="Email" type="email" name="email" s={6} required  onChange={this.getValueFromForm} />
+					<Input label={<Translate id="password">Password</Translate>} type="password" name="password" s={12} required  onChange={this.getValueFromForm} />
 					{	this.state.firstnameError && ( <li className="invalidInput">{this.state.firstnameError}</li>) }
 					{	this.state.lastnameError  && ( <li className="invalidInput">{this.state.lastnameError}</li>)  }
 					{	this.state.loginError     && ( <li className="invalidInput">{this.state.loginError}</li>)     }
@@ -100,11 +104,11 @@ class Signup extends Component  {
 					{	this.state.registrationFalse && ( <span className="alert alert-danger">{this.state.registrationFalse}</span>)	}
 					{	this.state.registrationSuccess && ( <span className="alert alert-success">{this.state.registrationSuccess}</span>)	}
 					<div className="col input-field s12">
-						<Button waves='light'>Sign up</Button>
+						<Button waves='light'><Translate id="signup">Sign up</Translate></Button>
 					</div>
 				</form>
 			</Row>
 		);
 	}
 }
-export default Signup;
+export default withLocalize(Signup);

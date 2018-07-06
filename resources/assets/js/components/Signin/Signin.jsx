@@ -50,7 +50,7 @@ class Signin extends Component  {
 					{	this.state.registrationFalse && ( <span className="alert alert-danger">{this.state.registrationFalse}</span>)	}
 					{	this.state.registrationSuccess && ( <span className="alert alert-success">{this.state.registrationSuccess}</span>)	}
 					<div className="col input-field s12 OAuth-position">
-						<Button waves='light'>Sign in</Button>
+						<Button waves='light'><Translate id="signin_button">Sign in</Translate></Button>
 						<OAuth />
 					</div>
 				</form>

@@ -3,7 +3,7 @@ import { CardPanel, Col, Row } from 'react-materialize';
 /*localization*/
 import { renderToStaticMarkup } from "react-dom/server";
 import { withLocalize, Translate } from "react-localize-redux";
-import globalTranslations from '../translations/global.json';
+import globalTranslations from '../translations/auth.json';
 import ToggleButton from 'react-toggle-button';
 
 /*localization end*/
