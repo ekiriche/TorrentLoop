@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 32);
+/******/ 	return __webpack_require__(__webpack_require__.s = 33);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -177,7 +177,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 "use strict";
 
 
-var bind = __webpack_require__(21);
+var bind = __webpack_require__(22);
 var isBuffer = __webpack_require__(40);
 
 /*global toString:true*/
@@ -1082,7 +1082,7 @@ var _CardTitle = __webpack_require__(78);
 
 var _CardTitle2 = _interopRequireDefault(_CardTitle);
 
-var _Chip = __webpack_require__(30);
+var _Chip = __webpack_require__(31);
 
 var _Chip2 = _interopRequireDefault(_Chip);
 
@@ -1154,7 +1154,7 @@ var _Pagination = __webpack_require__(93);
 
 var _Pagination2 = _interopRequireDefault(_Pagination);
 
-var _PaginationButton = __webpack_require__(31);
+var _PaginationButton = __webpack_require__(32);
 
 var _PaginationButton2 = _interopRequireDefault(_PaginationButton);
 
@@ -1457,10 +1457,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(22);
+    adapter = __webpack_require__(23);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(22);
+    adapter = __webpack_require__(23);
   }
   return adapter;
 }
@@ -1693,7 +1693,7 @@ module.exports = emptyFunction;
 var printWarning = function() {};
 
 if (true) {
-  var ReactPropTypesSecret = __webpack_require__(29);
+  var ReactPropTypesSecret = __webpack_require__(30);
   var loggedTypeFailures = {};
 
   printWarning = function(text) {
@@ -14985,6 +14985,12 @@ return jQuery;
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(39);
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
@@ -15000,7 +15006,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15011,7 +15017,7 @@ var settle = __webpack_require__(44);
 var buildURL = __webpack_require__(46);
 var parseHeaders = __webpack_require__(47);
 var isURLSameOrigin = __webpack_require__(48);
-var createError = __webpack_require__(23);
+var createError = __webpack_require__(24);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(49);
 
 module.exports = function xhrAdapter(config) {
@@ -15187,7 +15193,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15212,7 +15218,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15224,7 +15230,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15250,7 +15256,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15309,7 +15315,7 @@ function invariant(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15332,7 +15338,7 @@ if (true) {
 module.exports = emptyObject;
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15400,7 +15406,7 @@ if (true) {
 module.exports = warning;
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15419,7 +15425,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15481,7 +15487,7 @@ Chip.defaultProps = {
 exports.default = Chip;
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15546,15 +15552,15 @@ PaginationButton.propTypes = {
 exports.default = PaginationButton;
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(33);
-module.exports = __webpack_require__(137);
+__webpack_require__(34);
+module.exports = __webpack_require__(139);
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -15564,7 +15570,7 @@ module.exports = __webpack_require__(137);
  * building robust, powerful web applications using React + Laravel.
  */
 
-__webpack_require__(34);
+__webpack_require__(35);
 
 /**
  * Next, we will create a fresh React component instance and attach it to
@@ -15575,11 +15581,11 @@ __webpack_require__(34);
 __webpack_require__(58);
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(35);
+window._ = __webpack_require__(36);
 window.Popper = __webpack_require__(19).default;
 
 /**
@@ -15591,7 +15597,7 @@ window.Popper = __webpack_require__(19).default;
 try {
   window.$ = window.jQuery = __webpack_require__(20);
 
-  __webpack_require__(37);
+  __webpack_require__(38);
 } catch (e) {}
 
 /**
@@ -15600,7 +15606,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(38);
+window.axios = __webpack_require__(21);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -15636,7 +15642,7 @@ if (token) {
 // });
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -32746,10 +32752,10 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(18), __webpack_require__(36)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(18), __webpack_require__(37)(module)))
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -32777,7 +32783,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -36710,12 +36716,6 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(39);
-
-/***/ }),
 /* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -36723,7 +36723,7 @@ module.exports = __webpack_require__(39);
 
 
 var utils = __webpack_require__(3);
-var bind = __webpack_require__(21);
+var bind = __webpack_require__(22);
 var Axios = __webpack_require__(41);
 var defaults = __webpack_require__(12);
 
@@ -36758,9 +36758,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(25);
+axios.Cancel = __webpack_require__(26);
 axios.CancelToken = __webpack_require__(56);
-axios.isCancel = __webpack_require__(24);
+axios.isCancel = __webpack_require__(25);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -37103,7 +37103,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(23);
+var createError = __webpack_require__(24);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -37536,7 +37536,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(3);
 var transformData = __webpack_require__(53);
-var isCancel = __webpack_require__(24);
+var isCancel = __webpack_require__(25);
 var defaults = __webpack_require__(12);
 var isAbsoluteURL = __webpack_require__(54);
 var combineURLs = __webpack_require__(55);
@@ -37696,7 +37696,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(25);
+var Cancel = __webpack_require__(26);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -37800,7 +37800,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_materialize__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_materialize___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_materialize__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Auth_Auth__ = __webpack_require__(110);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__App_css__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__App_css__ = __webpack_require__(137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__App_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__App_css__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -37866,9 +37866,9 @@ if (true) {
 'use strict';
 
 var _assign = __webpack_require__(13);
-var invariant = __webpack_require__(26);
-var emptyObject = __webpack_require__(27);
-var warning = __webpack_require__(28);
+var invariant = __webpack_require__(27);
+var emptyObject = __webpack_require__(28);
+var warning = __webpack_require__(29);
 var emptyFunction = __webpack_require__(14);
 var checkPropTypes = __webpack_require__(15);
 
@@ -39358,9 +39358,9 @@ if (true) {
   (function() {
 'use strict';
 
-var invariant = __webpack_require__(26);
+var invariant = __webpack_require__(27);
 var React = __webpack_require__(0);
-var warning = __webpack_require__(28);
+var warning = __webpack_require__(29);
 var ExecutionEnvironment = __webpack_require__(61);
 var _assign = __webpack_require__(13);
 var emptyFunction = __webpack_require__(14);
@@ -39368,7 +39368,7 @@ var checkPropTypes = __webpack_require__(15);
 var getActiveElement = __webpack_require__(62);
 var shallowEqual = __webpack_require__(63);
 var containsNode = __webpack_require__(64);
-var emptyObject = __webpack_require__(27);
+var emptyObject = __webpack_require__(28);
 var hyphenateStyleName = __webpack_require__(67);
 var camelizeStyleName = __webpack_require__(69);
 
@@ -57475,7 +57475,7 @@ exports.default = Autocomplete;
 
 var assign = __webpack_require__(13);
 
-var ReactPropTypesSecret = __webpack_require__(29);
+var ReactPropTypesSecret = __webpack_require__(30);
 var checkPropTypes = __webpack_require__(15);
 
 var printWarning = function() {};
@@ -60520,7 +60520,7 @@ var _Icon = __webpack_require__(4);
 
 var _Icon2 = _interopRequireDefault(_Icon);
 
-var _PaginationButton = __webpack_require__(31);
+var _PaginationButton = __webpack_require__(32);
 
 var _PaginationButton2 = _interopRequireDefault(_PaginationButton);
 
@@ -62113,7 +62113,7 @@ var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Chip = __webpack_require__(30);
+var _Chip = __webpack_require__(31);
 
 var _Chip2 = _interopRequireDefault(_Chip);
 
@@ -62231,10 +62231,10 @@ exports.default = Toast;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Footer_Footer__ = __webpack_require__(115);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Signin_Signin__ = __webpack_require__(118);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Signup_Signup__ = __webpack_require__(124);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__PasswordRecovery_PasswordRecovery__ = __webpack_require__(127);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Auth_css__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__PasswordRecovery_PasswordRecovery__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Auth_css__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__Auth_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__Auth_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Global_css__ = __webpack_require__(133);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Global_css__ = __webpack_require__(135);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Global_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__Global_css__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -62399,7 +62399,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "nav {\n    color: #fff;\n    background-color: #0E0B18 !important;\n}\n.fa-film {\n  color: #4717F6;\n}\n", ""]);
+exports.push([module.i, "nav {\n    color: #fff;\n    background-color: #0E0B18 !important;\n}\n.fa-film {\n  color: #4717F6;\n}\n\nnav .brand-logo {\n    width: 250px !important;\n}\n", ""]);
 
 // exports
 
@@ -62635,6 +62635,8 @@ exports.push([module.i, ".page-footer {\n  padding-top: 0 !important;\n}\n.creat
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Signin_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__Signin_css__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -62648,42 +62650,71 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var Signin = function (_Component) {
-  _inherits(Signin, _Component);
+	_inherits(Signin, _Component);
 
-  function Signin() {
-    _classCallCheck(this, Signin);
+	function Signin(props) {
+		_classCallCheck(this, Signin);
 
-    return _possibleConstructorReturn(this, (Signin.__proto__ || Object.getPrototypeOf(Signin)).apply(this, arguments));
-  }
+		var _this = _possibleConstructorReturn(this, (Signin.__proto__ || Object.getPrototypeOf(Signin)).call(this, props));
 
-  _createClass(Signin, [{
-    key: 'render',
-    value: function render() {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_1_react_materialize__["Row"],
-        null,
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'h5',
-          null,
-          'Sign in'
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { label: 'Login', s: 12 }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { type: 'password', label: 'Password', s: 12 }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          { className: 'col input-field s12 OAuth-position' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            __WEBPACK_IMPORTED_MODULE_1_react_materialize__["Button"],
-            { waves: 'light' },
-            'Sign in'
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__OAuth_OAuth__["a" /* default */], null)
-        )
-      );
-    }
-  }]);
+		_this.state = {
+			login: '',
+			password: ''
+		};
+		_this.handleSubmit = _this.handleSubmit.bind(_this);
+		_this.getValueFromForm = _this.getValueFromForm.bind(_this);
+		return _this;
+	}
 
-  return Signin;
+	_createClass(Signin, [{
+		key: 'getValueFromForm',
+		value: function getValueFromForm(event) {
+			if (event.target.name === 'login') {
+				this.setState(_defineProperty({}, event.target.name, event.target.value.toLowerCase()));
+			} else this.setState(_defineProperty({}, event.target.name, event.target.value));
+		}
+	}, {
+		key: 'handleSubmit',
+		value: function handleSubmit(event) {
+			event.preventDefault();
+			//PostData('signup', this.state).then ((result) => {
+			//console.log(result);
+			//})
+			console.log(this.state.login);
+			console.log(this.state.password);
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Row"],
+				null,
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					'form',
+					{ onSubmit: this.handleSubmit },
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'h5',
+						null,
+						'Sign in'
+					),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { label: 'Login', s: 12, name: 'login', required: true, onChange: this.getValueFromForm }),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { type: 'password', label: 'Password', required: true, name: 'password', s: 12, onChange: this.getValueFromForm }),
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'div',
+						{ className: 'col input-field s12 OAuth-position' },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Button"],
+							{ waves: 'light' },
+							'Sign in'
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__OAuth_OAuth__["a" /* default */], null)
+					)
+				)
+			);
+		}
+	}]);
+
+	return Signin;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (Signin);
@@ -62854,9 +62885,9 @@ exports.push([module.i, ".OAuth-position {\n  display: flex;\n  justify-content:
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_materialize__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_materialize___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_materialize__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__formValueCheck__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PostData__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Signup_css__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__formValueCheck__ = __webpack_require__(125);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PostData__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Signup_css__ = __webpack_require__(127);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Signup_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__Signup_css__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -62897,7 +62928,6 @@ var Signup = function (_Component) {
 		};
 		_this.formValueCheck = _this.formValueCheck.bind(_this);
 		_this.handleSubmit = _this.handleSubmit.bind(_this);
-		//this.checkValue = this.checkValue.bind(this);
 		_this.getValueFromForm = _this.getValueFromForm.bind(_this);
 		return _this;
 	}
@@ -62907,8 +62937,7 @@ var Signup = function (_Component) {
 		value: function getValueFromForm(event) {
 			this.formValueCheck(event);
 			if (event.target.name === 'login') {
-				this.setState(_defineProperty({}, event.target.name, this.state.login.toLowerCase()));
-				this.setState(_defineProperty({}, event.target.name, event.target.value));
+				this.setState(_defineProperty({}, event.target.name, event.target.value.toLowerCase()));
 			} else this.setState(_defineProperty({}, event.target.name, event.target.value));
 		}
 	}, {
@@ -62936,14 +62965,13 @@ var Signup = function (_Component) {
 		key: 'handleSubmit',
 		value: function handleSubmit(event) {
 			event.preventDefault();
-			console.log(this.state.firstname);
-			console.log(this.state.lastname);
-			console.log(this.state.email);
-			console.log(this.state.login);
-			console.log(this.state.password);
-			Object(__WEBPACK_IMPORTED_MODULE_3__PostData__["a" /* PostData */])(this.state).then(function (result) {
-				console.log(result);
-			});
+			var confirmMessage = {
+				error: ['Something wrong, we can\'t register you '],
+				success: ['Check your mail, we send you instructions']
+				//PostData('signup', this.state).then ((result) => {
+				//console.log(result);
+				//})
+			};this.setState({ registrationSuccess: confirmMessage.success[0] });
 		}
 	}, {
 		key: 'render',
@@ -62953,7 +62981,7 @@ var Signup = function (_Component) {
 				null,
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					'form',
-					{ onSubmit: this.handleSubmit },
+					{ onSubmit: this.handleSubmit, className: 'signUp-text' },
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						'h5',
 						null,
@@ -62989,6 +63017,16 @@ var Signup = function (_Component) {
 						{ className: 'invalidInput' },
 						this.state.passwordError
 					),
+					this.state.registrationFalse && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'span',
+						{ className: 'alert alert-danger' },
+						this.state.registrationFalse
+					),
+					this.state.registrationSuccess && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'span',
+						{ className: 'alert alert-success' },
+						this.state.registrationSuccess
+					),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						'div',
 						{ className: 'col input-field s12' },
@@ -63010,12 +63048,115 @@ var Signup = function (_Component) {
 
 /***/ }),
 /* 125 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export formValueCheck */
+/* harmony export (immutable) */ __webpack_exports__["a"] = FormValueValidation;
+/* unused harmony export checkValue */
+/* unused harmony export checkString */
+function formValueCheck(event) {
+  var validateMessage = this.FormValueValidation(event);
+
+  if (validateMessage !== undefined && event.target.name === 'firstname') {
+    this.setState({ firstnameError: 'First name ' + validateMessage });
+  } else if (validateMessage === undefined && event.target.name === 'firstname') this.setState({ firstnameError: '' });
+  if (validateMessage !== undefined && event.target.name === 'lastname') {
+    this.setState({ lastnameError: 'Last name ' + validateMessage });
+  } else if (validateMessage === undefined && event.target.name === 'lastname') this.setState({ lastnameError: '' });
+  if (validateMessage !== undefined && event.target.name === 'email') {
+    this.setState({ emailError: validateMessage });
+  } else if (validateMessage === undefined && event.target.name === 'email') this.setState({ emailError: '' });
+  if (validateMessage !== undefined && event.target.name === 'login') {
+    this.setState({ loginError: 'Login ' + validateMessage });
+  } else if (validateMessage === undefined && event.target.name === 'login') this.setState({ loginError: '' });
+  if (validateMessage !== undefined && event.target.name === 'password') {
+    this.setState({ passwordError: validateMessage });
+  } else if (validateMessage === undefined && event.target.name === 'password') this.setState({ passwordError: '' });
+}
+
+function FormValueValidation(event) {
+  var textReg = /^[A-z]+$/g;
+  var emailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
+  var passReg = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/g;
+
+  if (event.target.name === 'password') {
+    if (event.target.value.length < 4 || event.target.value.length > 15) {
+      return 'Password should contain at least 4 and not more than 16 characters';
+    }
+    return checkString(event.target.value);
+  } else if (event.target.name === 'email') {
+    if (checkValue(emailReg, event.target.value) === false) return 'Your email address is invalid';
+  } else {
+    if (event.target.value.length < 4 || event.target.value.length > 15) return 'should contain at least 4 and not more than 16 characters';else if (checkValue(textReg, event.target.value) === false) return 'should contain only alphabetic characters';
+  }
+}
+
+function checkValue(regexp, str) {
+  if (str.search(regexp) != -1) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function checkString(str) {
+  var ch = void 0;
+  var i = void 0;
+  var capitalFlag = false;
+  var lowerCaseFlag = false;
+  var numberFlag = false;
+  for (i = 0; i < str.length; i++) {
+    ch = str.charAt(i);
+    if (str.search(/(?=.*\d)/g) != -1) {
+      numberFlag = true;
+    } else if (str.search(/(?=.*\d)/g) === -1) {
+      return 'Passwords must beat less 1 number';
+    }
+    if (str.search(/(?=.*[A-Z])/g) != -1) {
+      capitalFlag = true;
+    } else if (str.search(/(?=.*[A-Z])/g) === -1) {
+      return 'Passwords must beat less 1 capital letter';
+    }
+    if (str.search(/(?=.*[a-z])/g) != -1) {
+      lowerCaseFlag = true;
+    } else if (str.search(/(?=.*[a-z])/g) === -1) {
+      return 'Passwords must beat less 1 lowercase letter';
+    }
+    if (numberFlag && capitalFlag && lowerCaseFlag) return true;
+  }
+  return false;
+}
+
+/***/ }),
+/* 126 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export PostData */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+
+
+function PostData(type, userData) {
+  var BaseUrl = 'http://localhost:8100/';
+  return new Promise(function (resolve, reject) {
+    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(BaseUrl + type, userData).then(function (res) {
+      resolve(res.data);
+    }).catch(function (error) {
+      reject(error);
+    });
+  });
+}
+
+/***/ }),
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(126);
+var content = __webpack_require__(128);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -63040,7 +63181,7 @@ if(false) {
 }
 
 /***/ }),
-/* 126 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(5)(false);
@@ -63048,13 +63189,13 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, ".invalidInput {\n  color: red;\n  list-style-type: none;\n  padding: 0 .75rem !important;\n}\n", ""]);
+exports.push([module.i, ".invalidInput {\n  color: red;\n  list-style-type: none;\n  padding: 0 .75rem !important;\n}\n\n.alert {\n  padding: 0 .75rem;\n  margin-bottom: 20px;\n  border: 1px solid transparent;\n  border-radius: 4px;\n}\n\n.alert-success {\n  color: #3c763d;\n  background-color: #dff0d8;\n  border-color: #d6e9c6;\n}\n\n.alert-danger {\n  color: #a94442;\n  background-color: #f2dede;\n  border-color: #ebccd1;\n}\n.signUp-text {\n  text-align: center;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 127 */
+/* 129 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -63062,11 +63203,13 @@ exports.push([module.i, ".invalidInput {\n  color: red;\n  list-style-type: none
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_materialize__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_materialize___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_materialize__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_collapsible__ = __webpack_require__(128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_collapsible__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_collapsible___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_collapsible__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PasswordRecovery_css__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PasswordRecovery_css__ = __webpack_require__(131);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PasswordRecovery_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__PasswordRecovery_css__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -63081,45 +63224,83 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 var PasswordRecovery = function (_Component) {
-  _inherits(PasswordRecovery, _Component);
+	_inherits(PasswordRecovery, _Component);
 
-  function PasswordRecovery() {
-    _classCallCheck(this, PasswordRecovery);
+	function PasswordRecovery(props) {
+		_classCallCheck(this, PasswordRecovery);
 
-    return _possibleConstructorReturn(this, (PasswordRecovery.__proto__ || Object.getPrototypeOf(PasswordRecovery)).apply(this, arguments));
-  }
+		var _this = _possibleConstructorReturn(this, (PasswordRecovery.__proto__ || Object.getPrototypeOf(PasswordRecovery)).call(this, props));
 
-  _createClass(PasswordRecovery, [{
-    key: 'render',
-    value: function render() {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_1_react_materialize__["Row"],
-        null,
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_2_react_collapsible___default.a,
-          { trigger: 'Forgot password' },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { type: 'email', label: 'Email', s: 12 }),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: 'col input-field s12' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              __WEBPACK_IMPORTED_MODULE_1_react_materialize__["Button"],
-              { waves: 'light' },
-              'Send me new password'
-            )
-          )
-        )
-      );
-    }
-  }]);
+		_this.state = {
+			email: ''
+		};
+		_this.handleSubmit = _this.handleSubmit.bind(_this);
+		_this.getValueFromForm = _this.getValueFromForm.bind(_this);
+		return _this;
+	}
 
-  return PasswordRecovery;
+	_createClass(PasswordRecovery, [{
+		key: 'getValueFromForm',
+		value: function getValueFromForm(event) {
+			this.setState(_defineProperty({}, event.target.name, event.target.value));
+		}
+	}, {
+		key: 'handleSubmit',
+		value: function handleSubmit(event) {
+			event.preventDefault();
+			var confirmMessage = {
+				error: ['Something wrong we couldn\'t send you a mail', 'We can\'t find your mail'],
+				success: ['Check your mail, we send you instructions']
+				//PostData('signup', this.state).then ((result) => {
+				//console.log(result);
+				//})
+			};this.setState({ registrationSuccess: confirmMessage.success[0] });
+		}
+	}, {
+		key: 'render',
+		value: function render() {
+			return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+				__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Row"],
+				null,
+				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+					__WEBPACK_IMPORTED_MODULE_2_react_collapsible___default.a,
+					{ trigger: 'Forgot password' },
+					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'form',
+						{ onSubmit: this.handleSubmit, className: 'forgotPassword-text' },
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { type: 'email', name: 'email', required: true, label: 'Email', s: 12, onChange: this.getValueFromForm }),
+						this.state.registrationFalse && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'span',
+							{ className: 'alert alert-danger' },
+							this.state.registrationFalse
+						),
+						this.state.registrationSuccess && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'span',
+							{ className: 'alert alert-success' },
+							this.state.registrationSuccess
+						),
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+							'div',
+							{ className: 'col input-field s12' },
+							__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+								__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Button"],
+								{ waves: 'light' },
+								'Send me new password'
+							)
+						)
+					)
+				)
+			);
+		}
+	}]);
+
+	return PasswordRecovery;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 /* harmony default export */ __webpack_exports__["a"] = (PasswordRecovery);
 
 /***/ }),
-/* 128 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63429,13 +63610,13 @@ exports.default = Collapsible;
 
 
 /***/ }),
-/* 129 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(130);
+var content = __webpack_require__(132);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -63460,51 +63641,6 @@ if(false) {
 }
 
 /***/ }),
-/* 130 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(5)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".Collapsible {\n  background-color: white; }\n\n.Collapsible__contentInner {\n  padding: 10px;\n  /*border: 1px solid #ebebeb;*/\n  border-top: 0; }\n.Collapsible__contentOuter {\n  background-color: #e7dfdd;\n}\n\n.Collapsible__contentInner p {\n  margin-bottom: 10px;\n  font-size: 14px;\n  line-height: 20px; }\n\n.Collapsible__contentInner p:last-child {\n  margin-bottom: 0; }\n\n.Collapsible__trigger {\n  display: block;\n  font-weight: 400;\n  text-decoration: none;\n  position: relative;\n  padding: 10px;\n  color: #9e9e9e;\n  background-color: #e7dfdd; }\n\n.Collapsible__trigger.is-disabled {\n  opacity: 0.5;\n  background-color: grey; }\n\n\n  /*Icon rotate*/\n/*\n.Collapsible__trigger:after {\n  font-family: 'FontAwesome';\n  content: '\\f107';\n  position: absolute;\n  right: 10px;\n  top: 10px;\n  display: block;\n  transition: transform 300ms; }\n\n.Collapsible__trigger.is-open:after {\n  transform: rotateZ(180deg); }\n*/\n/*\n.CustomTriggerCSS {\n  background-color: lightcoral;\n  transition: background-color 200ms ease; }\n\n.CustomTriggerCSS--open {\n  background-color: darkslateblue; }\n\n.Collapsible__custom-sibling {\n  padding: 5px;\n  font-size: 12px;\n  background-color: #CBB700;\n  color: black; }\n*/\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 131 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(132);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(6)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./Auth.css", function() {
-			var newContent = require("!!../../../../../node_modules/css-loader/index.js!./Auth.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
 /* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -63513,7 +63649,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, ".auth-flex {\n    height: 100vh;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n}\n.CardPanel-right {\n    display: flex;\n}\n\n.card-background {\n    background-color: #e7dfdd !important;\n}\n\n.backgroundAuth {\n  background-image: url(https://s15.postimg.cc/w3ri640jt/background-pc-min.jpg);\n  /*background-image: -webkit-image-set( \"../../img/header/background.png\" 1x,  \"../../img/header/background_large.png\" 2x);*/\n  background-image: image-set (\"https://s15.postimg.cc/vtjzmy94p/background-table-min.jpg\" 1x, \"https://s15.postimg.cc/w3ri640jt/background-pc-min.jpg\" 2x);\n  background-size: cover;\n  background-position: center;\n}\n", ""]);
+exports.push([module.i, ".Collapsible {\n  background-color: white; }\n\n.Collapsible__contentInner {\n  padding: 10px;\n  /*border: 1px solid #ebebeb;*/\n  border-top: 0; }\n.Collapsible__contentOuter {\n  background-color: #e7dfdd;\n}\n\n.Collapsible__contentInner p {\n  margin-bottom: 10px;\n  font-size: 14px;\n  line-height: 20px; }\n\n.Collapsible__contentInner p:last-child {\n  margin-bottom: 0; }\n\n.Collapsible__trigger {\n  display: block;\n  font-weight: 400;\n  text-decoration: none;\n  position: relative;\n  padding: 10px;\n  color: #9e9e9e;\n  background-color: #e7dfdd; }\n\n.Collapsible__trigger.is-disabled {\n  opacity: 0.5;\n  background-color: grey; }\n\n.forgotPassword-text {\n  text-align: center;\n}\n\n.alert {\n  padding: 0 .75rem;\n  margin-bottom: 20px;\n  border: 1px solid transparent;\n  border-radius: 4px;\n}\n\n.alert-success {\n  color: #3c763d;\n  background-color: #dff0d8;\n  border-color: #d6e9c6;\n}\n\n.alert-danger {\n  color: #a94442;\n  background-color: #f2dede;\n  border-color: #ebccd1;\n}\n\n  /*Icon rotate*/\n/*\n.Collapsible__trigger:after {\n  font-family: 'FontAwesome';\n  content: '\\f107';\n  position: absolute;\n  right: 10px;\n  top: 10px;\n  display: block;\n  transition: transform 300ms; }\n\n.Collapsible__trigger.is-open:after {\n  transform: rotateZ(180deg); }\n*/\n/*\n.CustomTriggerCSS {\n  background-color: lightcoral;\n  transition: background-color 200ms ease; }\n\n.CustomTriggerCSS--open {\n  background-color: darkslateblue; }\n\n.Collapsible__custom-sibling {\n  padding: 5px;\n  font-size: 12px;\n  background-color: #CBB700;\n  color: black; }\n*/\n", ""]);
 
 // exports
 
@@ -63539,8 +63675,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../../node_modules/css-loader/index.js!./Global.css", function() {
-			var newContent = require("!!../../../../node_modules/css-loader/index.js!./Global.css");
+		module.hot.accept("!!../../../../../node_modules/css-loader/index.js!./Auth.css", function() {
+			var newContent = require("!!../../../../../node_modules/css-loader/index.js!./Auth.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -63558,7 +63694,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, ".active {\n    color: #A239CA !important;\n}\ninput:not([type]):focus:not([readonly]),\ninput[type=text]:focus:not([readonly]),\ninput[type=password]:focus:not([readonly]),\ninput[type=email]:focus:not([readonly]),\ninput[type=url]:focus:not([readonly]),\ninput[type=time]:focus:not([readonly]),\ninput[type=date]:focus:not([readonly]),\ninput[type=datetime]:focus:not([readonly]),\ninput[type=datetime-local]:focus:not([readonly]),\ninput[type=tel]:focus:not([readonly]),\ninput[type=number]:focus:not([readonly]),\ninput[type=search]:focus:not([readonly]),\ntextarea.materialize-textarea:focus:not([readonly]) {\n    border-bottom: 1px solid #A239CA;\n    box-shadow: 0 1px 0 0 #A239CA;\n}\n\n.btn {\n    background-color: #4717F6;\n}\n\nh5 {\n    padding: 0 .75rem !important;\n}\n", ""]);
+exports.push([module.i, ".auth-flex {\n    height: 100vh;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n}\n.CardPanel-right {\n    display: flex;\n}\n\n.card-background {\n    background-color: #e7dfdd !important;\n}\n\n.backgroundAuth {\n  background-image: url(https://s15.postimg.cc/w3ri640jt/background-pc-min.jpg);\n  /*background-image: -webkit-image-set( \"../../img/header/background.png\" 1x,  \"../../img/header/background_large.png\" 2x);*/\n  background-image: image-set (\"https://s15.postimg.cc/vtjzmy94p/background-table-min.jpg\" 1x, \"https://s15.postimg.cc/w3ri640jt/background-pc-min.jpg\" 2x);\n  background-size: cover;\n  background-position: center;\n}\n", ""]);
 
 // exports
 
@@ -63584,8 +63720,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../../node_modules/css-loader/index.js!./App.css", function() {
-			var newContent = require("!!../../../../node_modules/css-loader/index.js!./App.css");
+		module.hot.accept("!!../../../../node_modules/css-loader/index.js!./Global.css", function() {
+			var newContent = require("!!../../../../node_modules/css-loader/index.js!./Global.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -63603,120 +63739,61 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "body {\n  font-family: 'Nunito', sans-serif;\n}\n", ""]);
+exports.push([module.i, ".active {\n    color: #A239CA !important;\n}\ninput:not([type]):focus:not([readonly]),\ninput[type=text]:focus:not([readonly]),\ninput[type=password]:focus:not([readonly]),\ninput[type=email]:focus:not([readonly]),\ninput[type=url]:focus:not([readonly]),\ninput[type=time]:focus:not([readonly]),\ninput[type=date]:focus:not([readonly]),\ninput[type=datetime]:focus:not([readonly]),\ninput[type=datetime-local]:focus:not([readonly]),\ninput[type=tel]:focus:not([readonly]),\ninput[type=number]:focus:not([readonly]),\ninput[type=search]:focus:not([readonly]),\ntextarea.materialize-textarea:focus:not([readonly]) {\n    border-bottom: 1px solid #A239CA;\n    box-shadow: 0 1px 0 0 #A239CA;\n}\n\n.btn {\n    background-color: #4717F6;\n}\n\nh5 {\n    padding: 0 .75rem !important;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 /* 137 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(138);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(6)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../../node_modules/css-loader/index.js!./App.css", function() {
+			var newContent = require("!!../../../../node_modules/css-loader/index.js!./App.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 138 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(5)(false);
+// imports
+
+
+// module
+exports.push([module.i, "body {\n  font-family: 'Nunito', sans-serif;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 139 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 138 */,
-/* 139 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export formValueCheck */
-/* harmony export (immutable) */ __webpack_exports__["a"] = FormValueValidation;
-/* unused harmony export checkValue */
-/* unused harmony export checkString */
-function formValueCheck(event) {
-  var validateMessage = this.FormValueValidation(event);
-
-  if (validateMessage !== undefined && event.target.name === 'firstname') {
-    this.setState({ firstnameError: 'First name ' + validateMessage });
-  } else if (validateMessage === undefined && event.target.name === 'firstname') this.setState({ firstnameError: '' });
-  if (validateMessage !== undefined && event.target.name === 'lastname') {
-    this.setState({ lastnameError: 'Last name ' + validateMessage });
-  } else if (validateMessage === undefined && event.target.name === 'lastname') this.setState({ lastnameError: '' });
-  if (validateMessage !== undefined && event.target.name === 'email') {
-    this.setState({ emailError: validateMessage });
-  } else if (validateMessage === undefined && event.target.name === 'email') this.setState({ emailError: '' });
-  if (validateMessage !== undefined && event.target.name === 'login') {
-    this.setState({ loginError: 'Login ' + validateMessage });
-  } else if (validateMessage === undefined && event.target.name === 'login') this.setState({ loginError: '' });
-  if (validateMessage !== undefined && event.target.name === 'password') {
-    this.setState({ passwordError: validateMessage });
-  } else if (validateMessage === undefined && event.target.name === 'password') this.setState({ passwordError: '' });
-}
-
-function FormValueValidation(event) {
-  var textReg = /^[A-z]+$/g;
-  var emailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
-  var passReg = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[\w!@#$%^&*]{8,}$/g;
-
-  if (event.target.name === 'password') {
-    if (event.target.value.length < 4 || event.target.value.length > 15) {
-      return 'Password should contain at least 4 and not more than 16 characters';
-    }
-    return checkString(event.target.value);
-  } else if (event.target.name === 'email') {
-    if (checkValue(emailReg, event.target.value) === false) return 'Your email address is invalid';
-  } else {
-    if (event.target.value.length < 4 || event.target.value.length > 15) return 'should contain at least 4 and not more than 16 characters';else if (checkValue(textReg, event.target.value) === false) return 'should contain only alphabetic characters';
-  }
-}
-
-function checkValue(regexp, str) {
-  if (str.search(regexp) != -1) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-function checkString(str) {
-  var ch = void 0;
-  var i = void 0;
-  var capitalFlag = false;
-  var lowerCaseFlag = false;
-  var numberFlag = false;
-  for (i = 0; i < str.length; i++) {
-    ch = str.charAt(i);
-    if (str.search(/(?=.*\d)/g) != -1) {
-      numberFlag = true;
-    } else if (str.search(/(?=.*\d)/g) === -1) {
-      return 'Passwords must beat less 1 number';
-    }
-    if (str.search(/(?=.*[A-Z])/g) != -1) {
-      capitalFlag = true;
-    } else if (str.search(/(?=.*[A-Z])/g) === -1) {
-      return 'Passwords must beat less 1 capital letter';
-    }
-    if (str.search(/(?=.*[a-z])/g) != -1) {
-      lowerCaseFlag = true;
-    } else if (str.search(/(?=.*[a-z])/g) === -1) {
-      return 'Passwords must beat less 1 lowercase letter';
-    }
-    if (numberFlag && capitalFlag && lowerCaseFlag) return true;
-  }
-  return false;
-}
-
-/***/ }),
-/* 140 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["a"] = PostData;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
-
-
-function PostData(type, userData) {
-  var BaseUrl = 'http://localhost:8100/public/index.php/';
-  return new Promise(function (resolve, reject) {
-    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(BaseUrl + type, userData).then(function (res) {
-      resolve(res.data);
-    }).catch(function (error) {
-      reject(error);
-    });
-  });
-}
 
 /***/ })
 /******/ ]);
