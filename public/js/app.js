@@ -63215,8 +63215,9 @@ exports.push([module.i, ".invalidInput {\n  color: red;\n  list-style-type: none
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_materialize___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_materialize__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_collapsible__ = __webpack_require__(130);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_collapsible___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_collapsible__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PasswordRecovery_css__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PasswordRecovery_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__PasswordRecovery_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PostData__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__PasswordRecovery_css__ = __webpack_require__(131);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__PasswordRecovery_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__PasswordRecovery_css__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -63226,6 +63227,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -63257,14 +63259,24 @@ var PasswordRecovery = function (_Component) {
 	}, {
 		key: 'handleSubmit',
 		value: function handleSubmit(event) {
+			var _this2 = this;
+
 			event.preventDefault();
 			var confirmMessage = {
 				error: ['Something wrong we couldn\'t send you a mail', 'We can\'t find your mail'],
 				success: ['Check your mail, we send you instructions']
-				//PostData('signup', this.state).then ((result) => {
-				//console.log(result);
-				//})
-			};this.setState({ registrationSuccess: confirmMessage.success[0] });
+			};
+			Object(__WEBPACK_IMPORTED_MODULE_3__PostData__["a" /* PostData */])('reset-pass', this.state).then(function (result) {
+				if (result === 'OK') {
+					_this2.setState({ registrationSuccess: confirmMessage.success[0],
+						registrationFalse: ''
+					});
+				} else {
+					_this2.setState({ registrationSuccess: confirmMessage.error[0],
+						registrationFalse: ''
+					});
+				}
+			});
 		}
 	}, {
 		key: 'render',
@@ -63808,6 +63820,27 @@ exports.push([module.i, "body {\n  font-family: 'Nunito', sans-serif;\n}\n", ""]
 /***/ }),
 /* 140 */,
 /* 141 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = PostData;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+
+
+function PostData(type, userData) {
+  var BaseUrl = 'http://localhost:8100/';
+  return new Promise(function (resolve, reject) {
+    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(BaseUrl + type, userData).then(function (res) {
+      resolve(res.data);
+    }).catch(function (error) {
+      reject(error);
+    });
+  });
+}
+
+/***/ }),
+/* 142 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

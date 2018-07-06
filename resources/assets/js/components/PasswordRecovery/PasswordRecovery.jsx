@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
 import Collapsible from 'react-collapsible';
+import { PostData } from './PostData';
 
 import './PasswordRecovery.css';
 
@@ -24,10 +25,17 @@ class PasswordRecovery extends Component  {
 			error: ['Something wrong we couldn\'t send you a mail', 'We can\'t find your mail'],
 			success: ['Check your mail, we send you instructions']
 		}
-		//PostData('signup', this.state).then ((result) => {
-		//console.log(result);
-		//})
-		this.setState({registrationSuccess: confirmMessage.success[0] });
+		PostData('reset-pass', this.state).then ((result) => {
+			if (result === 'OK'){
+				this.setState({ registrationSuccess : confirmMessage.success[0],
+								registrationFalse : ''
+				 });
+			} else {
+				this.setState({ registrationSuccess : confirmMessage.error[0],
+								registrationFalse : ''
+				 });
+			}
+		})
 	}
 
 	render() {
