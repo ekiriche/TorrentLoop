@@ -44,7 +44,7 @@ class RegisterController extends Controller
 		$hashed_link = hash("sha256", rand(0, 1000));
 		$this->create($request->all(), $hashed_link);
 		$SendMail = new SendMail();
-		return $SendMail->send_mail($request->input('email'), "Click on the link to confirm your account: http://localhost:8100/auth/confirm?email=" . $request->input('email') . "&reg_link=" . $hashed_link, "User creation");
+		return $SendMail->send_mail($request->input('email'), "Click on the link to confirm your account: http://localhost:8100/confirm?email=" . $request->input('email') . "&reg_link=" . $hashed_link, "User creation");
 	}
 
 	public function confirmViaEmail()
@@ -64,18 +64,16 @@ class RegisterController extends Controller
 	{
 		$user = User::where('email', $request->input('email'))->first();
 		if (!$user) {
-    /*  $rawImgSrc = preg_replace(
-        '/^data:image\/\w+;base64,/i', '', $request->input('img')
-      );
-      $rawImgSrc = str_replace(' ', '+', $rawImgSrc);
-      $decodedImg = base64_decode($rawImgSrc);*/
-      file_put_contents('cuntisan', 'hello');
-			User::create([
+      $filename = './profile_pictures/' . time() . '.png';
+      $img = file_get_contents($request->input('img'));
+      file_put_contents($filename, $img);
+      $filename = "http://localhost:8100/" . $filename;
+      User::create([
 				'login' => $request->input('email'),
 				'firstname' => $request->input('firstname'),
 				'lastname' => $request->input('lastname'),
 				'email' => $request->input('email'),
-        //'picture' => $request->input('img'),
+        'photo' => $filename,
 				'access_level' => 1,
 			]);
 		}

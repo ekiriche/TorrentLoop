@@ -51,8 +51,8 @@ class OAuth extends Component  {
 
   registerViaGoogle(event)
   {
-    console.log(event.profileObj);
-    axios.post('http://localhost:8100/osignup', {email : event.profileObj.email, firstname : event.profileObj.givenName, lastname : event.profileObj.familyName, img : event.profileObj.imageUrl}).then(response => {
+    console.log(event.profileObj.imageUrl);
+    axios.post('http://localhost:8100/auth/osignup', {email : event.profileObj.email, firstname : event.profileObj.givenName, lastname : event.profileObj.familyName, img : event.profileObj.imageUrl}).then(response => {
       console.log(response.data);
     })
   }
