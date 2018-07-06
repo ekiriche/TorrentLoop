@@ -12,9 +12,9 @@ import '../Global.css';
 
 class Auth extends Component  {
 
-  render() {
-    return (
-      <div className="auth-flex backgroundAuth">
+	render() {
+		return (
+			<div className="auth-flex backgroundAuth">
 				<Navbar />
 				<div className="container">
 					<Row className="CardPanel-right">
@@ -29,7 +29,7 @@ class Auth extends Component  {
 				</div>
 				<Foot />
 			</div>
-    );
-  }
+		);
+	}
 }
 export default Auth;

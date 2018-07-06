@@ -17,3 +17,5 @@ Route::get('/', function () {
 
 Route::post('signin', 'Auth\LoginController@attempt');
 Route::post('signup', 'Auth\RegisterController@attemptRegister');
+// Route::any('library', function () {
+// });

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
 
+import { Link } from 'react-router-dom';
+
 import './Signup.css';
 
 class Signup extends Component  {
@@ -16,6 +18,7 @@ class Signup extends Component  {
           <Input type="password" label="Password" s={12} />
           <div className="col input-field s12">
             <Button waves='light'>Sign up</Button>
+			<Button waves='light'><Link to="/library">Test Link to library</Link></Button>
           </div>
       </Row>
     );
