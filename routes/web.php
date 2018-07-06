@@ -9,3 +9,4 @@ Route::post('signup', 'Auth\RegisterController@attemptRegister');
 Route::post('update-pass', 'Auth\ResetPasswordController@update');
 Route::post('reset-pass', 'Auth\ResetPasswordController@reset');
 Route::get('confirm', 'Auth\RegisterController@ConfirmViaEmail');
+Route::get('oauth_callback', 'Auth\RegisterController@getCode');

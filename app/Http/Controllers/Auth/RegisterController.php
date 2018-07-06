@@ -58,4 +58,9 @@ class RegisterController extends Controller
       header("Location: http://localhost:8100");
       die();
     }
+
+    public function getCode()
+    {
+      return 123;
+    }
 }
