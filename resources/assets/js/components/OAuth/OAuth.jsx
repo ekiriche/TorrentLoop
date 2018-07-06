@@ -3,7 +3,6 @@ import { Row, Input, Button } from 'react-materialize';
 import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import { FortyTwoPost } from './FortyTwoPost.jsx';
-import { FortyTwoGet } from './FortyTwoGet.jsx';
 
 
 import './OAuth.css';
@@ -39,6 +38,11 @@ class OAuth extends Component  {
     console.log(event);
   }
 
+  responseFacebook(event)
+  {
+    console.log(event);
+  }
+
   render() {
     return (
       <div className="wrapper">
@@ -56,10 +60,9 @@ class OAuth extends Component  {
         <FacebookLogin
           appId="241030700020959"
           fields="name,email,picture"
-          callback={this.responseGoogle}
+          callback={this.responseFacebook}
         />
         <a href="https://api.intra.42.fr/oauth/authorize?client_id=424d0c7fac1ed02048e197dda88a5e1a8fb60bd8a4420659d6096f8fbb2a1c73&redirect_uri=http%3A%2F%2Flocalhost%3A8100&response_type=code&scope=public">42 lul</a>
-        <button name="lul" onClick={this.helpMe}/>
       </div>
     );
   }
