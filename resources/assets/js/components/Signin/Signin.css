@@ -3,3 +3,10 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.signIn-title {
+    text-align: left;
+}
+.signInError-title {
+  text-align: center;
+}

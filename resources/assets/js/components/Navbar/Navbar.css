@@ -5,3 +5,7 @@ nav {
 .fa-film {
   color: #4717F6;
 }
+
+nav .brand-logo {
+    width: 250px !important;
+}
