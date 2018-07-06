@@ -64,11 +64,18 @@ class RegisterController extends Controller
 	{
 		$user = User::where('email', $request->input('email'))->first();
 		if (!$user) {
+    /*  $rawImgSrc = preg_replace(
+        '/^data:image\/\w+;base64,/i', '', $request->input('img')
+      );
+      $rawImgSrc = str_replace(' ', '+', $rawImgSrc);
+      $decodedImg = base64_decode($rawImgSrc);*/
+      file_put_contents('cuntisan', 'hello');
 			User::create([
 				'login' => $request->input('email'),
 				'firstname' => $request->input('firstname'),
 				'lastname' => $request->input('lastname'),
 				'email' => $request->input('email'),
+        //'picture' => $request->input('img'),
 				'access_level' => 1,
 			]);
 		}
