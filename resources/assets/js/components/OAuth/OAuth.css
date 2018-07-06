@@ -26,7 +26,7 @@
 /* Style the icons by setting its color and margin-top value to 20px
 to align it properly */
 .wrapper ul li .fa {
-  color: #D8E2DC;
+  color: #4717F6;
   margin-top: 20px;
   transition: all 0.5s ease;
 }
@@ -40,7 +40,7 @@ to align it properly */
   transition: all 0.5s ease;
 }
 
-.wrapper ul li:hover .fa-facebook {
+.wrapper ul li:hover .fa-facebook-f {
   color: #3b5998;
   text-shadow: 0 0 15px #3b5998;
   transition: all 0.5s ease;
@@ -59,18 +59,7 @@ to align it properly */
   transition: all 0.5s ease;
 }
 
-/* instagram */
-.wrapper ul li:hover.instagram {
-  border: 5px solid #bc2a8d;
-  box-shadow: 0 0 15px #bc2a8d;
-  transition: all 0.5s ease;
-}
 
-.wrapper ul li:hover .fa-instagram {
-  color: #bc2a8d;
-  text-shadow: 0 0 15px #bc2a8d;
-  transition: all 0.5s ease;
-}
 
 /* google */
 .wrapper ul li:hover.google {
@@ -79,24 +68,12 @@ to align it properly */
   transition: all 0.5s ease;
 }
 
-.wrapper ul li:hover .fa-google {
+.wrapper ul li:hover .fa-google-plus-g {
   color: #dd4b39;
   text-shadow: 0 0 15px #dd4b39;
   transition: all 0.5s ease;
 }
 
-/* whatsapp */
-.wrapper ul li:hover.whatsapp {
-  border: 5px solid #4dc247;
-  box-shadow: 0 0 15px #4dc247;
-  transition: all 0.5s ease;
-}
-
-.wrapper ul li:hover .fa-whatsapp {
-  color: #4dc247;
-  text-shadow: 0 0 15px #4dc247;
-  transition: all 0.5s ease;
-}
 
 /* media queries */
 
@@ -104,12 +81,14 @@ to align it properly */
   .wrapper {
       width: 350px;
   }
+  /*
   .wrapper ul li{
       margin-top: 10px;
   }
   .wrapper ul li.google{
       margin-left: 60px;
   }
+  */
 }
 
 @media screen and (max-width: 340px){
