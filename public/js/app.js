@@ -62678,12 +62678,17 @@ var Signin = function (_Component) {
 	}, {
 		key: 'handleSubmit',
 		value: function handleSubmit(event) {
+			var _this2 = this;
+
 			event.preventDefault();
+			var confirmMessage = {
+				error: ['Invalid login or password']
+			};
 			Object(__WEBPACK_IMPORTED_MODULE_2__PostData__["a" /* PostData */])('signin', this.state).then(function (result) {
-				console.log(result);
+				if (result === 'OK') {} else {
+					_this2.setState({ registrationFalse: confirmMessage.error[0] });
+				}
 			});
-			//console.log(this.state.login);
-			//console.log(this.state.password);
 		}
 	}, {
 		key: 'render',
@@ -62693,14 +62698,24 @@ var Signin = function (_Component) {
 				null,
 				__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 					'form',
-					{ onSubmit: this.handleSubmit },
+					{ onSubmit: this.handleSubmit, className: 'signInError-title' },
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						'h5',
-						null,
+						{ className: 'signIn-title' },
 						'Sign in'
 					),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { label: 'Login', s: 12, name: 'login', required: true, onChange: this.getValueFromForm }),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { type: 'password', label: 'Password', required: true, name: 'password', s: 12, onChange: this.getValueFromForm }),
+					this.state.registrationFalse && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'span',
+						{ className: 'alert alert-danger' },
+						this.state.registrationFalse
+					),
+					this.state.registrationSuccess && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+						'span',
+						{ className: 'alert alert-success' },
+						this.state.registrationSuccess
+					),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						'div',
 						{ className: 'col input-field s12 OAuth-position' },
@@ -62873,7 +62888,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, ".OAuth-position {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n", ""]);
+exports.push([module.i, ".OAuth-position {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.signIn-title {\n    text-align: left;\n}\n.signInError-title {\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -63267,14 +63282,14 @@ var PasswordRecovery = function (_Component) {
 				success: ['Check your mail, we send you instructions']
 			};
 			Object(__WEBPACK_IMPORTED_MODULE_3__PostData__["a" /* PostData */])('reset-pass', this.state).then(function (result) {
+				console.log(result);
 				if (result === 'OK') {
 					_this2.setState({ registrationSuccess: confirmMessage.success[0],
 						registrationFalse: ''
 					});
 				} else {
-					_this2.setState({ registrationSuccess: confirmMessage.error[0],
-						registrationFalse: ''
-					});
+					_this2.setState(_defineProperty({ registrationFalse: confirmMessage.error[0]
+					}, 'registrationFalse', ''));
 				}
 			});
 		}

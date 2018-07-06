@@ -26,12 +26,13 @@ class PasswordRecovery extends Component  {
 			success: ['Check your mail, we send you instructions']
 		}
 		PostData('reset-pass', this.state).then ((result) => {
+			console.log(result);
 			if (result === 'OK'){
 				this.setState({ registrationSuccess : confirmMessage.success[0],
 								registrationFalse : ''
 				 });
 			} else {
-				this.setState({ registrationSuccess : confirmMessage.error[0],
+				this.setState({ registrationFalse : confirmMessage.error[0],
 								registrationFalse : ''
 				 });
 			}

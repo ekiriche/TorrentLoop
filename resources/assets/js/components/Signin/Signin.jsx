@@ -26,20 +26,27 @@ class Signin extends Component  {
 
 	handleSubmit(event) {
 		event.preventDefault();
+		const confirmMessage = {
+			error: ['Invalid login or password']
+		}
 		PostData('signin', this.state).then ((result) => {
-		console.log(result);
+			if (result === 'OK'){
+
+			} else {
+				this.setState({ registrationFalse : confirmMessage.error[0]});
+			}
 		})
-		//console.log(this.state.login);
-		//console.log(this.state.password);
 	}
 
 	render() {
 		return (
 			<Row>
-				<form onSubmit={this.handleSubmit} >
-					<h5>Sign in</h5>
+				<form onSubmit={this.handleSubmit} className="signInError-title" >
+					<h5 className="signIn-title">Sign in</h5>
 					<Input label="Login" s={12} name="login"required onChange={this.getValueFromForm} />
 					<Input type="password" label="Password" required name="password" s={12} onChange={this.getValueFromForm} />
+					{	this.state.registrationFalse && ( <span className="alert alert-danger">{this.state.registrationFalse}</span>)	}
+					{	this.state.registrationSuccess && ( <span className="alert alert-success">{this.state.registrationSuccess}</span>)	}
 					<div className="col input-field s12 OAuth-position">
 						<Button waves='light'>Sign in</Button>
 						<OAuth />
@@ -47,6 +54,6 @@ class Signin extends Component  {
 				</form>
 			</Row>
 		);
-	}
+  }
 }
 export default Signin;
