@@ -62630,9 +62630,10 @@ exports.push([module.i, ".page-footer {\n  padding-top: 0 !important;\n}\n.creat
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_materialize__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_materialize___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_materialize__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__OAuth_OAuth__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Signin_css__ = __webpack_require__(122);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Signin_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__Signin_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__PostData__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__OAuth_OAuth__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Signin_css__ = __webpack_require__(122);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Signin_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__Signin_css__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -62642,6 +62643,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -62677,11 +62679,11 @@ var Signin = function (_Component) {
 		key: 'handleSubmit',
 		value: function handleSubmit(event) {
 			event.preventDefault();
-			//PostData('signup', this.state).then ((result) => {
-			//console.log(result);
-			//})
-			console.log(this.state.login);
-			console.log(this.state.password);
+			Object(__WEBPACK_IMPORTED_MODULE_2__PostData__["a" /* PostData */])('signin', this.state).then(function (result) {
+				console.log(result);
+			});
+			//console.log(this.state.login);
+			//console.log(this.state.password);
 		}
 	}, {
 		key: 'render',
@@ -62707,7 +62709,7 @@ var Signin = function (_Component) {
 							{ waves: 'light' },
 							'Sign in'
 						),
-						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__OAuth_OAuth__["a" /* default */], null)
+						__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__OAuth_OAuth__["a" /* default */], null)
 					)
 				)
 			);
@@ -62964,14 +62966,22 @@ var Signup = function (_Component) {
 	}, {
 		key: 'handleSubmit',
 		value: function handleSubmit(event) {
+			var _this2 = this;
+
 			event.preventDefault();
 			var confirmMessage = {
 				error: ['Something wrong, we can\'t register you '],
 				success: ['Check your mail, we send you instructions']
-				//PostData('signup', this.state).then ((result) => {
-				//console.log(result);
-				//})
-			};this.setState({ registrationSuccess: confirmMessage.success[0] });
+			};
+			this.setState({ registrationSuccess: '', registrationFalse: '' }); /*clear old message*/
+			Object(__WEBPACK_IMPORTED_MODULE_3__PostData__["a" /* PostData */])('signup', this.state).then(function (result) {
+				if (result.email) _this2.setState({ registrationFalse: result.email[0] });else if (result.login) _this2.setState({ registrationFalse: result.login[0] });
+				if (result === 'OK') {
+					_this2.setState({ registrationSuccess: confirmMessage.success[0],
+						registrationFalse: ''
+					});
+				}
+			});
 		}
 	}, {
 		key: 'render',
@@ -62984,7 +62994,7 @@ var Signup = function (_Component) {
 					{ onSubmit: this.handleSubmit, className: 'signUp-text' },
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
 						'h5',
-						null,
+						{ className: 'signUp-title' },
 						'Sign up'
 					),
 					__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_materialize__["Input"], { s: 6, name: 'firstname', label: 'First Name', required: true, onChange: this.getValueFromForm }),
@@ -63133,7 +63143,7 @@ function checkString(str) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export PostData */
+/* harmony export (immutable) */ __webpack_exports__["a"] = PostData;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 
@@ -63189,7 +63199,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, ".invalidInput {\n  color: red;\n  list-style-type: none;\n  padding: 0 .75rem !important;\n}\n\n.alert {\n  padding: 0 .75rem;\n  margin-bottom: 20px;\n  border: 1px solid transparent;\n  border-radius: 4px;\n}\n\n.alert-success {\n  color: #3c763d;\n  background-color: #dff0d8;\n  border-color: #d6e9c6;\n}\n\n.alert-danger {\n  color: #a94442;\n  background-color: #f2dede;\n  border-color: #ebccd1;\n}\n.signUp-text {\n  text-align: center;\n}\n", ""]);
+exports.push([module.i, ".invalidInput {\n  color: red;\n  list-style-type: none;\n  padding: 0 .75rem !important;\n}\n\n.alert {\n  padding: 0 .75rem;\n  margin-bottom: 20px;\n  border: 1px solid transparent;\n  border-radius: 4px;\n}\n\n.alert-success {\n  color: #3c763d;\n  background-color: #dff0d8;\n  border-color: #d6e9c6;\n}\n\n.alert-danger {\n  color: #a94442;\n  background-color: #f2dede;\n  border-color: #ebccd1;\n}\n.signUp-text {\n  text-align: center;\n}\n\n.signUp-title {\n  text-align: left;\n}\n", ""]);
 
 // exports
 
@@ -63694,7 +63704,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, ".auth-flex {\n    height: 100vh;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n}\n.CardPanel-right {\n    display: flex;\n}\n\n.card-background {\n    background-color: #e7dfdd !important;\n}\n\n.backgroundAuth {\n  background-image: url(https://s15.postimg.cc/w3ri640jt/background-pc-min.jpg);\n  /*background-image: -webkit-image-set( \"../../img/header/background.png\" 1x,  \"../../img/header/background_large.png\" 2x);*/\n  background-image: image-set (\"https://s15.postimg.cc/vtjzmy94p/background-table-min.jpg\" 1x, \"https://s15.postimg.cc/w3ri640jt/background-pc-min.jpg\" 2x);\n  background-size: cover;\n  background-position: center;\n}\n", ""]);
+exports.push([module.i, ".auth-flex {\n    height: 100vh;\n    display: flex;\n    flex-direction: column;\n    justify-content: space-between;\n}\n.CardPanel-right {\n    display: flex;\n}\n\n.card-background {\n    background-color: #e7dfdd !important;\n}\n\n.backgroundAuth {\n  background-image: url(https://s15.postimg.cc/w3ri640jt/background-pc-min.jpg);\n  /*background-image: -webkit-image-set( \"../../img/header/background.png\" 1x,  \"../../img/header/background_large.png\" 2x);*/\n  background-image: image-set (\"https://s15.postimg.cc/vtjzmy94p/background-table-min.jpg\" 1x, \"https://s15.postimg.cc/w3ri640jt/background-pc-min.jpg\" 2x);\n  background-size: cover;\n  background-position: center;\n}\n\n@media screen and (max-width: 1200px) {\n  /* Small tablet to big tablet: from 768px to 1023px*/\n\n}\n@media screen and (max-width: 767px) {\n  /* Small phones to small tablets: from 481px to 767px*/\n  .auth-flex {\n    height: 100%;\n\n  }\n\n}\n@media screen and (max-width: 479px) {\n  /* start of phone styles */\n\n}\n", ""]);
 
 // exports
 
@@ -63794,6 +63804,28 @@ exports.push([module.i, "body {\n  font-family: 'Nunito', sans-serif;\n}\n", ""]
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 140 */,
+/* 141 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = PostData;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+
+
+function PostData(type, userData) {
+  var BaseUrl = 'http://localhost:8100/';
+  return new Promise(function (resolve, reject) {
+    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(BaseUrl + type, userData).then(function (res) {
+      resolve(res.data);
+    }).catch(function (error) {
+      reject(error);
+    });
+  });
+}
 
 /***/ })
 /******/ ]);

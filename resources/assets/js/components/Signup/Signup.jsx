@@ -65,20 +65,28 @@ class Signup extends Component  {
 	handleSubmit(event) {
 		event.preventDefault();
 		const confirmMessage = {
-			error: ['Something wrong, we can\'t register you '],
+			error: ['Something wrong, we can\'t register you ',],
 			success: ['Check your mail, we send you instructions']
 		}
-		//PostData('signup', this.state).then ((result) => {
-		//console.log(result);
-		//})
-		this.setState({registrationSuccess: confirmMessage.success[0] });
+		this.setState({ registrationSuccess : '', registrationFalse : '' }); /*clear old message*/
+		PostData('signup', this.state).then ((result) => {
+			if (result.email)
+				this.setState({ registrationFalse : result.email[0] });
+			else if (result.login)
+				this.setState({ registrationFalse : result.login[0] });
+			if (result === 'OK'){
+				this.setState({ registrationSuccess : confirmMessage.success[0],
+								registrationFalse : ''
+				 });
+			}
+		})
 	}
 
 	render() {
 		return (
 			<Row>
 				<form onSubmit={this.handleSubmit} className="signUp-text">
-					<h5>Sign up</h5>
+					<h5 className="signUp-title">Sign up</h5>
 					<Input s={6} name="firstname" label="First Name" required  onChange={this.getValueFromForm} />
 					<Input s={6} name="lastname" label="Last Name" required  onChange={this.getValueFromForm} />
 					<Input name="login" label="Login" s={6} required  onChange={this.getValueFromForm} />

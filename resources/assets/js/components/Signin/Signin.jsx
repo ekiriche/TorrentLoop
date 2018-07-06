@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
+import { PostData } from './PostData';
 
 import OAuth from '../OAuth/OAuth';
 import './Signin.css';
@@ -25,11 +26,11 @@ class Signin extends Component  {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		//PostData('signup', this.state).then ((result) => {
-		//console.log(result);
-		//})
-		console.log(this.state.login);
-		console.log(this.state.password);
+		PostData('signin', this.state).then ((result) => {
+		console.log(result);
+		})
+		//console.log(this.state.login);
+		//console.log(this.state.password);
 	}
 
 	render() {
