@@ -44,9 +44,13 @@ class OAuth extends Component  {
     if (event.error)
       return ;
     console.log(event);
-  /*  axios.post('http://localhost:8100/osignup', {email : event.profileObj.email, firstname : event.profileObj.givenName, lastname : event.profileObj.familyName}).then(response => {
+    var indexSpace = event.name.indexOf(' ');
+    var fullName = event.name.split(' ');
+    var firstname = fullName[0];
+    var lastname = fullName[1];
+    axios.post('http://localhost:8100/auth/osignup', {email : event.email, firstname : firstname, lastname : lastname, img : event.picture.data.url}).then(response => {
       console.log(response.data);
-    })*/
+    })
   }
 
   registerViaGoogle(event)
