@@ -36,11 +36,20 @@ class ProfileController extends Controller
 
 	public function setPicture(Request $request)
 	{
+		$user = $this->getUserInfo($request);
 		$rawImgSrc = preg_replace(
 				'/^data:image\/\w+;base64,/i', '', $request->input('img')
 			);
 		$rawImgSrc = str_replace(' ', '+', $rawImgSrc);
 		$decodedImg = base64_decode($rawImgSrc);
-		return file_put_contents('./profile_pictures/' . time() . 'foof.png', $decodedImg);
+		$pictureName = "./profile_pictures/" . time() . ".png";
+		if ($user) {
+			file_put_contents($pictureName, $decodedImg);
+			$user->fill([
+				'photo' => "http://localhost:8100/" . $pictureName,
+			])->save();
+			return "true";
+		}
+		return "false";
 	}
 }
