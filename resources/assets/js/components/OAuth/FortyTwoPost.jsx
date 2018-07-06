@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export function PostData(type, userData) {
-  let BaseUrl = 'http://localhost:8100/';
+export function FortyTwoPost(url, userData) {
+  let BaseUrl = url;
   return new Promise((resolve, reject) => {
-    axios.post(BaseUrl + type, userData)
+    axios.post(BaseUrl, userData)
     .then(res => {
       resolve(res.data);
     })
