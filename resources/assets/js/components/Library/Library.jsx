@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import './Library.css';
 
+import Search from '../Search/Search';
 import Navbar from '../Navbar/Navbar';
 import Foot from '../Footer/Footer';
 import FilmSet from '../FilmSet/FilmSet';
@@ -15,6 +16,7 @@ class Library extends Component  {
 			<div className="library-flex">
 				<Navbar />
 				<div className="library">
+					<Search />
 					<FilmSet />
 				</div>
 				<Foot />
@@ -23,3 +25,5 @@ class Library extends Component  {
 	}
 }
 export default Library;
+
+	//
