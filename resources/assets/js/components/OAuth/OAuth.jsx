@@ -30,9 +30,9 @@ class OAuth extends Component  {
         console.log(this.state);
         var stringa = 'https://api.intra.42.fr/v2/me?access_token=' + result.access_token;
         axios.get(stringa).then(response => {
-          console.log(response.data));
+          console.log(response.data);
           
-        }
+        })
     })
     }
   }

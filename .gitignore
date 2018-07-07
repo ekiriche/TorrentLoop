@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
+/public/movies/
 /storage/*.key
 /vendor
 /.idea
@@ -14,3 +15,5 @@ yarn-error.log
 public/js/app.js
 public/profile_pictures/*.png
 .DS_Store
+.eslintrc.json
+tags
