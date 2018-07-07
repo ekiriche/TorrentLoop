@@ -13,6 +13,7 @@ class FilmLink extends Component  {
 
 	constructor(props) {
 		super(props);
+		console.log(this.props.delay);
 	}
 
 	render() {
@@ -24,7 +25,7 @@ class FilmLink extends Component  {
 				transitionAppearTimeout={ 1000 }
 				transitionEnter={false}
 				transitionLeave={false}>
-				<div className="film-link" style={{"transitionDelay":(this.props.delay*50)+"ms"}}>
+				<div className="film-link" style={{"transitionDelay":(this.props.delay*30)+"ms"}}>
 					<div className="film-cover" style={{backgroundImage: 'url(' + this.props.cover + ')'}}></div>
 					<div className="film-name white-text"><h6>{ this.props.name }</h6></div>
 					<div className="film-info">

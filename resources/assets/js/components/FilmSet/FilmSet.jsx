@@ -14,6 +14,8 @@ class FilmSet extends Component  {
 		this.state = {
 			movies: [],
 			pas: false,
+			preloader1: true,
+			preloader2: true,
 			page: 1
 		}
 		this.requestFilms = this.requestFilms.bind(this);
@@ -23,7 +25,6 @@ class FilmSet extends Component  {
 		this.setState({ page: 1 });
 		var limit = 48;
 		let page = this.state.page;
-		// while (page < 51) {
 		const params = "?sort_by=rating&limit=" + limit + "&page=" + page;
 		GetFilmsInfo(params)
 		.then ((result) => {
@@ -38,6 +39,10 @@ class FilmSet extends Component  {
 		var limit = 48;
 		let page = this.state.page;
 		const params = "?sort_by=rating&limit=" + limit + "&page=" + page;
+		if (page % 2)
+			this.setState({ preloader1: false });
+		else
+			this.setState({ preloader2: false });
 		GetFilmsInfo(params)
 		.then ((result) => {
 			let tmp = this.state.movies;
@@ -47,16 +52,22 @@ class FilmSet extends Component  {
 			// console.log(tmp);
 			this.setState({ movies: tmp});
 			this.setState({ pas: true });
+			if (page % 2)
+				this.setState({ preloader1: true });
+			else
+				this.setState({ preloader2: true });
 		})
 	}
 
 	loadNewPage() {
+
 		let node = document.getElementsByClassName('film-set')[0];
 		const bottom = node.scrollHeight - node.scrollTop === node.clientHeight;
-		if (bottom) {
-			console.log(this.state.page);
-			this.setState({ page: this.state.page + 1});
+		// console.log(this.state.preloader1);
+		// console.log(this.state.preloader2);
+		if (bottom && this.state.preloader1 === true && this.state.preloader2 === true) {
 			// console.log(this.state.page);
+			this.setState({ page: this.state.page + 1});
 			this.requestFilms();
 		}
 	}
@@ -64,7 +75,9 @@ class FilmSet extends Component  {
 	render() {
 		if (this.state.pas === false) {
 			return (
-				<div className="film-set"></div>
+				<div className="progress">
+					<div className="indeterminate"></div>
+				</div>
 			)
 		}
 		const movies = this.state.movies;
@@ -72,7 +85,7 @@ class FilmSet extends Component  {
 			(movie, i) =>
 			<FilmLink
 				key={i}
-				delay={i}
+				delay={i % 48}
 				cover={movie.medium_cover_image}
 				name={movie.title_english}
 				year={movie.year}
