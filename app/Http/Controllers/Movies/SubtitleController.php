@@ -18,6 +18,9 @@ class SubtitleController extends Controller
 	 */
 	public function downloadSubtitles(Request $request)
 	{
+		if (!file_exists('movies')) {
+			mkdir('movies', 0755, true);
+		}
 		if (!file_exists('movies/' . $request->input('imdb-id'))) {
 			mkdir('movies/' . $request->input('imdb-id'), 0755, true);
 		}
