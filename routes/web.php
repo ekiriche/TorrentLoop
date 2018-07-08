@@ -18,3 +18,4 @@ Route::post('profile/get-user-info', 'UserProfile\ProfileController@getUserInfo'
 Route::post('profile/set-picture', 'UserProfile\ProfileController@setPicture');
 
 Route::post('movie/download-subtitles', 'Movies\SubtitleController@downloadSubtitles');
+Route::post('movie/download-movie', 'Movies\TorrentController@downloadMovie');
