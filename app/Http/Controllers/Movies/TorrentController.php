@@ -10,6 +10,14 @@ use Transmission\Client;
 
 class TorrentController extends Controller
 {
+	/**
+	 * Downloads movie from torrent url to a specific folder,
+	 * imdb-id will be the name of the folder
+	 *
+	 * @param Request $request
+	 * @key imdb-id
+	 * @return string ("true" or "false")
+	 */
 	public function downloadMovie(Request $request)
 	{
 		if (!file_exists('movies')) {
@@ -18,33 +26,30 @@ class TorrentController extends Controller
 		if (!file_exists('movies/' . $request->input('imdb-id'))) {
 			mkdir('movies/' . $request->input('imdb-id'), 0755, true);
 		}
+		$pwd = substr(`pwd`, 0, -1);
 		$transmission = new Transmission();
 		$session = $transmission->getSession();
-		$session->setDownloadDir('/movies/' . $request->input('imdb-id'));
+		$session->setDownloadDir($pwd . '/movies/' . $request->input('imdb-id'));
 		$session->save();
-		/* if (file_exists('./movies/' . $request->input('imdb-id') . '/' */
-		/* 	. $request->input('imdb-id') . '.torrent')) { */
-		/* 	return "exists"; */
-		/* } */
-
-		/* $torrent = $transmission->add( */
-		/* 	'./movies/' . $request->input('imdb-id') . '/' */
-		/* 	. $request->input('imdb-id') . '.torrent' */
-		/* ); */
-
-		/* if (file_exists( */
-		/* 	'./movies/' . $request->input('imdb-id') . */
-		/* 	'/Back to the Future (1985) [BluRay] [1080p] [YTS.AM].torrent' */
-		/* )) { */
-		/* 	return "exists"; */
-		/* } */
-
-		$torrent = $transmission->add(
-			'./movies/' . $request->input('imdb-id') .
-			'/Back to the Future (1985) [BluRay] [1080p] [YTS.AM].torrent'
-		);
-		/* return './movies/' . $request->input('imdb-id') . '/' */
-		/* 	. $request->input('imdb-id') . '.torrent'; */
+		$torrent = $transmission->add($this->_getDownloadUrl($request->input('imdb-id')));
 		return "true";
+	}
+
+	private function _getDownloadUrl($imdbId)
+	{
+		$url = 'https://yts.am/api/v2/list_movies.json?query_term=' . $imdbId;
+		$options = array(
+			'https' => array(
+				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method'  => 'GET'
+			)
+		);
+		$context  = stream_context_create($options);
+		$result = json_decode(file_get_contents($url, false, $context), TRUE);
+
+		if ($result === FALSE) {
+			return "false";
+		}
+		return $result['data']['movies'][0]['torrents'][0]['url'];
 	}
 }
