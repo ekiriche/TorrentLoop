@@ -30,6 +30,7 @@ class TorrentController extends Controller
 		$transmission = new Transmission();
 		$session = $transmission->getSession();
 		$session->setDownloadDir($pwd . '/movies/' . $request->input('imdb-id'));
+		/* $session->setDownloadDir('/tmp/movies/' . $request->input('imdb-id')); */
 		$session->save();
 		$torrent = $transmission->add($this->_getDownloadUrl($request->input('imdb-id')));
 		return "true";
@@ -50,6 +51,36 @@ class TorrentController extends Controller
 		if ($result === FALSE) {
 			return "false";
 		}
-		return $result['data']['movies'][0]['torrents'][0]['url'];
+		return $result['data']['movies'][0]['torrents'][
+			array_search(
+				'720p',
+				array_column($result['data']['movies'][0]['torrents'], 'quality')
+			)
+		]['url'];
+	}
+
+	public function getDownloadPercentage(Request $request)
+	{
+		$transmission = new Transmission();
+		$torrent = $transmission->get($this->_getTorrentHash($request->input('imdb-id')));
+		return $torrent->getPercentDone();
+	}
+
+	private function _getTorrentHash($imdbId)
+	{
+		$url = 'https://yts.am/api/v2/list_movies.json?query_term=' . $imdbId;
+		$options = array(
+			'https' => array(
+				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+				'method'  => 'GET'
+			)
+		);
+		$context  = stream_context_create($options);
+		$result = json_decode(file_get_contents($url, false, $context), TRUE);
+
+		if ($result === FALSE) {
+			return "false";
+		}
+		return $result['data']['movies'][0]['torrents'][0]['hash'];
 	}
 }
