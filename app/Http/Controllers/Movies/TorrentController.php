@@ -59,6 +59,13 @@ class TorrentController extends Controller
 		]['url'];
 	}
 
+	/**
+	 * Gets percentage of downloading movie
+	 *
+	 * @param Request $request
+	 * @key imdb-id
+	 * @return float
+	 */
 	public function getDownloadPercentage(Request $request)
 	{
 		$transmission = new Transmission();
@@ -81,6 +88,11 @@ class TorrentController extends Controller
 		if ($result === FALSE) {
 			return "false";
 		}
-		return $result['data']['movies'][0]['torrents'][0]['hash'];
+		return $result['data']['movies'][0]['torrents'][
+			array_search(
+				'720p',
+				array_column($result['data']['movies'][0]['torrents'], 'quality')
+			)
+		]['hash'];
 	}
 }
