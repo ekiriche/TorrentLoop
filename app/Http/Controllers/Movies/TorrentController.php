@@ -59,6 +59,13 @@ class TorrentController extends Controller
 		]['url'];
 	}
 
+	/**
+	 * Gets percentage of downloading movie
+	 *
+	 * @param Request $request
+	 * @key imdb-id
+	 * @return float
+	 */
 	public function getDownloadPercentage(Request $request)
 	{
 		$transmission = new Transmission();
