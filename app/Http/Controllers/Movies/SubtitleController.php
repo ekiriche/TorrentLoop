@@ -50,7 +50,7 @@ class SubtitleController extends Controller
 		}
 		$items = [];
 		foreach ($result['items'] as $item) {
-			if (!array_search($item['language'], array_column($items, 'language'))) {
+			if (array_search($item['language'], array_column($items, 'language')) === false) {
 				$items[] = array(
 					'id' => $item['id'],
 					'language' => $item['language'],
