@@ -130,7 +130,7 @@ to align it properly */
 
 @media screen and (max-width: 640px){
   .wrapper {
-      width: 350px;
+      width: 290px;
   }
   /*
   .wrapper ul li{
@@ -143,12 +143,12 @@ to align it properly */
 }
 
 @media screen and (max-width: 340px){
-  .wrapper {
+  /*.wrapper {
       width: 150px;
   }
   .wrapper ul li{
       margin:15px;
-  }
+  }*/
   .wrapper ul li.google{
       margin-left: 15px;
   }

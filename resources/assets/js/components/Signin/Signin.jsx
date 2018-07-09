@@ -4,7 +4,7 @@ import { PostData } from '../../functions/PostData';
 
 import { withLocalize, Translate } from 'react-localize-redux';
 
-import OAuth from '../OAuth/OAuth';
+
 import './Signin.css';
 
 class Signin extends Component  {
@@ -51,7 +51,6 @@ class Signin extends Component  {
 					{	this.state.registrationSuccess && ( <span className="alert alert-success">{this.state.registrationSuccess}</span>)	}
 					<div className="col input-field s12 OAuth-position">
 						<Button waves='light'><Translate id="signin_button">Sign in</Translate></Button>
-						<OAuth />
 					</div>
 				</form>
 			</Row>
