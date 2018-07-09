@@ -5,11 +5,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { LocalizeProvider, localizeReducer } from 'react-localize-redux';
 import ReactDOM from 'react-dom';
 import Auth from './Auth/Auth';
-//import Library from './Library/Library';
+import Library from './Library/Library';
 
 const USING_REDUX_KEY = 'redux';
 
 import './App.css';
+
 
 export default class App extends Component {
 	constructor(props) {
@@ -48,6 +49,7 @@ export default class App extends Component {
 			<HashRouter>
 				<LocalizeProvider store={this.state.store}>
 					<Route exact path="/" component={Auth} onToggleClick={this.onToggleReduxClick} toggleValue={this.state.isUsingRedux}/>
+					<Route path="/library" component={Library} />
 				</LocalizeProvider>
 			</HashRouter>
 		);

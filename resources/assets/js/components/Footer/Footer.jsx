@@ -15,9 +15,9 @@ class Foot extends Component {
 						<a className="grey-text text-lighten-4 right creat-margin" target="_blank" href="https://github.com/Madranko">mmotov</a>
 						<a className="grey-text text-lighten-4 right creat-margin" target="_blank" href="http://www.github.com/Gryshchenko">vgryshch</a>
 						<a className="grey-text text-lighten-4 right creat-margin" target="_blank" href="http://www.github.com/ekiriche">ekiriche</a>
-				  </div>
-			  </div>
-		  </footer>
+					</div>
+				</div>
+			</footer>
 		);
 	}
 }

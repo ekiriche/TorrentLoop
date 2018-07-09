@@ -5,7 +5,9 @@ import {checkString,checkValue,FormValueValidation} from './formValueCheck';
 
 import { withLocalize, Translate } from 'react-localize-redux';
 
-import { PostData } from './PostData';
+import { PostData } from '../../functions/PostData';
+
+import { Link } from 'react-router-dom';
 
 import './Signup.css';
 

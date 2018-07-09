@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { Route, HashRouter } from 'react-router-dom';
+
 
 import LanguageToggle from '../Library/LanguageToggle';
 import './Navbar.css';

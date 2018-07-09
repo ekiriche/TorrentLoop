@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
-import { PostData } from './PostData';
+import { PostData } from '../../functions/PostData';
 
 import { withLocalize, Translate } from 'react-localize-redux';
 

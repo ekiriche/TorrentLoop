@@ -1,0 +1,13 @@
+.library {
+	margin-bottom: -20px;
+	height: 90.5vh;
+
+	background-size: cover;
+	background-position: center;
+}
+
+.library-flex {
+	display: flex;
+	flex-direction: column;
+}
+/*background-image: url("../../../../../storage/app/public/library.jpg");*/

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
 import Collapsible from 'react-collapsible';
 import { withLocalize, Translate } from 'react-localize-redux';
-import { PostData } from './PostData';
+import { PostData } from '../../functions/PostData';
 
 import './PasswordRecovery.css';
 
