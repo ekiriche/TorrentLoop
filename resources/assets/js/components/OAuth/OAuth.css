@@ -1,3 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+
+.google,
+.facebook,
+.forty-two {
+  width: 75px;
+  height: 75px;
+  line-height: 75px;
+  margin: 0 10px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 50%;
+  /*border: 5px solid #D8E2DC;*/
+  float: left;
+  transition: all 0.5s ease;
+  background-color: transparent;
+  border: none;
+  color: #4717F6;
+}
+
+.forty-two-color {
+  color: #4717F6;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.forty-two-active:hover {
+  transition: all 0.5s ease;
+  color: #59bfa9;
+}
+
+.google:hover {
+  border: 5px solid #dd4b39;
+  box-shadow: 0 0 15px #dd4b39;
+  transition: all 0.5s ease;
+  color: #dd4b39;
+}
+.forty-two:hover {
+  border: 5px solid #59bfa9;
+  box-shadow: 0 0 15px #59bfa9;
+  transition: all 0.5s ease;
+  color: #59bfa9;
+}
+.facebook:hover {
+  border: 5px solid #3b5998 ;
+  box-shadow: 0 0 15px #3b5998;
+  transition: all 0.5s ease;
+  color: #3b5998;
+}
+
 .wrapper {
   width: auto;
 }
@@ -34,6 +83,7 @@ to align it properly */
 /* Now target the specific li classes for styling and use box-shadow effect to border and text-shadow effect
   to icons for glowing effect and use transition property for smooth transition effect. */
 /*facebook*/
+/*
 .wrapper ul li:hover.facebook {
   border: 5px solid #3b5998 ;
   box-shadow: 0 0 15px #3b5998;
@@ -45,8 +95,9 @@ to align it properly */
   text-shadow: 0 0 15px #3b5998;
   transition: all 0.5s ease;
 }
-
+*/
 /*twitter*/
+/*
 .wrapper ul li:hover.twitter {
   border: 5px solid #00aced;
   box-shadow: 0 0 15px #00aced;
@@ -59,7 +110,7 @@ to align it properly */
   transition: all 0.5s ease;
 }
 
-
+*/
 
 /* google */
 .wrapper ul li:hover.google {
@@ -101,23 +152,4 @@ to align it properly */
   .wrapper ul li.google{
       margin-left: 15px;
   }
-}
-
-/* youtube link */
-.youtube{
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  width: 160px;
-  text-align: center;
-  padding: 15px 10px;
-  background: #bb0000;
-  border-radius: 5px;
-}
-
-.youtube a{
-  text-decoration: none;
-  color: #fff;
-  text-transform: capitalize;
-  letter-spacing: 1px;
 }
