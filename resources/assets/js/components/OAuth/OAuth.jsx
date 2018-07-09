@@ -67,7 +67,7 @@ class OAuth extends Component  {
 			<div className="wrapper">
 				<ul>
 					<li className="facebook"><i className="fab fa-facebook-f fa-2x" aria-hidden="true"></i></li>
-					<li className="twitter"><i className="fa fa-twitter fa-2x" aria-hidden="true"></i></li>
+					<li className="twitter"><i className="fa  fa-2x" aria-hidden="true"><a href="https://api.intra.42.fr/oauth/authorize?client_id=424d0c7fac1ed02048e197dda88a5e1a8fb60bd8a4420659d6096f8fbb2a1c73&redirect_uri=http%3A%2F%2Flocalhost%3A8100&response_type=code&scope=public">42</a></i></li>
 					<li className="google"><i className="fab fa-google-plus-g fa-2x" aria-hidden="true"></i></li>
 				</ul>
 				<GoogleLogin
@@ -81,7 +81,7 @@ class OAuth extends Component  {
 					fields="name,email,picture"
 					callback={this.registerViaFacebook}
 				/>
-				<a href="https://api.intra.42.fr/oauth/authorize?client_id=424d0c7fac1ed02048e197dda88a5e1a8fb60bd8a4420659d6096f8fbb2a1c73&redirect_uri=http%3A%2F%2Flocalhost%3A8100&response_type=code&scope=public">42 lul</a>
+
 			</div>
 		);
 	}

@@ -10,6 +10,7 @@ import Library from './Library/Library';
 const USING_REDUX_KEY = 'redux';
 
 import './App.css';
+import './Global.css';
 
 
 export default class App extends Component {
