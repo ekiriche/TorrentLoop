@@ -30,7 +30,9 @@ class Signup extends Component  {
 	}
 
 	getValueFromForm(event) {
-		this.formValueCheck(event);
+		const langCode = this.props.activeLanguage;
+
+		this.formValueCheck(event, langCode.code);
 		if (event.target.name === 'login') {
 			this.setState({ [event.target.name] : event.target.value.toLowerCase() });
 		}
@@ -39,15 +41,16 @@ class Signup extends Component  {
 	}
 
 
-	formValueCheck(event) {
-		let validateMessage = FormValueValidation(event);
+	formValueCheck(event, langCode) {
 
+		let validateMessage = FormValueValidation(event, langCode);
+console.log(event.target);
 		if (validateMessage !== undefined && event.target.name === 'firstname') {
-			this.setState({firstnameError: 'First name ' + validateMessage });
+			this.setState({firstnameError: validateMessage });
 		} else if (validateMessage === undefined && event.target.name === 'firstname')
 		this.setState({firstnameError: '' });
 		if (validateMessage !== undefined && event.target.name === 'lastname') {
-			this.setState({lastnameError: 'Last name ' + validateMessage });
+			this.setState({lastnameError: validateMessage });
 		} else if (validateMessage === undefined && event.target.name === 'lastname')
 		this.setState({lastnameError: '' });
 		if ( validateMessage !== undefined && event.target.name === 'email') {
@@ -55,7 +58,7 @@ class Signup extends Component  {
 		} else if (validateMessage === undefined && event.target.name === 'email')
 		this.setState({emailError: '' });
 		if (validateMessage !== undefined && event.target.name === 'login') {
-			this.setState({loginError: 'Login ' + validateMessage });
+			this.setState({loginError: validateMessage });
 		} else if (validateMessage === undefined && event.target.name === 'login')
 		this.setState({loginError: '' });
 		if (validateMessage !== undefined &&event.target.name === 'password') {

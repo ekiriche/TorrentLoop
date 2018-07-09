@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Route, HashRouter } from 'react-router-dom';
 import { createStore, combineReducers } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { LocalizeProvider, localizeReducer } from 'react-localize-redux';
 import ReactDOM from 'react-dom';
 import Auth from './Auth/Auth';
+//import Library from './Library/Library';
 
 const USING_REDUX_KEY = 'redux';
 
