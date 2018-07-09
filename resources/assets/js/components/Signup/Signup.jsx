@@ -44,7 +44,7 @@ class Signup extends Component  {
 	formValueCheck(event, langCode) {
 
 		let validateMessage = FormValueValidation(event, langCode);
-console.log(event.target);
+
 		if (validateMessage !== undefined && event.target.name === 'firstname') {
 			this.setState({firstnameError: validateMessage });
 		} else if (validateMessage === undefined && event.target.name === 'firstname')

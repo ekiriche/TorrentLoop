@@ -45,9 +45,11 @@ export default class App extends Component {
 	}
 	render() {
 		return (
-			<LocalizeProvider store={this.state.store}>
-				<Auth onToggleClick={this.onToggleReduxClick} toggleValue={this.state.isUsingRedux}/>
-			</LocalizeProvider>
+			<HashRouter>
+				<LocalizeProvider store={this.state.store}>
+					<Route exact path="/" component={Auth} onToggleClick={this.onToggleReduxClick} toggleValue={this.state.isUsingRedux}/>
+				</LocalizeProvider>
+			</HashRouter>
 		);
 	}
 }
