@@ -6,8 +6,9 @@ import {checkString,checkValue,FormValueValidation} from './formValueCheck';
 import { withLocalize, Translate } from 'react-localize-redux';
 
 import { PostData } from '../../functions/PostData';
-
 import { Link } from 'react-router-dom';
+
+import { confirmMessage } from './confirmMessage';
 
 import './Signup.css';
 
@@ -73,18 +74,22 @@ class Signup extends Component  {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		const confirmMessage = {
-			error: ['Something wrong, we can\'t register you ',],
-			success: ['Check your mail, we send you instructions']
-		}
+		const langCode = this.props.activeLanguage.code;
+		let returnText;
+
+		if (langCode === 'en')
+			returnText = confirmMessage.en;
+		else
+			returnText = confirmMessage.ua;
+
 		this.setState({ registrationSuccess : '', registrationFalse : '' }); /*clear old message*/
-		PostData('signup', this.state).then ((result) => {
+		PostData('auth/signup', this.state).then ((result) => {
 			if (result.email)
-				this.setState({ registrationFalse : result.email[0] });
+				this.setState({ registrationFalse : returnText[3] });
 			else if (result.login)
-				this.setState({ registrationFalse : result.login[0] });
+				this.setState({ registrationFalse : returnText[2] });
 			if (result === 'OK'){
-				this.setState({ registrationSuccess : confirmMessage.success[0],
+				this.setState({ registrationSuccess : returnText[1],
 								registrationFalse : ''
 				 });
 			}

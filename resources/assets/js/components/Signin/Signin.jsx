@@ -28,14 +28,22 @@ class Signin extends Component  {
 
 	handleSubmit(event) {
 		event.preventDefault();
+		let returnText;
+		const langCode = this.props.activeLanguage.code;
 		const confirmMessage = {
-			error: ['Invalid login or password']
+			error: ['Invalid login or password', 'Невірний логін або пароль']
 		}
-		PostData('signin', this.state).then ((result) => {
+
+		if (langCode === 'en')
+			returnText = confirmMessage.error[0];
+		else
+			returnText = confirmMessage.error[1];
+
+		PostData('auth/signin', this.state).then ((result) => {
 			if (result === 'OK'){
 
 			} else {
-				this.setState({ registrationFalse : confirmMessage.error[0]});
+				this.setState({ registrationFalse : returnText});
 			}
 		})
 	}
