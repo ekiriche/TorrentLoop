@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, CardTitle } from 'react-materialize';
-import { CSSTransitionGroup } from 'react-transition-group'
+import { CSSTransitionGroup } from 'react-transition-group';
 
 
 // import ReactDelayRender from 'react-delay-render';
@@ -19,21 +19,14 @@ class FilmLink extends Component  {
 	render() {
 
 		return (
-			<CSSTransitionGroup
-				transitionName="example"
-				transitionAppear={true}
-				transitionAppearTimeout={ 1000 }
-				transitionEnter={false}
-				transitionLeave={false}>
-				<div className="film-link" style={{"transitionDelay":(this.props.delay*30)+"ms"}}>
-					<div className="film-cover" style={{backgroundImage: 'url(' + this.props.cover + ')'}}></div>
-					<div className="film-name white-text"><h6>{ this.props.name }</h6></div>
-					<div className="film-info">
-						<div className="production-year white-text"><h6>Year: { this.props.year }</h6></div>
-						<div className="imdb-rating white-text"><h6 >Imdb: { this.props.rating }</h6></div>
-					</div>
+			<div className="film-link" style={{"transitionDelay":(this.props.delay*30)+"ms"}}>
+				<div className="film-cover" style={{backgroundImage: 'url(' + this.props.cover + ')'}}></div>
+				<div className="film-name white-text"><h6>{ this.props.name }</h6></div>
+				<div className="film-info">
+					<div className="production-year white-text"><h6>Year: { this.props.year }</h6></div>
+					<div className="imdb-rating white-text"><h6 >Imdb: { this.props.rating }</h6></div>
 				</div>
-			</CSSTransitionGroup>
+			</div>
 		);
 	}
 }
@@ -52,3 +45,10 @@ export default FilmLink;
 // const imgUrlStyle = {
 // 	backgroundImage: 'url(' + this.props.cover + ')'
 // };
+/*			<CSSTransitionGroup
+				transitionName="example"
+				transitionAppear={true}
+				transitionAppearTimeout={ 1000 }
+				transitionEnter={false}
+				transitionLeave={false}>
+							</CSSTransitionGroup>*/
