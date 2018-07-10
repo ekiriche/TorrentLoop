@@ -40,10 +40,11 @@ class Signin extends Component  {
 			returnText = confirmMessage.error[1];
 
 		PostData('auth/signin', this.state).then ((result) => {
-			if (result === 'OK'){
-
-			} else {
+			if (result === 'Password is wrong'){
 				this.setState({ registrationFalse : returnText});
+			} else {
+				localStorage.setItem('accessToken', result);
+				//history.push('/search');
 			}
 		})
 	}
