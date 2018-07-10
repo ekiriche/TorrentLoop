@@ -2,10 +2,10 @@ nav {
     color: #fff;
     background-color: #0E0B18 !important;
 }
-.fa-film {
+.fa-film,
+.active {
   color: #4717F6;
 }
-
 nav .brand-logo {
     width: 250px !important;
     position: inherit !important;
@@ -41,7 +41,7 @@ nav .brand-logo {
     padding: 0 3px;
   }
   nav .brand-logo {
-    left: 0%; 
+    left: 0%;
     transform: translateX(0%);
   }
 }

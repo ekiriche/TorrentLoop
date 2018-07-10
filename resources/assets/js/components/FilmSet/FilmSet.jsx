@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 import { Link } from 'react-router-dom';
 import FilmLink from '../FilmLink/FilmLink';
@@ -90,7 +91,7 @@ class FilmSet extends Component  {
 				name={movie.title_english}
 				year={movie.year}
 				rating={movie.rating}
-				/>
+			/>
 		)
 
 		return (
@@ -101,12 +102,12 @@ class FilmSet extends Component  {
 						this.scroller = scroller
 					}}
 					>
-					{allFilms}
+{allFilms}
 				</div>
 			</div>
 		);
 	}
 }
 export default FilmSet;
-
+/*					{allFilms}*/
 // var h = element.clientHeight;

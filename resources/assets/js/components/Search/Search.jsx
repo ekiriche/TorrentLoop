@@ -14,7 +14,7 @@ class Search extends Component  {
 
 	render() {
 		return (
-			<div className="film-search">
+			<div className="film-search ">
 				<div className="input-field">
 					<input id="search" type="search" required className="film-search-input"/>
 					<label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>

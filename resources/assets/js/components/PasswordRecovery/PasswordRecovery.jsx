@@ -4,6 +4,7 @@ import Collapsible from 'react-collapsible';
 import { withLocalize, Translate } from 'react-localize-redux';
 import { PostData } from '../../functions/PostData';
 
+import { confirmMessage } from './confirmMessage';
 import './PasswordRecovery.css';
 
 class PasswordRecovery extends Component  {
@@ -22,18 +23,21 @@ class PasswordRecovery extends Component  {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		const confirmMessage = {
-			error: ['Something wrong we couldn\'t send you a mail', 'We can\'t find your mail'],
-			success: ['Check your mail, we send you instructions']
-		}
-		PostData('reset-pass', this.state).then ((result) => {
-			console.log(result);
+		let returnText;
+		const langCode = this.props.activeLanguage.code;
+
+		if (langCode === 'en')
+			returnText = confirmMessage.en;
+		else
+			returnText = confirmMessage.ua;
+
+		PostData('auth/reset-pass', this.state).then ((result) => {
 			if (result === 'OK'){
-				this.setState({ registrationSuccess : confirmMessage.success[0],
+				this.setState({ registrationSuccess : returnText[2],
 								registrationFalse : ''
 				 });
 			} else {
-				this.setState({ registrationFalse : confirmMessage.error[0],
+				this.setState({ registrationFalse : returnText[0],
 								registrationFalse : ''
 				 });
 			}
