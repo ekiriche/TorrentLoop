@@ -12,6 +12,26 @@ use Illuminate\Support\Facades\Validator;
 
 class ResetPasswordController extends Controller
 {
+	public function updateOAuth(Request $request)
+	{
+		$user = User::where('id', $request->input('id'))->first();
+		$validator = Validator::make(
+			array('password' => $request->input('newpass')
+		), [
+			'password' => 'required|max:32|string|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{6,}$/',
+		]);
+		if ($validator->fails()) {
+			return $validator->errors();
+		}
+		if ($user) {
+			$user->fill([
+				'password' => Hash::make($request->input('newpass'))
+			])->save();
+			return "true";
+		}
+		return "false";
+	}
+
 	public function update(Request $request)
 	{
 		$user = User::where('id', $request->input('id'))->first();

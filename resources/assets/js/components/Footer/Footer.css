@@ -18,3 +18,16 @@ footer.page-footer .footer-copyright {
   display: flex;
   justify-content: center;
 }
+.creatBy-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+@media screen and (max-width: 479px) {
+  /* start of phone styles */
+  .creatBy-flex {
+    flex-direction: column;
+  }
+
+}

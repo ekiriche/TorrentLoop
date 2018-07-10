@@ -14,12 +14,6 @@ class LoginController extends Controller
 	{
 		$user = User::where('login', $request->input('login'))->first();
 		if ($user == '')
-			return "User not found";
-		if (Hash::check($request->input('password'), $user->password))
-			return "OK";
-		return "Password is wrong";
-		$user = User::where('login', $request->input('login'))->first();
-		if ($user == '')
 			return "User is not found";
 		if ($user->access_level == 0)
 			return "Email is not verificated";
