@@ -10,7 +10,7 @@ class Navbar extends Component {
 	render() {
 		return (
 			<nav>
-				<div className="nav-wrapper container">
+				<div className="nav-wrapper container nav-wrapper-flex">
 					<a href="#" className="brand-logo">Hypertube<i className="fas fa-film  fa-2x" aria-hidden="true"></i></a>
 					<LanguageToggle />
 				</div>
