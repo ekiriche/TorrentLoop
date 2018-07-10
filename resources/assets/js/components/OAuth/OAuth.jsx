@@ -64,28 +64,29 @@ class OAuth extends Component  {
 
 	render() {
 		return (
-			<div className="wrapper">
-				<ul>
-					<li className="forty-two"><i className="fa fa-2x" aria-hidden="true"><a className="forty-two-active forty-two-color" href="https://api.intra.42.fr/oauth/authorize?client_id=424d0c7fac1ed02048e197dda88a5e1a8fb60bd8a4420659d6096f8fbb2a1c73&redirect_uri=http%3A%2F%2Flocalhost%3A8100&response_type=code&scope=public">42</a></i></li>
-					<GoogleLogin
-						clientId="895850780881-s18dg7en9bq0hr32an5t4bl164l43iih.apps.googleusercontent.com"
-						buttonText=""
-						onSuccess={this.registerViaGoogle}
-						onFailure={this.responseGoogle}
-						className="google fab fa-google-plus-g fa-2x"
-						tag="a"
-					/>
-					<FacebookLogin
-						appId="241030700020959"
-						fields="name,email,picture"
-						callback={this.registerViaFacebook}
-						cssClass="facebook fa-2x"
-						icon="fab fa-facebook-f"
-						tag="a"
-						textButton=""
-					/>
-				</ul>
-
+			<div className="row oauth-flex">
+				<div className="wrapper">
+					<ul>
+						<li className="forty-two"><i className="fa fa-2x" aria-hidden="true"><a className="forty-two-active forty-two-color" href="https://api.intra.42.fr/oauth/authorize?client_id=424d0c7fac1ed02048e197dda88a5e1a8fb60bd8a4420659d6096f8fbb2a1c73&redirect_uri=http%3A%2F%2Flocalhost%3A8100&response_type=code&scope=public">42</a></i></li>
+						<GoogleLogin
+							clientId="895850780881-s18dg7en9bq0hr32an5t4bl164l43iih.apps.googleusercontent.com"
+							buttonText=""
+							onSuccess={this.registerViaGoogle}
+							onFailure={this.responseGoogle}
+							className="google fab fa-google-plus-g fa-2x"
+							tag="a"
+						/>
+						<FacebookLogin
+							appId="241030700020959"
+							fields="name,email,picture"
+							callback={this.registerViaFacebook}
+							cssClass="facebook fa-2x"
+							icon="fab fa-facebook-f"
+							tag="a"
+							textButton=""
+						/>
+					</ul>
+				</div>
 			</div>
 		);
 	}

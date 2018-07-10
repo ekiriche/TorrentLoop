@@ -51,6 +51,12 @@
   width: auto;
 }
 
+.oauth-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* Style the Un-order list by setting its list-style to none */
 .wrapper ul {
   list-style: none;

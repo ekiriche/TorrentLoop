@@ -44,7 +44,7 @@ class Auth extends Component  {
 				<div className="container">
 					<Row className="CardPanel-right">
 						<Col s={12} m={8} l={6} xl={4}>
-							<CardPanel className="teal card-background card-flex">
+							<CardPanel className="teal card-background">
 								<Signin />
 								<OAuth />
 								<Signup />
