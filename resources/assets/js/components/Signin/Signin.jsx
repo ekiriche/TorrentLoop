@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
 import { PostData } from '../../functions/PostData';
 
+import history from '../History/History';
+
 import { withLocalize, Translate } from 'react-localize-redux';
 
 
@@ -44,7 +46,7 @@ class Signin extends Component  {
 				this.setState({ registrationFalse : returnText});
 			} else {
 				localStorage.setItem('accessToken', result);
-				//history.push('/search');
+				history.push(`/Library`);
 			}
 		})
 	}
