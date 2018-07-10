@@ -8,7 +8,6 @@ import Auth from './Auth/Auth';
 import Library from './Library/Library';
 import { PrivateRoute, SingInRoute } from './Routs/Routs';
 
-
 const USING_REDUX_KEY = 'redux';
 
 import './App.css';
