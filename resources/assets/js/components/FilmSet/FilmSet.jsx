@@ -101,12 +101,12 @@ class FilmSet extends Component  {
 						this.scroller = scroller
 					}}
 					>
-					{allFilms}
+
 				</div>
 			</div>
 		);
 	}
 }
 export default FilmSet;
-
+/*					{allFilms}*/
 // var h = element.clientHeight;
