@@ -26,7 +26,7 @@ class FilmSet extends Component  {
 		this.setState({ page: 1 });
 		var limit = 48;
 		let page = this.state.page;
-		const params = "?sort_by=rating&limit=" + limit + "&page=" + page;
+		const params = "list_movies.json?sort_by=rating&limit=" + limit + "&page=" + page;
 		GetFilmsInfo(params)
 		.then ((result) => {
 			this.setState({ movies: result.data.movies});
@@ -39,7 +39,7 @@ class FilmSet extends Component  {
 	requestFilms() {
 		var limit = 48;
 		let page = this.state.page;
-		const params = "?sort_by=rating&limit=" + limit + "&page=" + page;
+		const params = "list_movies.json?sort_by=rating&limit=" + limit + "&page=" + page;
 		if (page % 2)
 			this.setState({ preloader1: false });
 		else
@@ -82,6 +82,7 @@ class FilmSet extends Component  {
 			)
 		}
 		const movies = this.state.movies;
+		console.log(movies);
 		const allFilms = movies.map(
 			(movie, i) =>
 			<FilmLink
@@ -91,9 +92,10 @@ class FilmSet extends Component  {
 				name={movie.title_english}
 				year={movie.year}
 				rating={movie.rating}
+				movieId={movie.id}
+				movieObj={movies}
 			/>
 		)
-
 		return (
 			<div>
 				<div className="film-set"
@@ -102,7 +104,7 @@ class FilmSet extends Component  {
 						this.scroller = scroller
 					}}
 					>
-{allFilms}
+					{allFilms}
 				</div>
 			</div>
 		);

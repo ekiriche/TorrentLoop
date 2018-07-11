@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default function GetFilmsInfo(type) {
-	let BaseUrl = 'https://yts.am/api/v2/list_movies.json';
+	let BaseUrl = 'https://yts.am/api/v2/';
 	return new Promise((resolve, reject) => {
 		axios.get(BaseUrl + type)
 		.then(res => {

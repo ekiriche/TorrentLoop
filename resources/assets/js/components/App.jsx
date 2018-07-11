@@ -6,6 +6,7 @@ import { LocalizeProvider, localizeReducer } from 'react-localize-redux';
 import ReactDOM from 'react-dom';
 import Auth from './Auth/Auth';
 import Library from './Library/Library';
+import Movie from './Movie/Movie';
 import { PrivateRoute, SingInRoute } from './Routs/Routs';
 
 const USING_REDUX_KEY = 'redux';
@@ -52,6 +53,7 @@ export default class App extends Component {
 				<LocalizeProvider store={this.state.store}>
 					<SingInRoute exact path="/" component={Auth} onToggleClick={this.onToggleReduxClick} toggleValue={this.state.isUsingRedux}/>
 					<PrivateRoute path="/library" component={Library} onToggleClick={this.onToggleReduxClick} toggleValue={this.state.isUsingRedux}/>
+					<PrivateRoute path="/movie/:id" component={Movie} onToggleClick={this.onToggleReduxClick} toggleValue={this.state.isUsingRedux}/>
 				</LocalizeProvider>
 			</HashRouter>
 		);

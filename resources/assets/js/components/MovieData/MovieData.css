@@ -1,0 +1,12 @@
+.ganres-list {
+  list-style-type: none;
+  display: inline-flex;
+}
+
+.MovieData-position{
+  display: flex;
+  flex-direction: column;
+}
+.percentLoader {
+  height: 35px;
+}
