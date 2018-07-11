@@ -42,6 +42,7 @@ class Movie extends Component  {
 			GetFilmsInfo(params)
 			.then ((result) => {
 				this.setState({ movie: result.data.movie});
+				console.log(this.state.movie);
 			});
 		}
 	}
@@ -63,7 +64,7 @@ class Movie extends Component  {
 							<Player
 								playsInline
 								poster={this.state.movie.background_image}
-								src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+								src="./movies/tt0437777/Something.New.2006.720p.BluRay.x264-[YTS.AM].mp4"
 							>
 							<ControlBar autoHide={false}>
 								<ReplayControl seconds={10} order={2.2} />
