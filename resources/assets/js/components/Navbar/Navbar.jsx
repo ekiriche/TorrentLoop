@@ -40,7 +40,7 @@ class Navbar extends Component {
 						items={[
 							<NavLink to="/Profile" activeClassName="linkActive">Profile</NavLink>,
 							<NavLink to="/Library" activeClassName="linkActive">Library</NavLink>,
-							<NavLink to="/Stream" activeClassName="linkActive">Stream</NavLink>,
+							<NavLink to="/Movie" activeClassName="linkActive">Movie</NavLink>,
 							<NavLink to="/" activeClassName="linkActive">Logout</NavLink>]} />
 						: <p className="nav-display-none"></p>}
 			</div>
