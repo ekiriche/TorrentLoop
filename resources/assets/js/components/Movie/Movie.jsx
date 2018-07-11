@@ -8,6 +8,8 @@ import globalTranslations from '../translations/global.json';
 import ToggleButton from 'react-toggle-button';
 /*localization end*/
 
+import { Player, ControlBar, ReplayControl, ForwardControl } from 'video-react';
+
 import { Card, CardTitle , Col} from 'react-materialize';
 
 import Navbar from '../Navbar/Navbar';
@@ -17,6 +19,7 @@ import MovieData from '../MovieData/MovieData';
 import GetFilmsInfo from '../../functions/GetFilmsInfo';
 
 import './Movie.css';
+import './video-react.css';
 
 class Movie extends Component  {
 	constructor(props) {
@@ -57,6 +60,16 @@ class Movie extends Component  {
 				<Navbar />
 					<div className="container">
 						<MovieData movieData={this.state.movie}/>
+							<Player
+								playsInline
+								poster={this.state.movie.background_image}
+								src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+							>
+							<ControlBar autoHide={false}>
+								<ReplayControl seconds={10} order={2.2} />
+								<ForwardControl seconds={10} order={3.2} />
+							</ControlBar>
+						</Player>
 					</div>
 				<Foot />
 			</div>

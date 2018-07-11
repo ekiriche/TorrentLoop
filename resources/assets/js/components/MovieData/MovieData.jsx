@@ -22,9 +22,7 @@ class MovieData extends Component  {
 
 
 	render() {
-		console.log(this.props.movieData);
-
-		const genres = this.state.movie.genres /*List of users who view profile*/
+		const genres = this.state.movie.genres
 		const listGenres = genres.map((genres, i) =>
 				<li key={i}>
 					<Chip className="chips-profile-view">
