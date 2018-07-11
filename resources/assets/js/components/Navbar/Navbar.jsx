@@ -24,7 +24,6 @@ class Navbar extends Component {
 						<div className="languageMenuIcon-flex">
 							<LanguageToggle />
 							{(this.state.jwtToken) ? <MenuIcon onClick={() => this.setState({showNav: true})}/> : <p className="nav-display-none"></p>}
-
 						</div>
 					</div>
 				</nav>
@@ -40,7 +39,7 @@ class Navbar extends Component {
 						items={[
 							<NavLink to="/Profile" activeClassName="linkActive">Profile</NavLink>,
 							<NavLink to="/Library" activeClassName="linkActive">Library</NavLink>,
-							<NavLink to="/Movie" activeClassName="linkActive">Movie</NavLink>,
+							<NavLink to="/Stream" activeClassName="linkActive">Stream</NavLink>,
 							<NavLink to="/" activeClassName="linkActive">Logout</NavLink>]} />
 						: <p className="nav-display-none"></p>}
 			</div>

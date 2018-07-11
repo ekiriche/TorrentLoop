@@ -53,7 +53,7 @@ export default class App extends Component {
 				<LocalizeProvider store={this.state.store}>
 					<SingInRoute exact path="/" component={Auth} onToggleClick={this.onToggleReduxClick} toggleValue={this.state.isUsingRedux}/>
 					<PrivateRoute path="/library" component={Library} onToggleClick={this.onToggleReduxClick} toggleValue={this.state.isUsingRedux}/>
-					<PrivateRoute path="/movie" component={Movie} onToggleClick={this.onToggleReduxClick} toggleValue={this.state.isUsingRedux}/>
+					<PrivateRoute path="/movie/:id" component={Movie} onToggleClick={this.onToggleReduxClick} toggleValue={this.state.isUsingRedux}/>
 				</LocalizeProvider>
 			</HashRouter>
 		);
