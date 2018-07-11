@@ -24,18 +24,29 @@ class MovieData extends Component  {
 		this.startDownload = this.startDownload.bind(this);
 		this.getDownloadPercentage = this.getDownloadPercentage.bind(this);
 	}
+	componentDidUpdate() {
+		if (this.state.downloadPercent < 100) {
+			console.log(23);
+		}
+
+	}
 
 	startDownload() {
-		PostData('movie/download-movie', { imdbid: this.state.movie.imdb_code }).then ((result) => {
+		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
 			if (result === true){
 				this.setState({ download : true});
+				this.getDownloadPercentage();
 			} else {
 			}
 		})
+		PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
+			console.log(result);
+		})
 	}
 	getDownloadPercentage() {
-		PostData('movie/get-download-percentage', { imdbid: this.state.movie.imdb_code }).then ((result) => {
+		PostData('movie/get-download-percentage', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
 			this.setState({downloadPercent: result});
+			console.log('test', result);
 			console.log(this.state.downloadPercent);
 		})
 	}

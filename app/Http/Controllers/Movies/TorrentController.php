@@ -12,10 +12,10 @@ class TorrentController extends Controller
 {
 	/**
 	 * Downloads movie from torrent url to a specific folder,
-	 * imdbid will be the name of the folder
+	 * imdb-id will be the name of the folder
 	 *
 	 * @param Request $request
-	 * @key imdbid
+	 * @key imdb-id
 	 * @return string ("true" or "false")
 	 */
 	public function downloadMovie(Request $request)
@@ -23,16 +23,16 @@ class TorrentController extends Controller
 		if (!file_exists('movies')) {
 			mkdir('movies', 0755, true);
 		}
-		if (!file_exists('movies/' . $request->input('imdbid'))) {
-			mkdir('movies/' . $request->input('imdbid'), 0755, true);
+		if (!file_exists('movies/' . $request->input('imdb-id'))) {
+			mkdir('movies/' . $request->input('imdb-id'), 0755, true);
 		}
 		$pwd = substr(`pwd`, 0, -1);
 		$transmission = new Transmission();
 		$session = $transmission->getSession();
-		$session->setDownloadDir($pwd . '/movies/' . $request->input('imdbid'));
-		/* $session->setDownloadDir('/tmp/movies/' . $request->input('imdbid')); */
+		$session->setDownloadDir($pwd . '/movies/' . $request->input('imdb-id'));
+		/* $session->setDownloadDir('/tmp/movies/' . $request->input('imdb-id')); */
 		$session->save();
-		$torrent = $transmission->add($this->_getDownloadUrl($request->input('imdbid')));
+		$torrent = $transmission->add($this->_getDownloadUrl($request->input('imdb-id')));
 		return "true";
 	}
 
@@ -63,13 +63,13 @@ class TorrentController extends Controller
 	 * Gets percentage of downloading movie
 	 *
 	 * @param Request $request
-	 * @key imdbid
+	 * @key imdb-id
 	 * @return float
 	 */
 	public function getDownloadPercentage(Request $request)
 	{
 		$transmission = new Transmission();
-		$torrent = $transmission->get($this->_getTorrentHash($request->input('imdbid')));
+		$torrent = $transmission->get($this->_getTorrentHash($request->input('imdb-id')));
 		return $torrent->getPercentDone();
 	}
 

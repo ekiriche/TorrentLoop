@@ -64,7 +64,7 @@ class Movie extends Component  {
 							<Player
 								playsInline
 								poster={this.state.movie.background_image}
-								src="./movies/tt0437777/Something.New.2006.720p.BluRay.x264-[YTS.AM].mp4"
+								src="https://download.blender.org/durian/trailer/sintel_trailer-720p.mp4"
 							>
 							<ControlBar autoHide={false}>
 								<ReplayControl seconds={10} order={2.2} />
