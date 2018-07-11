@@ -34,13 +34,11 @@ class Movie extends Component  {
 	}
 
 	componentWillMount() {
-		const params = "movie_details.json?movie_id=10";
-
+		const params = "movie_details.json?movie_id=" + this.props.match.params.id;
 		if (this.state.movie === undefined) {
 			GetFilmsInfo(params)
 			.then ((result) => {
 				this.setState({ movie: result.data.movie});
-				console.log(this.state.movie);
 			});
 		}
 	}
