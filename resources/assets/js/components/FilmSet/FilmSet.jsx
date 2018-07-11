@@ -82,6 +82,7 @@ class FilmSet extends Component  {
 			)
 		}
 		const movies = this.state.movies;
+		console.log(movies);
 		const allFilms = movies.map(
 			(movie, i) =>
 			<FilmLink
@@ -91,9 +92,10 @@ class FilmSet extends Component  {
 				name={movie.title_english}
 				year={movie.year}
 				rating={movie.rating}
+				movieId={movie.id}
+				movieObj={movies}
 			/>
 		)
-
 		return (
 			<div>
 				<div className="film-set"
@@ -102,7 +104,7 @@ class FilmSet extends Component  {
 						this.scroller = scroller
 					}}
 					>
-{allFilms}
+					{allFilms}
 				</div>
 			</div>
 		);

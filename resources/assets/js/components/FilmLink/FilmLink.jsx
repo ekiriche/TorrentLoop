@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardTitle } from 'react-materialize';
 import { CSSTransitionGroup } from 'react-transition-group';
+import { Link } from 'react-router-dom';
 
 
 // import ReactDelayRender from 'react-delay-render';
@@ -13,14 +14,22 @@ class FilmLink extends Component  {
 
 	constructor(props) {
 		super(props);
-		console.log(this.props.delay);
+		this.handleMuvieSet = this.handleMuvieSet.bind(this);
+	}
+	handleMuvieSet(event) {
+		var id = event.target.id;
+		let objArray = this.props.movieObj;
+		var obj = objArray.find((document) => document.id == id);
+		console.log(obj);
 	}
 
 	render() {
 
 		return (
-			<div className="film-link" style={{"transitionDelay":(this.props.delay*30)+"ms"}}>
-				<div className="film-cover" style={{backgroundImage: 'url(' + this.props.cover + ')'}}></div>
+			<div className="film-link" style={{"transitionDelay":(this.props.delay*30)+"ms"}} onClick={ this.handleMuvieSet }>
+				<div className="film-cover" id={this.props.movieId} style={{backgroundImage: 'url(' + this.props.cover + ')'}}>
+					<Link to="/Movie" ><i className="material-icons medium film-icon">pageview</i></Link>
+				</div>
 				<div className="film-name white-text"><h6>{ this.props.name }</h6></div>
 				<div className="film-info">
 					<div className="production-year white-text"><h6>Year: { this.props.year }</h6></div>

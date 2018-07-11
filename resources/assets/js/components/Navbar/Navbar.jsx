@@ -29,20 +29,20 @@ class Navbar extends Component {
 					</div>
 				</nav>
 				{(this.state.jwtToken) ?
-									<SideNav
-									openFromRight={true}
-									showNav={this.state.showNav}
-									onHideNav={()=>this.setState({showNav: false})}
-									title='Navigation'
-									titleStyle={{backgroundColor: '#0E0B18', fontSize: '2.2rem', textAlign: 'center'}}
-									itemStyle={{display: 'inlineGrid', width: '100%', textAlign: 'center', backgroundColor: '#0E0B18'}}
-									itemHoverStyle={{backgroundColor: 'grey'}}
-									items={[<NavLink to="/Profile" activeClassName="linkActive">Profile</NavLink>,
-													<NavLink to="/Library" activeClassName="linkActive">Library</NavLink>,
-													<NavLink to="/Stream" activeClassName="linkActive">Stream</NavLink>,
-													<NavLink to="/" activeClassName="linkActive">Logout</NavLink>]} />
-									: <p className="nav-display-none"></p>}
-
+					<SideNav
+						openFromRight={true}
+						showNav={this.state.showNav}
+						onHideNav={()=>this.setState({showNav: false})}
+						title='Navigation'
+						titleStyle={{backgroundColor: '#0E0B18', fontSize: '2.2rem', textAlign: 'center'}}
+						itemStyle={{display: 'inlineGrid', width: '100%', textAlign: 'center', backgroundColor: '#0E0B18'}}
+						itemHoverStyle={{backgroundColor: 'grey'}}
+						items={[
+							<NavLink to="/Profile" activeClassName="linkActive">Profile</NavLink>,
+							<NavLink to="/Library" activeClassName="linkActive">Library</NavLink>,
+							<NavLink to="/Stream" activeClassName="linkActive">Stream</NavLink>,
+							<NavLink to="/" activeClassName="linkActive">Logout</NavLink>]} />
+						: <p className="nav-display-none"></p>}
 			</div>
 		);
 	}
