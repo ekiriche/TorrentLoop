@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Route, HashRouter } from 'react-router-dom';
+import { Route, HashRouter, NavLink } from 'react-router-dom';
 import SideNav, {MenuIcon} from 'react-simple-sidenav';
 
 
@@ -34,7 +34,10 @@ class Navbar extends Component {
 					titleStyle={{backgroundColor: '#0E0B18', fontSize: '2.2rem', textAlign: 'center'}}
 					itemStyle={{display: 'inlineGrid', width: '100%', textAlign: 'center', backgroundColor: '#0E0B18'}}
 					itemHoverStyle={{backgroundColor: 'grey'}}
-					items={['Library', 'Profile', 'Logout']} />
+					items={[<NavLink to="/Profile" activeClassName="linkActive">Profile</NavLink>,
+									<NavLink to="/Library" activeClassName="linkActive">Library</NavLink>,
+									<NavLink to="/Stream" activeClassName="linkActive">Stream</NavLink>,
+									<NavLink to="/" activeClassName="linkActive">Logout</NavLink>]} />
 			</div>
 		);
 	}
