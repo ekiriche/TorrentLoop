@@ -74,7 +74,7 @@ componentWillMount() {
 		const location = "http://localhost:8100/movies/" + this.state.movie.imdb_code + '/';
 		console.log(subtitles.language);
 		const listSubtitles = subtitles.map((subtitle, i) =>
-				<track key={i} kind="subtitle" srcLang={subtitle.language} src={location + subtitle.language + '.srt'} />
+				<track key={i} kind="subtitles" label={subtitle.language} srcLang={subtitle.language} src={location + subtitle.language + '.srt'} />
 			)
 
 		return (
@@ -105,7 +105,7 @@ componentWillMount() {
 					</div>
 				</Card>
 				<Video autoPlay loop muted ref="video"
-						controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}
+						controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen', 'Captions']}
 						poster={this.state.movie.background_image}
 						onCanPlayThrough={() => {
 							this.refs.video.videoEl.pause();
