@@ -29,7 +29,6 @@ class SubtitleController extends Controller
 		if ($allSubtitles === "false") {
 			return "false";
 		}
-		return var_dump($allSubtitles);
 		$this->_saveSubtitlesToFolder($allSubtitles, $request->input('imdb-id'));
 		return json_encode($allSubtitles);
 	}

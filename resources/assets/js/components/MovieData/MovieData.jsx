@@ -19,6 +19,7 @@ class MovieData extends Component  {
 		super(props);
 		this.state = {
 			movie: this.props.movieData,
+			subtitles: false,
 			download: false,
 			downloadPercent: 0
 
@@ -26,9 +27,11 @@ class MovieData extends Component  {
 		this.startDownload = this.startDownload.bind(this);
 		this.getDownloadPercentage = this.getDownloadPercentage.bind(this);
 	}
-	componentDidUpdate() {
-
-	}
+componentWillMount() {
+	PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
+		this.setState({subtitles: result});
+	})
+}
 
 	startDownload() {/*
 		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
@@ -38,7 +41,7 @@ class MovieData extends Component  {
 			}
 		})*/
 		PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
-			console.log(result);
+			this.setState({subtitles: result});
 		})
 	}
 	getDownloadPercentage() {
@@ -49,7 +52,15 @@ class MovieData extends Component  {
 
 
 	render() {
-		console.log(this.state.movie);
+
+		if (this.state.subtitles === false) {
+			return (
+				<div className="progress">
+					<div className="indeterminate"></div>
+				</div>
+			)
+		}
+
 		const genres = this.state.movie.genres
 		const listGenres = genres.map((genres, i) =>
 				<li key={i}>
@@ -57,6 +68,13 @@ class MovieData extends Component  {
 						<p >{genres}</p>
 					</Chip>
 				</li>
+			)
+
+		const subtitles = this.state.subtitles
+		const location = "http://localhost:8100/movies/" + this.state.movie.imdb_code + '/';
+		console.log(subtitles.language);
+		const listSubtitles = subtitles.map((subtitle, i) =>
+				<track key={i} kind="subtitle" srcLang={subtitle.language} src={location + subtitle.language + '.srt'} />
 			)
 
 		return (
@@ -86,12 +104,14 @@ class MovieData extends Component  {
 						}
 					</div>
 				</Card>
-				<Video
+				<Video autoPlay loop muted ref="video"
 						controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}
 						poster={this.state.movie.background_image}
 						onCanPlayThrough={() => {
+							this.refs.video.videoEl.pause();
 						}}>
-						<source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" type="video/webm" />
+						<source src="https://download.blender.org/durian/trailer/sintel_trailer-720p.mp4" type="video/webm" />
+						{listSubtitles}
 				</Video>
 			</Col>
 		);
