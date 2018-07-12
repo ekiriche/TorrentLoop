@@ -33,15 +33,12 @@ componentWillMount() {
 	})
 }
 
-	startDownload() {/*
+	startDownload() {
 		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
 			if (result === true){
 				this.setState({ download : true});
 				this.getDownloadPercentage();
 			}
-		})*/
-		PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
-			this.setState({subtitles: result});
 		})
 	}
 	getDownloadPercentage() {
@@ -72,9 +69,8 @@ componentWillMount() {
 
 		const subtitles = this.state.subtitles
 		const location = "http://localhost:8100/movies/" + this.state.movie.imdb_code + '/';
-		console.log(subtitles.language);
 		const listSubtitles = subtitles.map((subtitle, i) =>
-				<track key={i} kind="subtitles" label={subtitle.language} srcLang={subtitle.language} src={location + subtitle.language + '.srt'} />
+				<track key={i} kind="subtitles" label={subtitle.language} srcLang={subtitle.language} src={location + subtitle.language + '.vtt'} />
 			)
 
 		return (
