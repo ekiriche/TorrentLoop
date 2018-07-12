@@ -8,6 +8,8 @@ import globalTranslations from '../translations/global.json';
 import ToggleButton from 'react-toggle-button';
 /*localization end*/
 
+import { DefaultPlayer as Video } from 'react-html5video';
+
 import './MovieData.css';
 import { PostData } from '../../functions/PostData';
 import { Card, CardTitle , Col,Chip} from 'react-materialize';
@@ -25,20 +27,16 @@ class MovieData extends Component  {
 		this.getDownloadPercentage = this.getDownloadPercentage.bind(this);
 	}
 	componentDidUpdate() {
-		if (this.state.downloadPercent < 100) {
-			console.log(23);
-		}
 
 	}
 
-	startDownload() {
+	startDownload() {/*
 		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
 			if (result === true){
 				this.setState({ download : true});
 				this.getDownloadPercentage();
-			} else {
 			}
-		})
+		})*/
 		PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
 			console.log(result);
 		})
@@ -46,13 +44,12 @@ class MovieData extends Component  {
 	getDownloadPercentage() {
 		PostData('movie/get-download-percentage', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
 			this.setState({downloadPercent: result});
-			console.log('test', result);
-			console.log(this.state.downloadPercent);
 		})
 	}
 
 
 	render() {
+		console.log(this.state.movie);
 		const genres = this.state.movie.genres
 		const listGenres = genres.map((genres, i) =>
 				<li key={i}>
@@ -89,6 +86,13 @@ class MovieData extends Component  {
 						}
 					</div>
 				</Card>
+				<Video
+						controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}
+						poster={this.state.movie.background_image}
+						onCanPlayThrough={() => {
+						}}>
+						<source src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4" type="video/webm" />
+				</Video>
 			</Col>
 		);
 	}

@@ -8,8 +8,6 @@ import globalTranslations from '../translations/global.json';
 import ToggleButton from 'react-toggle-button';
 /*localization end*/
 
-import { Player, ControlBar, ReplayControl, ForwardControl } from 'video-react';
-
 import { Card, CardTitle , Col} from 'react-materialize';
 
 import Navbar from '../Navbar/Navbar';
@@ -19,7 +17,7 @@ import MovieData from '../MovieData/MovieData';
 import GetFilmsInfo from '../../functions/GetFilmsInfo';
 
 import './Movie.css';
-import './video-react.css';
+import './styles.css';
 
 class Movie extends Component  {
 	constructor(props) {
@@ -42,7 +40,6 @@ class Movie extends Component  {
 			GetFilmsInfo(params)
 			.then ((result) => {
 				this.setState({ movie: result.data.movie});
-				console.log(this.state.movie);
 			});
 		}
 	}
@@ -61,16 +58,6 @@ class Movie extends Component  {
 				<Navbar />
 					<div className="container">
 						<MovieData movieData={this.state.movie}/>
-							<Player
-								playsInline
-								poster={this.state.movie.background_image}
-								src="https://download.blender.org/durian/trailer/sintel_trailer-720p.mp4"
-							>
-							<ControlBar autoHide={false}>
-								<ReplayControl seconds={10} order={2.2} />
-								<ForwardControl seconds={10} order={3.2} />
-							</ControlBar>
-						</Player>
 					</div>
 				<Foot />
 			</div>
@@ -79,3 +66,4 @@ class Movie extends Component  {
 }
 export default withLocalize(Movie);
 /*<MovieData movieData={this.state.movie}/>*/
+/*<track label="English" kind="subtitles" srcLang="en" src="http://source.vtt" default />*/
