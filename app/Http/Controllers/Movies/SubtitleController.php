@@ -30,7 +30,7 @@ class SubtitleController extends Controller
 			return "false";
 		}
 		$this->_saveSubtitlesToFolder($allSubtitles, $request->input('imdb-id'));
-		return "true";
+		return json_encode($allSubtitles);
 	}
 
 	private function _getAllSubtitles($imdbId)

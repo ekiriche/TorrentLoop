@@ -8,6 +8,8 @@ import globalTranslations from '../translations/global.json';
 import ToggleButton from 'react-toggle-button';
 /*localization end*/
 
+import { DefaultPlayer as Video } from 'react-html5video';
+
 import './MovieData.css';
 import { PostData } from '../../functions/PostData';
 import { Card, CardTitle , Col,Chip} from 'react-materialize';
@@ -17,6 +19,7 @@ class MovieData extends Component  {
 		super(props);
 		this.state = {
 			movie: this.props.movieData,
+			subtitles: false,
 			download: false,
 			downloadPercent: 0
 
@@ -24,35 +27,37 @@ class MovieData extends Component  {
 		this.startDownload = this.startDownload.bind(this);
 		this.getDownloadPercentage = this.getDownloadPercentage.bind(this);
 	}
-	componentDidUpdate() {
-		if (this.state.downloadPercent < 100) {
-			console.log(23);
-		}
-
-	}
+componentWillMount() {
+	PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
+		this.setState({subtitles: result});
+	})
+}
 
 	startDownload() {
 		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
 			if (result === true){
 				this.setState({ download : true});
 				this.getDownloadPercentage();
-			} else {
 			}
-		})
-		PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
-			console.log(result);
 		})
 	}
 	getDownloadPercentage() {
 		PostData('movie/get-download-percentage', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
 			this.setState({downloadPercent: result});
-			console.log('test', result);
-			console.log(this.state.downloadPercent);
 		})
 	}
 
 
 	render() {
+
+		if (this.state.subtitles === false) {
+			return (
+				<div className="progress">
+					<div className="indeterminate"></div>
+				</div>
+			)
+		}
+
 		const genres = this.state.movie.genres
 		const listGenres = genres.map((genres, i) =>
 				<li key={i}>
@@ -60,6 +65,12 @@ class MovieData extends Component  {
 						<p >{genres}</p>
 					</Chip>
 				</li>
+			)
+
+		const subtitles = this.state.subtitles
+		const location = "http://localhost:8100/movies/" + this.state.movie.imdb_code + '/';
+		const listSubtitles = subtitles.map((subtitle, i) =>
+				<track key={i} kind="subtitles" label={subtitle.language} srcLang={subtitle.language} src={location + subtitle.language + '.vtt'} />
 			)
 
 		return (
@@ -89,6 +100,15 @@ class MovieData extends Component  {
 						}
 					</div>
 				</Card>
+				<Video autoPlay loop muted ref="video"
+						controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen', 'Captions']}
+						poster={this.state.movie.background_image}
+						onCanPlayThrough={() => {
+							this.refs.video.videoEl.pause();
+						}}>
+						<source src="https://download.blender.org/durian/trailer/sintel_trailer-720p.mp4" type="video/webm" />
+						{listSubtitles}
+				</Video>
 			</Col>
 		);
 	}

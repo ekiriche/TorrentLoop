@@ -29,6 +29,7 @@
         "react-collapsible": "^2.2.0",
         "react-facebook-login": "^4.0.1",
         "react-google-login": "^3.2.1",
+        "react-html5video": "^2.5.1",
         "react-icons-kit": "^1.1.5",
         "react-materialize": "^2.3.3",
         "react-nouislider": "^2.0.1",
