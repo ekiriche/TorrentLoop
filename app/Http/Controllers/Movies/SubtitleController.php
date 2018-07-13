@@ -24,7 +24,6 @@ class SubtitleController extends Controller
 		if (!file_exists('movies/' . $request->input('imdb-id'))) {
 			mkdir('movies/' . $request->input('imdb-id'), 0755, true);
 		}
-
 		$allSubtitles = $this->_getAllSubtitles($request->input('imdb-id'));
 		if ($allSubtitles === "false") {
 			return "false";

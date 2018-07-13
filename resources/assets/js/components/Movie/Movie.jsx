@@ -17,7 +17,6 @@ import MovieData from '../MovieData/MovieData';
 import GetFilmsInfo from '../../functions/GetFilmsInfo';
 
 import './Movie.css';
-import './styles.css';
 
 class Movie extends Component  {
 	constructor(props) {
