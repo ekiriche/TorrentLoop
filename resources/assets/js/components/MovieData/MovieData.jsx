@@ -60,6 +60,7 @@ class MovieData extends Component  {
 		</li>
 	)
 
+	console.log(this.props.movieData);
 	return (
 		<Col m={7} s={12}>
 			<Card horizontal header={<CardTitle image={this.state.movie.large_cover_image}></CardTitle>}>
