@@ -30,7 +30,7 @@ class TorrentController extends Controller
 		$transmission = new Transmission();
 		$session = $transmission->getSession();
 		$session->setDownloadDir($pwd . '/movies/' . $request->input('imdb-id'));
-		/* $session->setDownloadDir('/tmp/movies/' . $request->input('imdb-id')); */
+		/* $session->setDownloadDir('/tmp/movies/' . $request->input('imdb-id'));*/
 		$session->save();
 		$torrent = $transmission->add($this->_getDownloadUrl($request->input('imdb-id')));
 		return "true";

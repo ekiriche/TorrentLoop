@@ -22,6 +22,31 @@ class Tokens
     $user->save();
     return $jwt;
   }
+
+  public function getAccessTime($jwt)
+  {
+    try {
+			$token = JWT::decode($jwt, 'secret', (array)'HS512');
+			$token_decoded = (array) $token;
+			return $token_decoded['exp'];
+		}
+		catch (\Firebase\JWT\ExpiredException $e)
+		{
+			return 'expired';
+		}
+  }
+
+  public function tokenExists($jwt)
+  {
+    if ($this->getAccessTime($jwt) == 'expired')
+      return 'expired';
+    $token = (array) JWT::decode($jwt, 'secret', (array)'HS512');
+    $user = User::where('id', $token['uid'])->where('access_token', $jwt)->first();
+    if ($user == '')
+      return "hacker detected";
+    return "exists";
+  }
+
 }
 
 ?>
