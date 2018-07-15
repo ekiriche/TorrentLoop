@@ -31,4 +31,10 @@ class LoginController extends Controller
 		$user = User::where('login', $request->input('login'))->first();
 		$jwt = $token->createAccessToken($user->id, 1800);
 	}
+
+	public function checkAccessToken(Request $request)
+	{
+		$token = new Tokens();
+		return $token->tokenExists($request->input('jwt'));
+	}
 }

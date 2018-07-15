@@ -29,7 +29,7 @@ class VideoPlayer extends Component  {
 						onCanPlayThrough={() => {
 							this.refs.video.videoEl.pause();
 						}}>
-						<source src="http://localhost:8100/movies/tt0071562/The Godfather Part 2 (1974)/The.Godfather.Part.2.1974.720p.BrRip.x264.BOKUTOX.YIFY.mp4" type="video/webm" />
+						<source src="https://download.blender.org/durian/trailer/sintel_trailer-720p.mp4" type="video/webm" />
 						{listSubtitles}
 				</Video>
 		);
