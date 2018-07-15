@@ -29,7 +29,7 @@ class VideoPlayer extends Component  {
 						onCanPlayThrough={() => {
 							this.refs.video.videoEl.pause();
 						}}>
-						<source src="http://localhost:8100/movies/tt0110912/Pulp Fiction (1994)/Pulp.Fiction.1994.720p.BrRip.x264.YIFY.mp4" type="video/webm" />
+						<source src="https://download.blender.org/durian/trailer/sintel_trailer-720p.mp4" type="video/webm" />
 						{listSubtitles}
 				</Video>
 		);

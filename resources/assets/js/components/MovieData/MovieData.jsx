@@ -22,14 +22,14 @@ class MovieData extends Component  {
 			download: false,
 			subtitles: '',
 			downloadPercent: 0
-		}
+		};
 		this.startDownload = this.startDownload.bind(this);
 		this.getDownloadPercentage = this.getDownloadPercentage.bind(this);
 	}
 
 	startDownload() {
 		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
-		})
+		});
 		PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
 			this.setState({subtitles: result});
 			this.setState({ download : true});
@@ -60,9 +60,8 @@ class MovieData extends Component  {
 				<p >{genres}</p>
 			</Chip>
 		</li>
-	)
+	);
 
-	console.log(this.props.movieData);
 	return (
 		<Col m={7} s={12}>
 			<Card horizontal header={<CardTitle image={this.state.movie.large_cover_image}></CardTitle>}>
