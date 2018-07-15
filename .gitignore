@@ -17,3 +17,5 @@ public/profile_pictures/*.png
 .DS_Store
 .eslintrc.json
 tags
+package-lock.json
+composer.lock
