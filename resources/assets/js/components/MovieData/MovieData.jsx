@@ -12,6 +12,7 @@ import './MovieData.css';
 import VideoPlayer from '../VideoPlayer/VideoPlayer';
 import { PostData } from '../../functions/PostData';
 import { Card, CardTitle , Col,Chip} from 'react-materialize';
+//import { TorrentSearchApi } from 'torrent-search-api';
 
 class MovieData extends Component  {
 	constructor(props) {
@@ -33,6 +34,7 @@ class MovieData extends Component  {
 			this.setState({subtitles: result});
 			this.setState({ download : true});
 		})
+
 	}
 
 	getDownloadPercentage() {
