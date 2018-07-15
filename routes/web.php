@@ -5,6 +5,7 @@ Route::get('/', function () {
 });
 
 Route::post('auth/signin', 'Auth\LoginController@attemptLogin');
+Route::post('auth/token-exists', 'Auth\LoginController@checkAccessToken');
 Route::post('auth/signup', 'Auth\RegisterController@attemptRegister');
 Route::post('auth/osignup', 'Auth\RegisterController@oauthRegister');
 Route::post('auth/update-pass', 'Auth\ResetPasswordController@update');

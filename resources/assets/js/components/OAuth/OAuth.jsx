@@ -9,33 +9,35 @@ import './OAuth.css';
 
 class OAuth extends Component  {
 
-  constructor()
-  {
-    super();
-    var path = window.location.href;
-    var code = path.slice(path.indexOf('=') + 1);
-    code = code.replace("#/", '');
-    this.state ={
-      grant_type: 'authorization_code',
-      client_id: '424d0c7fac1ed02048e197dda88a5e1a8fb60bd8a4420659d6096f8fbb2a1c73',
-      client_secret: 'f04df732742a66153a3e2f2ebbc63370f7e0f62c4a30d70f1052eced5c66810a',
-      redirect_uri: 'http://localhost:8100',
-      code: code
-    };
-    if (path.indexOf('code=') != -1)
-    {
-      FortyTwoPost('https://api.intra.42.fr/oauth/token', this.state).then ((result) => {
-        console.log(result.access_token);
-        this.state = {access_token : result.access_token};
-        console.log(this.state);
-        var stringa = 'https://api.intra.42.fr/v2/me?access_token=' + result.access_token;
-        axios.get(stringa).then(response => {
-          console.log(response.data));
-          
-        }
-    })
-    }
-  }
+	constructor()
+	{
+		super();
+		var path = window.location.href;
+		var code = path.slice(path.indexOf('=') + 1);
+		code = code.replace('#/', '');
+		this.state ={
+			grant_type: 'authorization_code',
+			client_id: '424d0c7fac1ed02048e197dda88a5e1a8fb60bd8a4420659d6096f8fbb2a1c73',
+			client_secret: 'f04df732742a66153a3e2f2ebbc63370f7e0f62c4a30d70f1052eced5c66810a',
+			redirect_uri: 'http://localhost:8100',
+			code: code
+		};
+		if (path.indexOf('code=') != -1)
+		{
+			FortyTwoPost('https://api.intra.42.fr/oauth/token', this.state).then ((result) => {
+				console.log(result.access_token);
+				this.state = {access_token : result.access_token};
+				console.log(this.state);
+				var stringa = 'https://api.intra.42.fr/v2/me?access_token=' + result.access_token;
+				axios.get(stringa).then(response => {
+					console.log(response.data);
+          axios.post('http://localhost:8100/auth/osignup', {email : response.data.email, firstname : response.data.first_name, lastname : response.data.last_name, img : response.data.image_url}).then(response => {
+      			console.log(response.data);
+      		});
+				});
+			});
+		}
+	}
 
   responseGoogle(event)
   {
