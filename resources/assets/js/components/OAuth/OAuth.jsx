@@ -31,6 +31,9 @@ class OAuth extends Component  {
 				var stringa = 'https://api.intra.42.fr/v2/me?access_token=' + result.access_token;
 				axios.get(stringa).then(response => {
 					console.log(response.data);
+          axios.post('http://localhost:8100/auth/osignup', {email : response.data.email, firstname : response.data.first_name, lastname : response.data.last_name, img : response.data.image_url}).then(response => {
+      			console.log(response.data);
+      		});
 				});
 			});
 		}
