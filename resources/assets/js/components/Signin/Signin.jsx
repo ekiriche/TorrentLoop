@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
-import { PostData } from './PostData';
+import { PostData } from '../../functions/PostData';
 
-import OAuth from '../OAuth/OAuth';
+import history from '../History/History';
+
+import { withLocalize, Translate } from 'react-localize-redux';
+
+
 import './Signin.css';
 
 class Signin extends Component  {
@@ -26,14 +30,23 @@ class Signin extends Component  {
 
 	handleSubmit(event) {
 		event.preventDefault();
+		let returnText;
+		const langCode = this.props.activeLanguage.code;
 		const confirmMessage = {
-			error: ['Invalid login or password']
+			error: ['Invalid login or password', 'Невірний логін або пароль']
 		}
-		PostData('signin', this.state).then ((result) => {
-			if (result === 'OK'){
 
+		if (langCode === 'en')
+			returnText = confirmMessage.error[0];
+		else
+			returnText = confirmMessage.error[1];
+
+		PostData('auth/signin', this.state).then ((result) => {
+			if (result === 'Password is wrong'){
+				this.setState({ registrationFalse : returnText});
 			} else {
-				this.setState({ registrationFalse : confirmMessage.error[0]});
+				localStorage.setItem('accessToken', result);
+				history.push(`/Library`);
 			}
 		})
 	}
@@ -42,18 +55,17 @@ class Signin extends Component  {
 		return (
 			<Row>
 				<form onSubmit={this.handleSubmit} className="signInError-title" >
-					<h5 className="signIn-title">Sign in</h5>
-					<Input label="Login" s={12} name="login"required onChange={this.getValueFromForm} />
-					<Input type="password" label="Password" required name="password" s={12} onChange={this.getValueFromForm} />
+					<h5 className="signIn-title"><Translate id="signin">Sign in</Translate></h5>
+					<Input label={<Translate id="login">Login</Translate>} s={12} name="login"required onChange={this.getValueFromForm} />
+					<Input label={<Translate id="password">Password</Translate>} type="password" required name="password" s={12} onChange={this.getValueFromForm} />
 					{	this.state.registrationFalse && ( <span className="alert alert-danger">{this.state.registrationFalse}</span>)	}
 					{	this.state.registrationSuccess && ( <span className="alert alert-success">{this.state.registrationSuccess}</span>)	}
 					<div className="col input-field s12 OAuth-position">
-						<Button waves='light'>Sign in</Button>
-						<OAuth />
+						<Button waves='light'><Translate id="signin_button">Sign in</Translate></Button>
 					</div>
 				</form>
 			</Row>
 		);
   }
 }
-export default Signin;
+export default withLocalize(Signin);

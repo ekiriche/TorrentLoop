@@ -11,8 +11,13 @@ Route::post('auth/osignup', 'Auth\RegisterController@oauthRegister');
 Route::post('auth/update-pass', 'Auth\ResetPasswordController@update');
 Route::post('auth/update-pass-oauth', 'Auth\ResetPasswordController@updateOAuth');
 Route::post('auth/reset-pass', 'Auth\ResetPasswordController@reset');
+Route::get('auth/confirm', 'Auth\RegisterController@ConfirmViaEmail');
+
 Route::post('profile/save-history', 'UserProfile\MovieHistoryController@saveMovieToHistory');
 Route::post('profile/get-history', 'UserProfile\MovieHistoryController@getHistory');
 Route::post('profile/get-user-info', 'UserProfile\ProfileController@getUserInfo');
 Route::post('profile/set-picture', 'UserProfile\ProfileController@setPicture');
-Route::get('auth/confirm', 'Auth\RegisterController@ConfirmViaEmail');
+
+Route::post('movie/download-subtitles', 'Movies\SubtitleController@downloadSubtitles');
+Route::post('movie/download-movie', 'Movies\TorrentController@downloadMovie');
+Route::post('movie/get-download-percentage', 'Movies\TorrentController@getDownloadPercentage');

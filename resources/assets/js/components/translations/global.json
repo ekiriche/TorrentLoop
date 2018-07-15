@@ -1,0 +1,43 @@
+{
+  "_comment": "data for auth page",
+  "signin": [
+    null,
+    "Увійти"
+  ],
+  "login": [
+    null,
+    "Логін"
+  ],
+  "password": [
+    null,
+    "Пароль"
+  ],
+  "signin_button": [
+    null,
+    "Увійти"
+  ],
+  "signup": [
+    null,
+    "Зареєструватися"
+  ],
+  "firstname": [
+    null,
+    "Ваше ім’я"
+  ],
+  "lastname": [
+    null,
+    "Прізвище"
+  ],
+  "forgotpassword": [
+    null,
+    "Забули пароль ?"
+  ],
+  "forgotpasswordButton": [
+    null,
+    "Надішліть мені листа"
+  ],
+  "footer": [
+    null,
+    "Створений"
+  ]
+}

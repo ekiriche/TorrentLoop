@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
 import Collapsible from 'react-collapsible';
-import { PostData } from './PostData';
+import { withLocalize, Translate } from 'react-localize-redux';
+import { PostData } from '../../functions/PostData';
 
+import { confirmMessage } from './confirmMessage';
 import './PasswordRecovery.css';
 
 class PasswordRecovery extends Component  {
@@ -21,18 +23,21 @@ class PasswordRecovery extends Component  {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		const confirmMessage = {
-			error: ['Something wrong we couldn\'t send you a mail', 'We can\'t find your mail'],
-			success: ['Check your mail, we send you instructions']
-		}
-		PostData('reset-pass', this.state).then ((result) => {
-			console.log(result);
+		let returnText;
+		const langCode = this.props.activeLanguage.code;
+
+		if (langCode === 'en')
+			returnText = confirmMessage.en;
+		else
+			returnText = confirmMessage.ua;
+
+		PostData('auth/reset-pass', this.state).then ((result) => {
 			if (result === 'OK'){
-				this.setState({ registrationSuccess : confirmMessage.success[0],
+				this.setState({ registrationSuccess : returnText[2],
 								registrationFalse : ''
 				 });
 			} else {
-				this.setState({ registrationFalse : confirmMessage.error[0],
+				this.setState({ registrationFalse : returnText[0],
 								registrationFalse : ''
 				 });
 			}
@@ -42,13 +47,13 @@ class PasswordRecovery extends Component  {
 	render() {
 		return (
 			<Row>
-				<Collapsible trigger="Forgot password">
+				<Collapsible trigger={<Translate id="forgotpassword">Forgot password ?</Translate>}>
 					<form onSubmit={this.handleSubmit} className="forgotPassword-text" >
 						<Input type="email" name="email" required label="Email" s={12} onChange={this.getValueFromForm} />
 						{	this.state.registrationFalse && ( <span className="alert alert-danger">{this.state.registrationFalse}</span>)	}
 						{	this.state.registrationSuccess && ( <span className="alert alert-success">{this.state.registrationSuccess}</span>)	}
 						<div className="col input-field s12">
-							<Button waves='light'>Send me new password</Button>
+							<Button waves='light'><Translate id="forgotpasswordButton">Send me mail</Translate></Button>
 						</div>
 					</form>
 				</Collapsible>
@@ -56,4 +61,4 @@ class PasswordRecovery extends Component  {
 		);
 	}
 }
-export default PasswordRecovery;
+export default withLocalize(PasswordRecovery);

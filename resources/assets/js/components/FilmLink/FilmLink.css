@@ -11,7 +11,7 @@
    transition: width 0.2s, height 0.2s, background-color 0.2s, margin-left 0.2s;
 
    opacity: 1;
-   transition: opacity 0.6s ease-in;
+   transition: opacity 0.1s ease-in;
 }
 
 .film-link:hover {
@@ -20,12 +20,23 @@
 	background-color: hsla(0, 0%, 0%, 0.8);
 	margin-left: 19px;
 }
+.film-icon {
+	color: white;
+	opacity: 0.5;
+}
+.film-icon:hover {
+	font-size: 6rem;
+	transition: font-size 0.6s ease-in;
+}
 
 .film-cover {
 	width: 100%;
 	height: 80%;
-	background-size: cover; */
+	background-size: cover;
 	background-position: center;
+	display: flex;
+  justify-content: center;
+  align-items: center;
 	/* background-image: url("../../../../../storage/app/public/avengers1.jpeg"); */
 }
 
