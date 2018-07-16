@@ -65,10 +65,16 @@ class EditProfile extends Component  {
 			<div className="movie-flex">
 				<Navbar />
 					<Row>
-            <form onSubmit={this.handlePasswordChange} className="password-change">
-              <Input type="password" s={12} name="old-password" required onChange={this.handleChange}/>
-              <Input type="password" s={12} name="new-password" required onChange={this.handleChange}/>
-              <Button waves='light'>Change password</Button>
+						<h4>Change photo</h4>
+						<form onSubmit={this.handleChangePhoto} className="photo-change">
+							<img src={this.state.photo} id="photo" s={12}/>
+							<Button waves='light'><Input type="file"/></Button>
+						</form>
+						<h4>Change Password</h4>
+						<form onSubmit={this.handlePasswordChange} className="password-change">
+            	{ this.state.password != undefined && ( <Input type="password" s={6} name="old-password" placeholder="Old password" required onChange={this.handleChange}/> ) }
+              <Input type="password" s={6} name="new-password" placeholder="New password" required onChange={this.handleChange}/>
+							<Button waves='light'>Change password</Button>
             </form>
           </Row>
 				<Foot />

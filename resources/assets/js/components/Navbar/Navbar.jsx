@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Route, HashRouter, NavLink } from 'react-router-dom';
 import SideNav, {MenuIcon} from 'react-simple-sidenav';
+import jwtDecode from 'jwt-decode';
+import { Row, Input, Button } from 'react-materialize';
 
 
 import LanguageToggle from '../Library/LanguageToggle';
@@ -12,9 +14,17 @@ class Navbar extends Component {
 		super(props);
 		this.state = {
 			showNav: false,
-			jwtToken: localStorage.getItem('accessToken')
+			jwtToken: localStorage.getItem('accessToken'),
+			id : jwtDecode(localStorage.getItem('accessToken')),
+			profilePath : ""
 		};
 	}
+
+	componentWillMount()
+	{
+		this.setState({ profilePath : "/Profile/" + this.state.id.uid });
+	}
+
 	render() {
 		return (
 			<div>
@@ -37,9 +47,9 @@ class Navbar extends Component {
 						itemStyle={{display: 'inlineGrid', width: '100%', textAlign: 'center', backgroundColor: '#0E0B18'}}
 						itemHoverStyle={{backgroundColor: 'grey'}}
 						items={[
-							<NavLink to="/Profile" activeClassName="linkActive">Profile</NavLink>,
+							<NavLink to={this.state.profilePath} activeClassName="linkActive">Profile</NavLink>,
 							<NavLink to="/Library" activeClassName="linkActive">Library</NavLink>,
-							<NavLink to="/Stream" activeClassName="linkActive">Stream</NavLink>,
+							<NavLink to="/settings" activeClassName="linkActive">Settings</NavLink>,
 							<NavLink to="/" activeClassName="linkActive">Logout</NavLink>]} />
 						: <p className="nav-display-none"></p>}
 			</div>
