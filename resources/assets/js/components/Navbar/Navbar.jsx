@@ -15,14 +15,19 @@ class Navbar extends Component {
 		this.state = {
 			showNav: false,
 			jwtToken: localStorage.getItem('accessToken'),
-			id : jwtDecode(localStorage.getItem('accessToken')),
 			profilePath : ""
 		};
 	}
 
 	componentWillMount()
 	{
-		this.setState({ profilePath : "/Profile/" + this.state.id.uid });
+		let jwt = localStorage.getItem('accessToken');
+		console.log(jwt);
+		if (jwt != null)
+		{
+			let id = jwtDecode(jwt);
+			this.setState({ profilePath : "/Profile/" + id.uid });
+		}
 	}
 
 	render() {

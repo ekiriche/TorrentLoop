@@ -1,7 +1,7 @@
 export const confirmMessage = {
   en: [
     'Something wrong, we can\'t register you',
-    'Check your mail, we send you instructions',
+    'Check your mail for further instructions',
     'A user already exists',
     'A email already exists'
   ],
