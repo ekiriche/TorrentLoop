@@ -22,7 +22,6 @@ class Navbar extends Component {
 	componentWillMount()
 	{
 		let jwt = localStorage.getItem('accessToken');
-		console.log(jwt);
 		if (jwt != null)
 		{
 			let id = jwtDecode(jwt);
