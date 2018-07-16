@@ -29,6 +29,11 @@ class Navbar extends Component {
 		}
 	}
 
+	logout()
+	{
+		localStorage.removeItem('accessToken');
+	}
+
 	render() {
 		return (
 			<div>
@@ -54,7 +59,7 @@ class Navbar extends Component {
 							<NavLink to={this.state.profilePath} activeClassName="linkActive">Profile</NavLink>,
 							<NavLink to="/Library" activeClassName="linkActive">Library</NavLink>,
 							<NavLink to="/settings" activeClassName="linkActive">Settings</NavLink>,
-							<NavLink to="/" activeClassName="linkActive">Logout</NavLink>]} />
+							<NavLink to="/" activeClassName="linkActive" onClick={this.logout}>Logout</NavLink>]} />
 						: <p className="nav-display-none"></p>}
 			</div>
 		);
