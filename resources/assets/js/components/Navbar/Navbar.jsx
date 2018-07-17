@@ -3,18 +3,20 @@ import ReactDOM from 'react-dom';
 import { Route, HashRouter, NavLink } from 'react-router-dom';
 import SideNav, {MenuIcon} from 'react-simple-sidenav';
 
-
 import LanguageToggle from '../Library/LanguageToggle';
 import './Navbar.css';
+
 
 class Navbar extends Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			showNav: false,
 			jwtToken: localStorage.getItem('accessToken')
 		};
 	}
+
 	render() {
 		return (
 			<div>
@@ -37,11 +39,11 @@ class Navbar extends Component {
 						itemStyle={{display: 'inlineGrid', width: '100%', textAlign: 'center', backgroundColor: '#0E0B18'}}
 						itemHoverStyle={{backgroundColor: 'grey'}}
 						items={[
-							<NavLink to="/Profile" activeClassName="linkActive">Profile</NavLink>,
-							<NavLink to="/Library" activeClassName="linkActive">Library</NavLink>,
-							<NavLink to="/Stream" activeClassName="linkActive">Stream</NavLink>,
+							<NavLink to="/profile" activeClassName="linkActive">Profile</NavLink>,
+							<NavLink to="/library" activeClassName="linkActive">Library</NavLink>,
+							<NavLink to="/stream" activeClassName="linkActive">Stream</NavLink>,
 							<NavLink to="/" activeClassName="linkActive">Logout</NavLink>]} />
-						: <p className="nav-display-none"></p>}
+					: <p className="nav-display-none"></p>}
 			</div>
 		);
 	}

@@ -55,7 +55,7 @@ export default class App extends Component {
 			<HashRouter>
 				<LocalizeProvider store={this.state.store}>
 					<SingInRoute exact path="/" component={Auth} onToggleClick={this.onToggleReduxClick} toggleValue={this.state.isUsingRedux}/>
-					<PrivateRoute path="/library" component={Library} onToggleClick={this.onToggleReduxClick} toggleValue={this.state.isUsingRedux}/>
+					<PrivateRoute path="/library" component={Library} onToggleClick={this.onToggleReduxClick} toggleValue={this.state.isUsingRedux} request={"list_movies.json?sort_by=rating&limit=" + 48 + "&page=" + 1}/>
 					<PrivateRoute path="/movie/:id" component={Movie} onToggleClick={this.onToggleReduxClick} toggleValue={this.state.isUsingRedux}/>
 					<PrivateRoute path="/settings" component={EditProfile} onToggleClick={this.onToggleReduxClick} toggleValue={this.state.isUsingRedux}/>
 					<PrivateRoute path="/profile/:id" component={ViewProfile} onToggleClick={this.onToggleReduxClick} toggleValue={this.state.isUsingRedux}/>

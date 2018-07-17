@@ -10,7 +10,7 @@ import ToggleButton from 'react-toggle-button';
 
 import './Library.css';
 
-import Search from '../Search/Search';
+// import Search from '../Search/Search';
 import Navbar from '../Navbar/Navbar';
 import Foot from '../Footer/Footer';
 import FilmSet from '../FilmSet/FilmSet';
@@ -18,6 +18,10 @@ import FilmSet from '../FilmSet/FilmSet';
 class Library extends Component  {
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			filmRequest: "list_movies.json?sort_by=rating&limit=" + 48 + "&page=" + 1,
+		}
 
 		this.props.initialize({
 			languages: [
@@ -40,7 +44,6 @@ class Library extends Component  {
 			<div className="library-flex">
 				<Navbar />
 				<div className="library">
-					<Search />
 					<FilmSet />
 				</div>
 				<Foot />
@@ -50,4 +53,4 @@ class Library extends Component  {
 }
 export default withLocalize(Library);
 
-	//
+//
