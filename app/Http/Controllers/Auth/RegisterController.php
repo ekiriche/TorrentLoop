@@ -31,7 +31,8 @@ class RegisterController extends Controller
 			'lastname' => $data['lastname'],
 			'email' => $data['email'],
 			'password' => Hash::make($data['password']),
-			'reg_link' => $hashed_link
+			'reg_link' => $hashed_link,
+			'photo' => "http://localhost:8100/profile_pictures/default_photo.png"
 		]);
 	}
 

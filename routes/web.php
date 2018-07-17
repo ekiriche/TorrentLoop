@@ -5,6 +5,7 @@ Route::get('/', function () {
 });
 
 Route::post('auth/signin', 'Auth\LoginController@attemptLogin');
+Route::post('auth/token-exists', 'Auth\LoginController@checkAccessToken');
 Route::post('auth/signup', 'Auth\RegisterController@attemptRegister');
 Route::post('auth/osignup', 'Auth\RegisterController@oauthRegister');
 Route::post('auth/update-pass', 'Auth\ResetPasswordController@update');
@@ -16,6 +17,8 @@ Route::post('profile/save-history', 'UserProfile\MovieHistoryController@saveMovi
 Route::post('profile/get-history', 'UserProfile\MovieHistoryController@getHistory');
 Route::post('profile/get-user-info', 'UserProfile\ProfileController@getUserInfo');
 Route::post('profile/set-picture', 'UserProfile\ProfileController@setPicture');
+Route::post('profile/set-info', 'UserProfile\ProfileController@setInfo');
+Route::post('profile/set-password', 'UserProfile\ProfileController@setPassword');
 
 Route::post('movie/download-subtitles', 'Movies\SubtitleController@downloadSubtitles');
 Route::post('movie/download-movie', 'Movies\TorrentController@downloadMovie');

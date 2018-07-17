@@ -39,5 +39,10 @@
   "footer": [
     null,
     "Створений"
+  ],
+  "_comment": "data for search page",
+  "search": [
+    null,
+    "Пошук"
   ]
 }

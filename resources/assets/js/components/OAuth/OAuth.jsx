@@ -4,6 +4,7 @@ import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import { FortyTwoPost } from './FortyTwoPost.jsx';
 import axios from 'axios';
+import history from '../History/History';
 
 import './OAuth.css';
 
@@ -31,6 +32,11 @@ class OAuth extends Component  {
 				var stringa = 'https://api.intra.42.fr/v2/me?access_token=' + result.access_token;
 				axios.get(stringa).then(response => {
 					console.log(response.data);
+          axios.post('http://localhost:8100/auth/osignup', {email : response.data.email, firstname : response.data.first_name, lastname : response.data.last_name, img : response.data.image_url}).then(response => {
+      			console.log(response.data);
+						localStorage.setItem('accessToken', response.data);
+						history.push('/#/library');
+      		});
 				});
 			});
 		}
@@ -51,6 +57,8 @@ class OAuth extends Component  {
 		var lastname = fullName[1];
 		axios.post('http://localhost:8100/auth/osignup', {email : event.email, firstname : firstname, lastname : lastname, img : event.picture.data.url}).then(response => {
 			console.log(response.data);
+			localStorage.setItem('accessToken', response.data);
+			history.push('/#/library');
 		});
 	}
 
@@ -59,6 +67,8 @@ class OAuth extends Component  {
 		console.log(event.profileObj.imageUrl);
 		axios.post('http://localhost:8100/auth/osignup', {email : event.profileObj.email, firstname : event.profileObj.givenName, lastname : event.profileObj.familyName, img : event.profileObj.imageUrl}).then(response => {
 			console.log(response.data);
+			localStorage.setItem('accessToken', response.data);
+			history.push('/#/library');
 		});
 	}
 

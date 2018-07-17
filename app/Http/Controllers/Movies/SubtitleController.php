@@ -59,15 +59,23 @@ class SubtitleController extends Controller
 		return $items;
 	}
 
-	private function _saveSubtitlesToFolder($allSubtitles, $imdbId)
+	private function _saveSubtitlesToFolder(&$allSubtitles, $imdbId)
 	{
 		foreach ($allSubtitles as $item) {
-			$subtitleString = $this->_getSubtitleString($imdbId, $item['id']);
-			$subtitles = Subtitles::load($subtitleString, 'srt');
-			$subtitles->save(
-				'movies/'
-				. $imdbId . '/' . $item['language'] . '.srt'
-			);
+			try {
+				$subtitleString = $this->_getSubtitleString($imdbId, $item['id']);
+				$subtitles = Subtitles::load($subtitleString, 'srt');
+				$path = 'movies/' . $imdbId . '/' . $item['language'];
+				$subtitles->save($path . '.srt');
+				Subtitles::convert($path . '.srt', $path . '.vtt');
+				unlink($path . '.srt');
+			} catch (\Exception $e) {
+				// delete invalid subtitle from $allSubtitles array
+				unset($allSubtitles[
+					array_search($item['id'], array_column($allSubtitles, 'id'))
+				]);
+				$allSubtitles = array_values($allSubtitles);
+			}
 		}
 	}
 
