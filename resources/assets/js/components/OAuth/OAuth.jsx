@@ -4,6 +4,7 @@ import GoogleLogin from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import { FortyTwoPost } from './FortyTwoPost.jsx';
 import axios from 'axios';
+import history from '../History/History';
 
 import './OAuth.css';
 
@@ -14,7 +15,7 @@ class OAuth extends Component  {
 		super();
 		var path = window.location.href;
 		var code = path.slice(path.indexOf('=') + 1);
-		code = code.replace("#/", '');
+		code = code.replace('#/', '');
 		this.state ={
 			grant_type: 'authorization_code',
 			client_id: '424d0c7fac1ed02048e197dda88a5e1a8fb60bd8a4420659d6096f8fbb2a1c73',
@@ -31,9 +32,13 @@ class OAuth extends Component  {
 				var stringa = 'https://api.intra.42.fr/v2/me?access_token=' + result.access_token;
 				axios.get(stringa).then(response => {
 					console.log(response.data);
-
-				})
-			})
+          axios.post('http://localhost:8100/auth/osignup', {email : response.data.email, firstname : response.data.first_name, lastname : response.data.last_name, img : response.data.image_url}).then(response => {
+      			console.log(response.data);
+						localStorage.setItem('accessToken', response.data);
+						history.push('/#/library');
+      		});
+				});
+			});
 		}
 	}
 
@@ -45,15 +50,16 @@ class OAuth extends Component  {
 	registerViaFacebook(event)
 	{
 		if (event.error)
-		return ;
+			return ;
 		console.log(event);
-		var indexSpace = event.name.indexOf(' ');
 		var fullName = event.name.split(' ');
 		var firstname = fullName[0];
 		var lastname = fullName[1];
 		axios.post('http://localhost:8100/auth/osignup', {email : event.email, firstname : firstname, lastname : lastname, img : event.picture.data.url}).then(response => {
 			console.log(response.data);
-		})
+			localStorage.setItem('accessToken', response.data);
+			history.push('/#/library');
+		});
 	}
 
 	registerViaGoogle(event)
@@ -61,29 +67,36 @@ class OAuth extends Component  {
 		console.log(event.profileObj.imageUrl);
 		axios.post('http://localhost:8100/auth/osignup', {email : event.profileObj.email, firstname : event.profileObj.givenName, lastname : event.profileObj.familyName, img : event.profileObj.imageUrl}).then(response => {
 			console.log(response.data);
-		})
+			localStorage.setItem('accessToken', response.data);
+			history.push('/#/library');
+		});
 	}
 
 	render() {
 		return (
-			<div className="wrapper">
-				<ul>
-					<li className="facebook"><i className="fab fa-facebook-f fa-2x" aria-hidden="true"></i></li>
-					<li className="twitter"><i className="fa fa-twitter fa-2x" aria-hidden="true"></i></li>
-					<li className="google"><i className="fab fa-google-plus-g fa-2x" aria-hidden="true"></i></li>
-				</ul>
-				<GoogleLogin
-					clientId="895850780881-s18dg7en9bq0hr32an5t4bl164l43iih.apps.googleusercontent.com"
-					buttonText="Login"
-					onSuccess={this.registerViaGoogle}
-					onFailure={this.responseGoogle}
-					/>
-				<FacebookLogin
-					appId="241030700020959"
-					fields="name,email,picture"
-					callback={this.registerViaFacebook}
-					/>
-				<a href="https://api.intra.42.fr/oauth/authorize?client_id=424d0c7fac1ed02048e197dda88a5e1a8fb60bd8a4420659d6096f8fbb2a1c73&redirect_uri=http%3A%2F%2Flocalhost%3A8100&response_type=code&scope=public">42 lul</a>
+			<div className="row oauth-flex">
+				<div className="wrapper">
+					<ul>
+						<li className="forty-two"><i className="fa fa-2x" aria-hidden="true"><a className="forty-two-active forty-two-color" href="https://api.intra.42.fr/oauth/authorize?client_id=424d0c7fac1ed02048e197dda88a5e1a8fb60bd8a4420659d6096f8fbb2a1c73&redirect_uri=http%3A%2F%2Flocalhost%3A8100&response_type=code&scope=public">42</a></i></li>
+						<GoogleLogin
+							clientId="895850780881-s18dg7en9bq0hr32an5t4bl164l43iih.apps.googleusercontent.com"
+							buttonText=""
+							onSuccess={this.registerViaGoogle}
+							onFailure={this.responseGoogle}
+							className="google fab fa-google-plus-g fa-2x"
+							tag="a"
+						/>
+						<FacebookLogin
+							appId="241030700020959"
+							fields="name,email,picture"
+							callback={this.registerViaFacebook}
+							cssClass="facebook fa-2x"
+							icon="fab fa-facebook-f"
+							tag="a"
+							textButton=""
+						/>
+					</ul>
+				</div>
 			</div>
 		);
 	}

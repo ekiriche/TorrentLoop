@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
-import {checkString,checkValue,FormValueValidation} from './formValueCheck';
-import { PostData } from './PostData';
 
+import {checkString,checkValue,FormValueValidation} from './formValueCheck';
+
+import { withLocalize, Translate } from 'react-localize-redux';
+
+import { PostData } from '../../functions/PostData';
 import { Link } from 'react-router-dom';
+
+import { confirmMessage } from './confirmMessage';
 
 import './Signup.css';
 
@@ -28,7 +33,9 @@ class Signup extends Component  {
 	}
 
 	getValueFromForm(event) {
-		this.formValueCheck(event);
+		const langCode = this.props.activeLanguage;
+
+		this.formValueCheck(event, langCode.code);
 		if (event.target.name === 'login') {
 			this.setState({ [event.target.name] : event.target.value.toLowerCase() });
 		}
@@ -37,15 +44,16 @@ class Signup extends Component  {
 	}
 
 
-	formValueCheck(event) {
-		let validateMessage = FormValueValidation(event);
+	formValueCheck(event, langCode) {
+
+		let validateMessage = FormValueValidation(event, langCode);
 
 		if (validateMessage !== undefined && event.target.name === 'firstname') {
-			this.setState({firstnameError: 'First name ' + validateMessage });
+			this.setState({firstnameError: validateMessage });
 		} else if (validateMessage === undefined && event.target.name === 'firstname')
 		this.setState({firstnameError: '' });
 		if (validateMessage !== undefined && event.target.name === 'lastname') {
-			this.setState({lastnameError: 'Last name ' + validateMessage });
+			this.setState({lastnameError: validateMessage });
 		} else if (validateMessage === undefined && event.target.name === 'lastname')
 		this.setState({lastnameError: '' });
 		if ( validateMessage !== undefined && event.target.name === 'email') {
@@ -53,7 +61,7 @@ class Signup extends Component  {
 		} else if (validateMessage === undefined && event.target.name === 'email')
 		this.setState({emailError: '' });
 		if (validateMessage !== undefined && event.target.name === 'login') {
-			this.setState({loginError: 'Login ' + validateMessage });
+			this.setState({loginError: validateMessage });
 		} else if (validateMessage === undefined && event.target.name === 'login')
 		this.setState({loginError: '' });
 		if (validateMessage !== undefined &&event.target.name === 'password') {
@@ -66,18 +74,22 @@ class Signup extends Component  {
 
 	handleSubmit(event) {
 		event.preventDefault();
-		const confirmMessage = {
-			error: ['Something wrong, we can\'t register you ',],
-			success: ['Check your mail, we send you instructions']
-		}
+		const langCode = this.props.activeLanguage.code;
+		let returnText;
+
+		if (langCode === 'en')
+			returnText = confirmMessage.en;
+		else
+			returnText = confirmMessage.ua;
+
 		this.setState({ registrationSuccess : '', registrationFalse : '' }); /*clear old message*/
-		PostData('signup', this.state).then ((result) => {
+		PostData('auth/signup', this.state).then ((result) => {
 			if (result.email)
-				this.setState({ registrationFalse : result.email[0] });
+				this.setState({ registrationFalse : returnText[3] });
 			else if (result.login)
-				this.setState({ registrationFalse : result.login[0] });
+				this.setState({ registrationFalse : returnText[2] });
 			if (result === 'OK'){
-				this.setState({ registrationSuccess : confirmMessage.success[0],
+				this.setState({ registrationSuccess : returnText[1],
 								registrationFalse : ''
 				 });
 			}
@@ -88,12 +100,12 @@ class Signup extends Component  {
 		return (
 			<Row>
 				<form onSubmit={this.handleSubmit} className="signUp-text">
-					<h5 className="signUp-title">Sign up</h5>
-					<Input s={6} name="firstname" label="First Name" required  onChange={this.getValueFromForm} />
-					<Input s={6} name="lastname" label="Last Name" required  onChange={this.getValueFromForm} />
-					<Input name="login" label="Login" s={6} required  onChange={this.getValueFromForm} />
-					<Input type="email" name="email" label="Email" s={6} required  onChange={this.getValueFromForm} />
-					<Input type="password" name="password" label="Password" s={12} required  onChange={this.getValueFromForm} />
+					<h5 className="signUp-title"><Translate id="signup">Sign up</Translate></h5>
+					<Input label={<Translate id="firstname">First name</Translate>} s={6} name="firstname" required  onChange={this.getValueFromForm} />
+					<Input label={<Translate id="lastname">Last name</Translate>} s={6} name="lastname" required  onChange={this.getValueFromForm} />
+					<Input label={<Translate id="login">Login</Translate>} name="login" s={6} required  onChange={this.getValueFromForm} />
+					<Input label="Email" type="email" name="email" s={6} required  onChange={this.getValueFromForm} />
+					<Input label={<Translate id="password">Password</Translate>} type="password" name="password" s={12} required  onChange={this.getValueFromForm} />
 					{	this.state.firstnameError && ( <li className="invalidInput">{this.state.firstnameError}</li>) }
 					{	this.state.lastnameError  && ( <li className="invalidInput">{this.state.lastnameError}</li>)  }
 					{	this.state.loginError     && ( <li className="invalidInput">{this.state.loginError}</li>)     }
@@ -102,11 +114,11 @@ class Signup extends Component  {
 					{	this.state.registrationFalse && ( <span className="alert alert-danger">{this.state.registrationFalse}</span>)	}
 					{	this.state.registrationSuccess && ( <span className="alert alert-success">{this.state.registrationSuccess}</span>)	}
 					<div className="col input-field s12">
-						<Button waves='light'>Sign up</Button>
+						<Button waves='light'><Translate id="signup">Sign up</Translate></Button>
 					</div>
 				</form>
 			</Row>
 		);
 	}
 }
-export default Signup;
+export default withLocalize(Signup);
