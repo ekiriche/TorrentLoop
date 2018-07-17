@@ -27,8 +27,8 @@ class MovieData extends Component  {
 		this.getDownloadPercentage = this.getDownloadPercentage.bind(this);
 	}
 
-	startDownload() {
-		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
+	startDownload(event) {
+		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code, 'quality': event.target.id }).then ((result) => {
 		})
 		PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
 			this.setState({subtitles: result});
@@ -63,11 +63,10 @@ class MovieData extends Component  {
 	)
 
 	const videoQuality = this.state.movie.torrents
-	console.log(videoQuality);
 	const videoQualityList = videoQuality.map((size, i) =>
 		<li key={i}>
-			<a className="waves-effect waves-light btn" onClick={this.startDownload}>
-				<i className="material-icons left">cloud_download</i>{size.quality}</a>
+			<a className="waves-effect waves-light btn" onClick={this.startDownload} id={size.quality}>
+				<i className="material-icons left" >cloud_download</i>{size.quality}</a>
 		</li>
 	)
 
@@ -90,7 +89,7 @@ class MovieData extends Component  {
 						<h6>Year</h6>
 						{this.state.movie.year}
 						<div className="videoQuality">
-							{videoQualityList}
+							{(!this.state.download) ? videoQualityList : null}
 						</div>
 				</div>
 			</Card>
