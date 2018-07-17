@@ -30,6 +30,7 @@ class FilmLink extends Component  {
 	}
 
 	handleMuvieSet(event) {
+
 		let id = event.target.id;
 		let objArray = this.props.movieObj;
 		let obj = objArray.find((document) => document.id == id);
@@ -49,19 +50,14 @@ class FilmLink extends Component  {
 		);
 		}
 		*/
-		console.log(this.state.pathid);
+
 		return (
 			<div className="film-link" style={{"transitionDelay":(this.props.delay*100)+"ms"}} >
 				<div className="film-cover" style={{backgroundImage: 'url(' + this.props.cover + ')'}}>
-					{(this.state.result)
-						?
-						<Link
-							to={{ pathname: `/Movie/${this.state.pathid}`, state: { movie: this.state.movie}}}
-							onClick={ this.handleMuvieSet }><i id={this.props.movieId} className="material-icons medium film-icon">pageview</i>
-					</Link>
-					:
-					<a onClick={ this.handleMuvieSet }><i id={this.props.movieId} className="material-icons medium film-icon">pageview</i></a>
-				}
+					<Link
+						to={{ pathname: `/Movie/${this.props.movieId}`, state: { movie: this.state.movie}}}
+						onClick={ this.handleMuvieSet }><i id={this.props.movieId} className="material-icons medium film-icon">pageview</i>
+				</Link>
 
 			</div>
 			<div className="film-name white-text"><h6>{ this.props.name }</h6></div>
@@ -76,3 +72,12 @@ class FilmLink extends Component  {
 // export default ReactDelayRender({ delay: 5000 })(FilmLink);
 
 export default FilmLink;
+/*				{(this.state.result)
+					?
+					<Link
+						to={{ pathname: `/Movie/${this.props.movieId}`, state: { movie: this.state.movie}}}
+						onClick={ this.handleMuvieSet }><i id={this.props.movieId} className="material-icons medium film-icon">pageview</i>
+				</Link>
+				:
+				<a onClick={ this.handleMuvieSet }><i id={this.props.movieId} className="material-icons medium film-icon">pageview</i></a>
+			}*/

@@ -52,7 +52,7 @@ class MovieData extends Component  {
 				</div>
 			)
 		}
-
+console.log(this.props.movieData);
 		const genres = this.state.movie.genres
 		const listGenres = genres.map((genres, i) =>
 		<li key={i}>
