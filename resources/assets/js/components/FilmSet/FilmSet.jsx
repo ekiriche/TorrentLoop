@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
 import { CSSTransitionGroup } from 'react-transition-group';
 
+import { withLocalize, Translate } from "react-localize-redux";
+
 import { Link } from 'react-router-dom';
 import FilmLink from '../FilmLink/FilmLink';
 import SideNav, {MenuIcon} from 'react-simple-sidenav';
@@ -117,7 +119,7 @@ class FilmSet extends Component  {
 					openFromLeft={true}
 					showNav={this.state.showSearchParams}
 					onHideNav={()=>this.setState({showSearchParams: false})}
-					title='Search'
+					title={<Translate id="search">Search</Translate>}
 					titleStyle={{backgroundColor: '#0E0B18', fontSize: '2.2rem', textAlign: 'center'}}
 					itemStyle={{display: 'inlineGrid', width: '100%', textAlign: 'center', backgroundColor: '#0E0B18'}}
 					itemHoverStyle={{backgroundColor: '#0E0B18'}}
@@ -128,6 +130,6 @@ class FilmSet extends Component  {
 			);
 		}
 	}
-	export default FilmSet;
+	export default withLocalize(FilmSet);
 	/*					{allFilms}*/
 	// var h = element.clientHeight;
