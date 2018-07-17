@@ -13,7 +13,7 @@ import Foot from '../Footer/Footer';
 class ViewProfile extends Component  {
     constructor(props) {
         super(props);
-        console.log(this.props);
+      //  console.log(this.props);
         this.state = {'id': this.props.match.params.id};
     }
 
@@ -25,11 +25,14 @@ class ViewProfile extends Component  {
                 'picture': result.data.photo,
                 'info': result.data.info
             });
-            console.log(this.state);
+        //    console.log(this.state);
         });
     }
 
     render() {
+      if (!this.state.picture)
+        return <div></div>
+
         return (
             <div className="movie-flex">
                 <Navbar />
