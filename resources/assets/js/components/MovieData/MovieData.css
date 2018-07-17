@@ -10,6 +10,12 @@
 .percentLoader {
   height: 35px;
 }
+.videoQuality {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  margin: 10px 0;
+}
 /*
 @media screen and (max-width: 1200px) {
   /* Small tablet to big tablet: from 768px to 1023px*/

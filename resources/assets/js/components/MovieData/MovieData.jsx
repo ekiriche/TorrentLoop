@@ -52,7 +52,7 @@ class MovieData extends Component  {
 				</div>
 			)
 		}
-console.log(this.props.movieData);
+
 		const genres = this.state.movie.genres
 		const listGenres = genres.map((genres, i) =>
 		<li key={i}>
@@ -61,6 +61,16 @@ console.log(this.props.movieData);
 			</Chip>
 		</li>
 	)
+
+	const videoQuality = this.state.movie.torrents
+	console.log(videoQuality);
+	const videoQualityList = videoQuality.map((size, i) =>
+		<li key={i}>
+			<a className="waves-effect waves-light btn" onClick={this.startDownload}>
+				<i className="material-icons left">cloud_download</i>{size.quality}</a>
+		</li>
+	)
+
 
 	return (
 		<Col m={7} s={12}>
@@ -79,17 +89,22 @@ console.log(this.props.movieData);
 						{this.state.movie.runtime}
 						<h6>Year</h6>
 						{this.state.movie.year}
-						{(!this.state.download)
-							? <a className="waves-effect waves-light btn" onClick={this.startDownload}><i className="material-icons left">cloud_download</i>Watch</a>
-							: <a className="btn disabled" ><i className="material-icons left">cloud_download</i>Watch</a>}
-						{(this.state.download)
-						? <div className="progress percentLoader"><div className="determinate" style={{width: this.state.downloadPercent + '%'}}></div></div>
-						: null}
+						<div className="videoQuality">
+							{videoQualityList}
+						</div>
 				</div>
-				{(this.state.download) ? <VideoPlayer subtitles={this.state.subtitles} movieData={this.state.movie}/> : null}
 			</Card>
+			{(this.state.download) ? <VideoPlayer subtitles={this.state.subtitles} movieData={this.state.movie}/> : null}
 		</Col>
 	);
 	}
 }
 export default withLocalize(MovieData);
+/*
+{(!this.state.download)
+	? <a className="waves-effect waves-light btn" onClick={this.startDownload}><i className="material-icons left">cloud_download</i>Watch</a>
+	: <a className="btn disabled" ><i className="material-icons left">cloud_download</i>Watch</a>}
+{(this.state.download)
+? <div className="progress percentLoader"><div className="determinate" style={{width: this.state.downloadPercent + '%'}}></div></div>
+: null}
+*/
