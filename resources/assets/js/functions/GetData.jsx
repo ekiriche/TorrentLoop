@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export function PostData(type, userData) {
+export function GetData(type) {
 	let BaseUrl = 'http://localhost:8100/';
 	return new Promise((resolve, reject) => {
-		axios.post(BaseUrl + type, userData)
+		axios.get(BaseUrl + type)
 		.then(res => {
 			resolve(res.data);
 		})

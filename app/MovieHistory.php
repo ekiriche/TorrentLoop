@@ -12,6 +12,8 @@ class MovieHistory extends Model
 		'medium_cover_image',
 		'title_english',
 		'year',
-		'rating' 
+		'rating',
+		'movie_id',
+		'watch'
 	];
 }

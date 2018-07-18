@@ -4,11 +4,6 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import { Redirect, Link } from 'react-router-dom';
 import Movie from '../Movie/Movie';
 
-
-// import ReactDelayRender from 'react-delay-render';
-
-// import { Link } from 'react-router-dom';
-
 import './FilmLink.css';
 
 class FilmLink extends Component  {
@@ -17,7 +12,7 @@ class FilmLink extends Component  {
 		super(props);
 		this.state = {
 			movie: '',
-			pathid: 454645,
+			pathid: '',
 			result: false
 		}
 		this.handleMuvieSet = this.handleMuvieSet.bind(this);
@@ -31,48 +26,28 @@ class FilmLink extends Component  {
 
 	handleMuvieSet(event) {
 		let id = event.target.id;
-		let objArray = this.props.movieObj;
-		let obj = objArray.find((document) => document.id == id);
-		this.setState({movie: obj, pathid: id});
+		this.setState({pathid: id});
 	}
 
 	render() {
-		/*
-		if (this.state.result) {
-		return (
-		<Route>
-		<Redirect to={{
-		pathname: '/Movie/:id',
-		state: { movie: this.state.movie}
-		}} />
-		</Route>
-		);
-		}
-		*/
-		console.log(this.state.pathid);
 		return (
 			<div className="film-link" style={{"transitionDelay":(this.props.delay*100)+"ms"}} >
 				<div className="film-cover" style={{backgroundImage: 'url(' + this.props.cover + ')'}}>
-					{(this.state.result)
-						?
-						<Link
-							to={{ pathname: `/Movie/${this.state.pathid}`, state: { movie: this.state.movie}}}
-							onClick={ this.handleMuvieSet }><i id={this.props.movieId} className="material-icons medium film-icon">pageview</i>
+					<Link
+						to={{ pathname: `/Movie/${this.props.movieId}`, state: { movie: this.state.movie}}}
+						onClick={ this.handleMuvieSet }>
+						<i id={this.props.movieId} className="material-icons medium film-icon">pageview</i>
 					</Link>
-					:
-					<a onClick={ this.handleMuvieSet }><i id={this.props.movieId} className="material-icons medium film-icon">pageview</i></a>
-				}
 
+				</div>
+				<div className="film-name white-text"><h6>{ this.props.name }</h6></div>
+				<div className="film-info">
+					<div className="production-year white-text"><h6>Year: { this.props.year }</h6></div>
+					<div className="imdb-rating white-text"><h6 >Imdb: { this.props.rating }</h6></div>
+				</div>
 			</div>
-			<div className="film-name white-text"><h6>{ this.props.name }</h6></div>
-			<div className="film-info">
-				<div className="production-year white-text"><h6>Year: { this.props.year }</h6></div>
-				<div className="imdb-rating white-text"><h6 >Imdb: { this.props.rating }</h6></div>
-			</div>
-		</div>
-	);
+		);
+	}
 }
-}
-// export default ReactDelayRender({ delay: 5000 })(FilmLink);
 
 export default FilmLink;
