@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
 import { CSSTransitionGroup } from 'react-transition-group';
+import { withLocalize, Translate } from 'react-localize-redux';
 
 import { Link } from 'react-router-dom';
 import FilmLink from '../FilmLink/FilmLink';
@@ -104,7 +105,7 @@ class FilmSet extends Component  {
 		)
 		return (
 			<div>
-				<i className="material-icons" onClick={() => this.setState({showSearchParams: true})}>search</i>
+				<i className="material-icons search" onClick={() => this.setState({showSearchParams: true})}>search</i>
 				<div className="film-set"
 					onScroll={ this.loadNewPage }
 					ref={ scroller => {
@@ -117,7 +118,7 @@ class FilmSet extends Component  {
 					openFromLeft={true}
 					showNav={this.state.showSearchParams}
 					onHideNav={()=>this.setState({showSearchParams: false})}
-					title='Search'
+					title={<Translate id="search-main-title">Search</Translate>}
 					titleStyle={{backgroundColor: '#0E0B18', fontSize: '2.2rem', textAlign: 'center'}}
 					itemStyle={{display: 'inlineGrid', width: '100%', textAlign: 'center', backgroundColor: '#0E0B18'}}
 					itemHoverStyle={{backgroundColor: '#0E0B18'}}
@@ -128,6 +129,6 @@ class FilmSet extends Component  {
 			);
 		}
 	}
-	export default FilmSet;
+	export default withLocalize(FilmSet);
 	/*					{allFilms}*/
 	// var h = element.clientHeight;

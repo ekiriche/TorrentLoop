@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Input, Col } from 'react-materialize';
 import { Link } from 'react-router-dom';
+import { withLocalize, Translate } from 'react-localize-redux';
 
 import { Route, HashRouter } from 'react-router-dom';
 
@@ -28,35 +29,30 @@ class ExtraSearch extends Component  {
 	render() {
 		return (
 			<div className="extra-search">
-				<div className="extra-settings-title"><i className="material-icons">sort</i>Sort by: {this.state.sortBy}</div>
+				<div className="extra-settings-title"><i className="material-icons">sort</i><Translate id="search-sort">Sort</Translate></div>
 				<div className="radio extra">
 					<div className="radio-extra-col">
 						<label className="extra-container">
-							<p className="label-extra">Rating</p>
+							<p className="label-extra"><Translate id="search-rating">Rating</Translate></p>
 							<input type="radio" name="extraGroup" value='rating' onChange={this.handleSortBy}/>
 							<span className="checkmark"></span>
 						</label>
 						<label className="extra-container">
-							<p className="label-extra">Latest</p>
+							<p className="label-extra"><Translate id="search-latest">Latest</Translate></p>
 							<input type="radio" name="extraGroup" value='latest' onChange={this.handleSortBy}/>
-							<span className="checkmark"></span>
-						</label>
-						<label className="extra-container">
-							<p className="label-extra">Year</p>
-							<input type="radio" name="extraGroup" value='year' onChange={this.handleSortBy}/>
 							<span className="checkmark"></span>
 						</label>
 					</div>
 
 					<div  className="radio-extra-col">
 						<label className="extra-container">
-							<p className="label-extra">Title</p>
+							<p className="label-extra"><Translate id="search-title">Title</Translate></p>
 							<input type="radio" name="extraGroup" value='title' onChange={this.handleSortBy}/>
 							<span className="checkmark"></span>
 						</label>
 
 						<label className="extra-container">
-							<p className="label-extra">Oldest</p>
+							<p className="label-extra"><Translate id="search-oldest">Oldest</Translate></p>
 							<input type="radio" name="extraGroup" value='oldest' onChange={this.handleSortBy}/>
 							<span className="checkmark"></span>
 						</label>
@@ -67,4 +63,4 @@ class ExtraSearch extends Component  {
 		)
 	}
 }
-export default ExtraSearch;
+export default withLocalize(ExtraSearch);

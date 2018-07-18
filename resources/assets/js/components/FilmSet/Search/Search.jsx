@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Modal, Button, Icon, Row, Col } from 'react-materialize';
 import { Route, HashRouter, Redirect } from 'react-router-dom';
 
+
+
 import './Search.css';
 import GenreSearch from './GenreSearch/GenreSearch';
 import RatingSearch from './RatingSearch/RatingSearch';
@@ -74,7 +76,7 @@ class Search extends Component  {
 					<label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
 					<i className="material-icons">close</i>
 				</div>
-				<hr /> 
+				<hr />
 				<RatingSearch minRating={this.handleRating} />
 				<hr />
 				<GenreSearch genreToFind={this.handleGenre} />

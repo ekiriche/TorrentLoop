@@ -4,6 +4,7 @@ import { Route, HashRouter, NavLink } from 'react-router-dom';
 import SideNav, {MenuIcon} from 'react-simple-sidenav';
 import jwtDecode from 'jwt-decode';
 import { Row, Input, Button } from 'react-materialize';
+import { withLocalize, Translate } from 'react-localize-redux';
 
 import LanguageToggle from '../Library/LanguageToggle';
 import './Navbar.css';
@@ -67,4 +68,4 @@ class Navbar extends Component {
 	}
 }
 
-export default Navbar;
+export default withLocalize(Navbar);
