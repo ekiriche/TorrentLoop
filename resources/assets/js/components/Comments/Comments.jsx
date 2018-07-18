@@ -21,22 +21,44 @@ class Comments extends Component  {
 			user_id: '',
 			film_id: props.data.id,
 			comment_add: false,
-			comment_error: ''
+			comment_error: '',
+			comments: ''
 		}
 		this.getValueFromForm = this.getValueFromForm.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.setLike = this.setLike.bind(this);
 	}
 
 	componentWillMount () {
 		let token =localStorage.getItem('accessToken');
 		let decoded = jwtDecode(token);
 		this.setState({ user_id: decoded.uid });
-		console.log(this.props.data.id);
 		PostData('movie/get-comment', this.state).then ((result) => {
-			console.log(result);
+			const commentsList = result.map((comment, i) =>
+			<ul key={i} className="collection">
+				<li className="collection-item avatar collection-item">
+					<img src="http://localhost:8100/./profile_pictures/1531896702.png" alt="" className="circle" />
+					<span className="title">Vladimir Gryshchenko</span>
+					<p className="comments-text-style">
+						{comment.content}
+					</p>
+					 <span className="secondary-content">{comment.created_at}</span>
+					 <div className="like-position">
+						 <a onClick={this.setLike} className="comment-like-positon"><i id="1" className="material-icons">grade</i></a>
+						 <a onClick={this.setLike} className="comment-like-positon"><i id="2" className="material-icons">grade</i></a>
+						 <a onClick={this.setLike} className="comment-like-positon"><i id="3" className="material-icons">grade</i></a>
+						 <a onClick={this.setLike} className="comment-like-positon"><i id="4" className="material-icons">grade</i></a>
+						 <a onClick={this.setLike} className="comment-like-positon"><i id="5" className="material-icons">grade</i></a>
+					 </div>
+				</li>
+			</ul>
+		)
+		this.setState({comments: commentsList});
 		})
 	}
-
+	setLike(event) {
+		console.log(event.target);
+	}
 	getValueFromForm(event) {
 		this.setState({ [event.target.name] : event.target.value});
 	}
@@ -56,27 +78,19 @@ class Comments extends Component  {
 	}
 
 	render() {
-		return (
-			<Col m={7} s={12}>
-				<Card title='Comments'>
-					<form onSubmit={this.handleSubmit}>
-						<Input type="textarea" name="content" label="Left comment" required s={12} onChange={this.getValueFromForm} />
-						<Button waves='light' className="comment-button-float">Send comment</Button>
-					</form>
-					{(this.state.comment_error) ? <span className="alert alert-danger">{this.state.comment_error}</span> : null}
-					{(this.state.comment_add) ? <span className="alert alert-success">Comment added</span> : null}
-					<ul className="collection">
-						<li className="collection-item avatar collection-item">
-							<img src="http://localhost:8100/./profile_pictures/1531896702.png" alt="" className="circle" />
-								<span className="title">Vladimir Gryshchenko</span>
-								<p className="comments-text-style">
-									sdjgfsdhjfgsdjfhgsdjhfgsdhmfsdjfgsdjfgsdj,fsdfj,sdfjsdgfsdjfgbdshmfgsdjhfvdsjhcbsdjhgvcsdjhcbsdjhcdsvcjdhsvcdhjscdsjhcdsvhcdshgcjhsdcdhsjgcsdsdkhfsdkjfsdmfgsdhnfgdshjnfsdjfbgvdsfnvdsjc,hdnsvcdsvcjdhsnvcdnsvcdnsvcdsncvdsjhv
-								</p>
-						</li>
-					</ul>
-					</Card>
-				</Col>
-			);
-		}
+	return (
+		<Col m={7} s={12}>
+			<Card title='Comments'>
+				<form onSubmit={this.handleSubmit}>
+					<Input type="textarea" name="content" label="Left comment" required s={12} onChange={this.getValueFromForm} />
+					<Button waves='light' className="comment-button-float">Send comment</Button>
+				</form>
+				{(this.state.comment_error) ? <span className="alert alert-danger">{this.state.comment_error}</span> : null}
+				{(this.state.comment_add) ? <span className="alert alert-success">Comment added</span> : null}
+				{(this.state.comments) ? this.state.comments : null }
+			</Card>
+		</Col>
+	);
+}
 }
 export default withLocalize(Comments);

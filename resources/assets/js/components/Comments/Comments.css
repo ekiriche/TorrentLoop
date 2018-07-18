@@ -7,3 +7,9 @@
 .comment-collection-margin {
   margin: 0 10px;
 }
+.comment-like-positon {
+  top: 0px!important;
+}
+.like-position {
+  float: right;
+}

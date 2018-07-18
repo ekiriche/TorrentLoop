@@ -26,6 +26,6 @@ Route::post('movie/download-subtitles', 'Movies\SubtitleController@downloadSubti
 Route::post('movie/download-movie', 'Movies\TorrentController@downloadMovie');
 Route::post('movie/get-download-percentage', 'Movies\TorrentController@getDownloadPercentage');
 Route::post('movie/add-comment', 'CommentsLikes\CommentsController@addComment');
-Route::post('movie/get-comment', 'CommentsLikes\CommentsController@getComment');
+Route::post('movie/get-comment', 'CommentsLikes\CommentsController@getComments');
 Route::post('movie/add-like', 'CommentsLikes\LikesController@addLike');
 Route::post('movie/remove-like', 'CommentsLikes\LikesController@removeLike');

@@ -34,10 +34,9 @@ class CommentsController extends Controller
     $this->create($request->all());
     return ("ok");
   }
-  
-  public function getComment(Request $request)
-  {
-    return Comment::where('film_id', $request->input('film_id'));
-  }
 
+  public function getComments(Request $request)
+  {
+    return Comment::where('film_id', $request->input('film_id'))->get();
+  }
 }
