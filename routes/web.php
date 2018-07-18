@@ -5,13 +5,15 @@ Route::get('/', function () {
 });
 
 Route::post('auth/signin', 'Auth\LoginController@attemptLogin');
-Route::post('auth/token-exists', 'Auth\LoginController@checkAccessToken');
 Route::post('auth/signup', 'Auth\RegisterController@attemptRegister');
 Route::post('auth/osignup', 'Auth\RegisterController@oauthRegister');
 Route::post('auth/update-pass', 'Auth\ResetPasswordController@update');
 Route::post('auth/update-pass-oauth', 'Auth\ResetPasswordController@updateOAuth');
 Route::post('auth/reset-pass', 'Auth\ResetPasswordController@reset');
 Route::get('auth/confirm', 'Auth\RegisterController@ConfirmViaEmail');
+
+Route::post('auth/token-exists', 'Auth\LoginController@checkAccessToken');
+Route::post('auth/token-update', 'Auth\LoginController@updateAccessToken');
 
 Route::post('profile/save-history', 'UserProfile\MovieHistoryController@saveMovieToHistory');
 Route::post('profile/get-history', 'UserProfile\MovieHistoryController@getHistory');

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
 import { Link } from 'react-router-dom';
-
+import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 /*localization*/
 import { renderToStaticMarkup } from "react-dom/server";
 import { withLocalize, Translate } from "react-localize-redux";
@@ -29,6 +30,8 @@ class MovieData extends Component  {
 
 	componentWillMount(){
 		let jwt = localStorage.getItem('accessToken');
+		let user = jwtDecode(jwt);
+		axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid});
 		console.log("result");
 		PostData('profile/save-history', {
 			'imdb_code': this.state.movie.imdb_code,
