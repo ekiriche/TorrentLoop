@@ -10,14 +10,6 @@ use Transmission\Client;
 
 class TorrentController extends Controller
 {
-	/**
-	 * Downloads movie from torrent url to a specific folder,
-	 * imdb-id will be the name of the folder
-	 *
-	 * @param Request $request
-	 * @key imdb-id
-	 * @return string ("true" or "false")
-	 */
 	public function downloadMovie(Request $request)
 	{
 		if (!file_exists('movies')) {
@@ -38,7 +30,7 @@ class TorrentController extends Controller
 
 	private function _getDownloadUrl($imdbId, $quality)
 	{
-		return ($quality);
+//		return ($quality);
 		$url = 'https://yts.am/api/v2/list_movies.json?query_term=' . $imdbId;
 		$options = array(
 			'https' => array(
@@ -54,7 +46,7 @@ class TorrentController extends Controller
 		}
 		return $result['data']['movies'][0]['torrents'][
 			array_search(
-				'720p',
+				$quality,
 				array_column($result['data']['movies'][0]['torrents'], 'quality')
 			)
 		]['url'];
