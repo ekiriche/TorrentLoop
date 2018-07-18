@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 
 /*localization*/
 import { renderToStaticMarkup } from "react-dom/server";
@@ -15,10 +16,17 @@ class Comments extends Component  {
 	constructor(props) {
 		super(props);
 		this.state = {
-			inputText: ''
+			inputText: '',
+			userId: ''
 		}
 		this.getValueFromForm = this.getValueFromForm.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	componentWillMount () {
+		let token =localStorage.getItem('accessToken');
+		let decoded = jwtDecode(token);
+		this.setState({ userId: decoded.uid });
 	}
 
 	getValueFromForm(event) {
@@ -28,8 +36,6 @@ class Comments extends Component  {
 	handleSubmit(event) {
 		event.preventDefault();
 	}
-
-
 
 	render() {
 		return (
