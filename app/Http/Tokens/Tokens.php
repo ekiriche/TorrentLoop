@@ -41,7 +41,7 @@ class Tokens
 		if ($this->getAccessTime($jwt) == 'expired')
 			return 'expired';
 		$token = (array) JWT::decode($jwt, 'secret', (array)'HS512');
-		$user = User::where('id', $token['uid'])->where('access_token', $jwt)->first();
+		$user = User::where('id', $token['uid'])->first();
 		if ($user == '')
 			return "hacker detected";
 		else

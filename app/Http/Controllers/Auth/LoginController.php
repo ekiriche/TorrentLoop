@@ -30,6 +30,9 @@ class LoginController extends Controller
 	{
 		$user = User::where('id', $request->input('id'))->first();
 		$token = new Tokens();
+		$var = $token->tokenExists($request->input('jwt'));
+		if ($var == 'expired' || $var == 'hacker detected')
+			return 'expired';
 		$jwt = $token->createAccessToken($user->id, 86400);
 		return $jwt;
 	}

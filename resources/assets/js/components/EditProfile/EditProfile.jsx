@@ -36,7 +36,10 @@ class EditProfile extends Component  {
 		this.handleOAuthPassword = this.handleOAuthPassword.bind(this);
 		let token =  localStorage.getItem('accessToken');
     let user = jwtDecode(token);
-		axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid});
+		axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid, 'jwt' : token}).then (result => {
+			if (result.data == 'expired')
+				localStorage.removeItem('accessToken');
+		});
 	}
 
 	componentWillMount() {

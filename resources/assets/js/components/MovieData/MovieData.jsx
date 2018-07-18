@@ -31,7 +31,10 @@ class MovieData extends Component  {
 	componentWillMount(){
 		let jwt = localStorage.getItem('accessToken');
 		let user = jwtDecode(jwt);
-		axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid});
+		axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then (result => {
+			if (result.data == 'expired')
+				localStorage.removeItem('accessToken');
+		});
 		console.log("result");
 		PostData('profile/save-history', {
 			'imdb_code': this.state.movie.imdb_code,
@@ -43,7 +46,6 @@ class MovieData extends Component  {
 		}).then ((result) => {
 			console.log(result);
 		});
-		// console.log(localStorage.getItem('accessToken'));
 	}
 
 	startDownload(event) {

@@ -18,7 +18,10 @@ class ViewProfile extends Component  {
         this.state = {'id': this.props.match.params.id};
         let jwt = localStorage.getItem('accessToken');
     		let user = jwtDecode(jwt);
-    		axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid});
+        axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then (result => {
+          if (result.data == 'expired')
+    				localStorage.removeItem('accessToken');
+    		});
     }
 
     componentWillMount() {
