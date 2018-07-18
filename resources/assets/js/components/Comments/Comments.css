@@ -1,9 +1,20 @@
 .comment-button-float {
-  float: right;
+  width: 200px;
+  margin: auto;
+}
+.comment-form-flex {
+  display: flex;
+    flex-direction: column;
 }
 .comments-text-style {
   word-wrap: break-word;
 }
 .comment-collection-margin {
   margin: 0 10px;
+}
+.comment-like-positon {
+  top: 0px!important;
+}
+.like-position {
+  float: right;
 }
