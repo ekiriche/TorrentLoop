@@ -29,8 +29,9 @@ class MovieData extends Component  {
 
 	componentWillMount(){
 		let jwt = localStorage.getItem('accessToken');
-		console.log("result");
+		console.log(this.state.movie.id);
 		PostData('profile/save-history', {
+			'movie_id': this.state.movie.id,
 			'imdb_code': this.state.movie.imdb_code,
 			'medium_cover_image': this.state.movie.medium_cover_image,
 			'title_english': this.state.movie.title_english,
