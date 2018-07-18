@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Input, Button } from 'react-materialize';
+import { Row, Input, Button, CardPanel } from 'react-materialize';
 import { Link } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
@@ -140,46 +140,46 @@ class EditProfile extends Component  {
 	}
 
 	render() {
-
 		return (
-			<div className="movie-flex">
+			<div className="profile-flex">
 				<Navbar />
-				<form onSubmit={this.handleInfoChange}>
-				<h5>Account information</h5>
-				<div className="row">
-					 <div className="input-field col s6">
-							<input type="text" name="firstname" id="first_name" value={ this.state.firstname } onChange={ this.handleChange }/>
-							{ this.state.firstname ? ( <label className="active">First Name</label> ) : ( <label>First Name</label> )}
-					 </div>
-					 <div className="input-field col s6">
-							<input type="text" name="lastname" id="last_name" value={ this.state.lastname } onChange={ this.handleChange }/>
-							{ this.state.lastname ? ( <label className="active">Last Name</label> ) : ( <label>Last Name</label> )}
-					 </div>
-					 <div className="input-field col s12">
-							<input type="text" name="email" id="email" value={ this.state.email } onChange={ this.handleChange }/>
-							{ this.state.email ? ( <label className="active">Email</label> ) : ( <label>Email</label> )}
-					 </div>
-					 <div className="input-field col s12">
-					 		<textarea name="info" id="info" className="materialize-textarea" value={ this.state.info } onChange={ this.handleChange }/>
-							{ this.state.info ? ( <label className="active">Additional info</label> ) : ( <label>Additional info</label> )}
-					 </div>
-					 { this.state.info_change == "changed" && ( <div className="row"><span className="alert alert-success">Info changed!</span></div> ) }
-					 { this.state.info_change == "not changed" && ( <div className="row"><span className="alert alert-danger">{this.state.info_error}</span></div> ) }
-					 <Button waves='light'>Change information</Button>
-				 </div>
-			 </form>
-			 <h5>Photo</h5>
-			 <div className="row">
-					<img src={this.state.photo} id="photo"/>
-					<input id="input-file" accept=".png, .jpg, .jpeg" type="file" onChange={ (e) => this.handlePhotoChange(e.target.files)} id="new_photo" />
-				</div>
-				<h5>Password</h5>
+				<CardPanel className="grey lighten-2 black-text profile">
+					<form onSubmit={this.handleInfoChange}>
+						<h5>Account information</h5>
+						<div className="row">
+							<div className="input-field col s6">
+								<input type="text" name="firstname" id="first_name" value={ this.state.firstname } onChange={ this.handleChange }/>
+								{ this.state.firstname ? ( <label className="active">First Name</label> ) : ( <label>First Name</label> )}
+							</div>
+							<div className="input-field col s6">
+								<input type="text" name="lastname" id="last_name" value={ this.state.lastname } onChange={ this.handleChange }/>
+								{ this.state.lastname ? ( <label className="active">Last Name</label> ) : ( <label>Last Name</label> )}
+							</div>
+							<div className="input-field col s12">
+								<input type="text" name="email" id="email" value={ this.state.email } onChange={ this.handleChange }/>
+								{ this.state.email ? ( <label className="active">Email</label> ) : ( <label>Email</label> )}
+							</div>
+							<div className="input-field col s12">
+								<textarea name="info" id="info" className="materialize-textarea" value={ this.state.info } onChange={ this.handleChange }/>
+								{ this.state.info ? ( <label className="active">Additional info</label> ) : ( <label>Additional info</label> )}
+							</div>
+							{ this.state.info_change == "changed" && ( <div className="row"><span className="alert alert-success">Info changed!</span></div> ) }
+							{ this.state.info_change == "not changed" && ( <div className="row"><span className="alert alert-danger">{this.state.info_error}</span></div> ) }
+							<Button waves='light'>Change information</Button>
+						</div>
+					</form>
+					<h5>Photo</h5>
+					<div className="row">
+						<img src={this.state.photo} id="photo"/>
+						<input id="input-file" accept=".png, .jpg, .jpeg" type="file" onChange={ (e) => this.handlePhotoChange(e.target.files)} id="new_photo" />
+					</div>
+					<h5>Password</h5>
 					{ this.state.password != undefined ? (
 						<form onSubmit={this.handlePasswordChange} className="password-change">
 							<div className="row">
 								<div className="input-field col s12">
 									<label>Old password</label>
-		          		<input type="password" s={12} id="oldpass" name="old_password" required onChange={this.handleChange}/>
+									<input type="password" s={12} id="oldpass" name="old_password" required onChange={this.handleChange}/>
 								</div>
 								<div className="input-field col s12">
 									<label>New password</label>
@@ -196,7 +196,7 @@ class EditProfile extends Component  {
 							<div className="row">
 								<div className="input-field col s12">
 									<label>New password</label>
-		            	<input type="password" s={12} id="new_oauth_password" name="new_oauth_password" required onChange={this.handleChange}/>
+									<input type="password" s={12} id="new_oauth_password" name="new_oauth_password" required onChange={this.handleChange}/>
 								</div>
 								{ this.state.newpassword_error && ( <div className="row"><span className="alert alert-danger">{this.state.newpassword_error}</span></div> ) }
 								{ this.state.password_change_success && ( <div className="row"><span className="alert alert-success">Password changed!</span></div> ) }
@@ -204,6 +204,7 @@ class EditProfile extends Component  {
 							</div>
 						</form>
 					)}
+				</CardPanel>
 				<Foot />
 			</div>
 		);
