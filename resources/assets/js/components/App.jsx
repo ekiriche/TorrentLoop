@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 import Auth from './Auth/Auth';
 import Library from './Library/Library';
 import Movie from './Movie/Movie';
+import axios from 'axios';
 
 import EditProfile from './EditProfile/EditProfile';
 import ViewProfile from './Profile/ViewProfile';

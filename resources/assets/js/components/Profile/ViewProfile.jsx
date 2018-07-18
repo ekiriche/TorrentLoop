@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 /*localization*/
 import { renderToStaticMarkup } from "react-dom/server";
 import { withLocalize, Translate } from "react-localize-redux";
@@ -20,6 +21,12 @@ class ViewProfile extends Component  {
 			'id': this.props.match.params.id,
 			'links': []
 		};
+    let jwt = localStorage.getItem('accessToken');
+    let user = jwtDecode(jwt);
+    axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then (result => {
+      if (result.data == 'expired')
+        localStorage.removeItem('accessToken');
+    });
 	}
 
 	componentWillMount() {

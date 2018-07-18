@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 /*localization*/
 import { renderToStaticMarkup } from "react-dom/server";
 import { withLocalize, Translate } from "react-localize-redux";
@@ -18,6 +20,14 @@ import FilmSet from '../FilmSet/FilmSet';
 class Library extends Component  {
 	constructor(props) {
 		super(props);
+
+		let jwt = localStorage.getItem('accessToken');
+		let user = jwtDecode(jwt);
+
+		axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then (result => {
+			if (result.data == 'expired')
+				localStorage.removeItem('accessToken');
+		});
 
 		this.state = {
 			filmRequest: "list_movies.json?sort_by=rating&limit=" + 48 + "&page=" + 1,

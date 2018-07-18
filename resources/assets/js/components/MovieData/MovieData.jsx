@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
 import { Link } from 'react-router-dom';
-
+import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 /*localization*/
 import { renderToStaticMarkup } from "react-dom/server";
 import { withLocalize, Translate } from "react-localize-redux";
@@ -31,6 +32,12 @@ class MovieData extends Component  {
 
 	componentWillMount(){
 		let jwt = localStorage.getItem('accessToken');
+		let user = jwtDecode(jwt);
+		axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then (result => {
+			if (result.data == 'expired')
+				localStorage.removeItem('accessToken');
+		});
+		console.log("result");
 		PostData('profile/save-history', {
 			'movie_id': this.state.movie.id,
 			'imdb_code': this.state.movie.imdb_code,
@@ -42,7 +49,6 @@ class MovieData extends Component  {
 		}).then ((result) => {
 			console.log(result);
 		});
-		// console.log(localStorage.getItem('accessToken'));
 	}
 
 	startDownload(event) {
@@ -112,7 +118,7 @@ class MovieData extends Component  {
 				</div>
 			</Card>
 			{(this.state.download) ? <VideoPlayer subtitles={this.state.subtitles} movieData={this.state.movie}/> : null}
-			<Comments />
+			<Comments data={this.state.movie}/>
 		</Col>
 	);
 	}

@@ -20,7 +20,7 @@ class LoginController extends Controller
 		if (Hash::check($request->input('password'), $user->password))
 		{
 			$token = new Tokens();
-			$jwt = $token->createAccessToken($user->id, 7200);
+			$jwt = $token->createAccessToken($user->id, 86400);
 			return $jwt;
 		}
 		return "Password is wrong";
@@ -28,8 +28,13 @@ class LoginController extends Controller
 
 	public function updateAccessToken(Request $request)
 	{
-		$user = User::where('login', $request->input('login'))->first();
-		$jwt = $token->createAccessToken($user->id, 7200);
+		$user = User::where('id', $request->input('id'))->first();
+		$token = new Tokens();
+		$var = $token->tokenExists($request->input('jwt'));
+		if ($var == 'expired' || $var == 'hacker detected')
+			return 'expired';
+		$jwt = $token->createAccessToken($user->id, 86400);
+		return $jwt;
 	}
 
 	public function checkAccessToken(Request $request)

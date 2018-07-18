@@ -1,34 +1,43 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\CommentsLikes;
 
+use App\Comment;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class CommentsLikesController extends Controller
+class CommentsController extends Controller
 {
   protected function validator(array $data)
   {
     return Validator::make($data, [
-      'inputText' => 'required|string|max:255|min:2',
+      'content' => 'required|string|max:255|min:2',
     ]);
   }
 
   protected function create(array $data)
   {
     return Comment::create([
-      'inputText' => $data['inputText'],
+      'content' => $data['content'],
+      'user_id' => $data['user_id'],
+      'film_id' => $data['film_id'],
     ]);
   }
 
-  public function addNewComment(Request $request)
+  public function addComment(Request $request)
   {
     $validator = $this->validator($request->all());
+
     if ($validator->fails())
       return $validator->errors();
-
     $this->create($request->all());
-    return ("ok")
+    return ("ok");
+  }
+  
+  public function getComment(Request $request)
+  {
+    return Comment::where('film_id', $request->input('film_id'));
   }
 
 }
