@@ -38,5 +38,9 @@ class CommentsController extends Controller
   public function getComments(Request $request)
   {
     return Comment::where('film_id', $request->input('film_id'))->get();
+    /*return Comment::where('comments')
+            ->join('users', 'users.id', '=', 'comments.user_id')
+            ->select('users.*', 'users.firstname', 'users.lastname')
+            ->get();*/
   }
 }

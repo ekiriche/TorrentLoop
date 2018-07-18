@@ -81,7 +81,7 @@ class Comments extends Component  {
 	return (
 		<Col m={7} s={12}>
 			<Card title='Comments'>
-				<form onSubmit={this.handleSubmit}>
+				<form onSubmit={this.handleSubmit} className="comment-form-flex">
 					<Input type="textarea" name="content" label="Left comment" required s={12} onChange={this.getValueFromForm} />
 					<Button waves='light' className="comment-button-float">Send comment</Button>
 				</form>
