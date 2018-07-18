@@ -1,0 +1,9 @@
+.comment-button-float {
+  float: right;
+}
+.comments-text-style {
+  word-wrap: break-word;
+}
+.comment-collection-margin {
+  margin: 0 10px;
+}

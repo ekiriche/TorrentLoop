@@ -14,6 +14,8 @@ import VideoPlayer from '../VideoPlayer/VideoPlayer';
 import { PostData } from '../../functions/PostData';
 import { Card, CardTitle , Col,Chip} from 'react-materialize';
 
+import Comments from '../Comments/Comments';
+
 class MovieData extends Component  {
 	constructor(props) {
 		super(props);
@@ -29,7 +31,6 @@ class MovieData extends Component  {
 
 	componentWillMount(){
 		let jwt = localStorage.getItem('accessToken');
-		console.log("result");
 		PostData('profile/save-history', {
 			'imdb_code': this.state.movie.imdb_code,
 			'medium_cover_image': this.state.movie.medium_cover_image,
@@ -44,7 +45,6 @@ class MovieData extends Component  {
 	}
 
 	startDownload(event) {
-		console.log(event.target.id);
 		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code, 'quality': event.target.id }).then ((result) => {
 		})
 		PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
@@ -111,6 +111,7 @@ class MovieData extends Component  {
 				</div>
 			</Card>
 			{(this.state.download) ? <VideoPlayer subtitles={this.state.subtitles} movieData={this.state.movie}/> : null}
+			<Comments />
 		</Col>
 	);
 	}
