@@ -143,7 +143,20 @@ class EditProfile extends Component  {
 		return (
 			<div className="profile-flex">
 				<Navbar />
-				<CardPanel className="grey lighten-2 black-text profile">
+				<CardPanel className="black-text profile">
+					<h5>Photo</h5>
+					<div className="row photo">
+						<label htmlFor="new_photo">
+        			<img src={this.state.photo} id="photo"/>
+    				</label>
+						<input
+							id="input-file"
+							style={{display: 'none'}}
+							accept=".png, .jpg, .jpeg"
+							type="file"
+							onChange={ (e) => this.handlePhotoChange(e.target.files)}
+							id="new_photo" />
+					</div>
 					<form onSubmit={this.handleInfoChange}>
 						<h5>Account information</h5>
 						<div className="row">
@@ -168,11 +181,6 @@ class EditProfile extends Component  {
 							<Button waves='light'>Change information</Button>
 						</div>
 					</form>
-					<h5>Photo</h5>
-					<div className="row">
-						<img src={this.state.photo} id="photo"/>
-						<input id="input-file" accept=".png, .jpg, .jpeg" type="file" onChange={ (e) => this.handlePhotoChange(e.target.files)} id="new_photo" />
-					</div>
 					<h5>Password</h5>
 					{ this.state.password != undefined ? (
 						<form onSubmit={this.handlePasswordChange} className="password-change">

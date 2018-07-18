@@ -7,10 +7,10 @@ use Illuminate\Database\Migrations\Migration;
 class CreateMovieHistoriesTable extends Migration
 {
 	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
+	* Run the migrations.
+	*
+	* @return void
+	*/
 	public function up()
 	{
 		Schema::create('movie_histories', function (Blueprint $table) {
@@ -22,10 +22,10 @@ class CreateMovieHistoriesTable extends Migration
 	}
 
 	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
+	* Reverse the migrations.
+	*
+	* @return void
+	*/
 	public function down()
 	{
 		Schema::dropIfExists('movie_histories');

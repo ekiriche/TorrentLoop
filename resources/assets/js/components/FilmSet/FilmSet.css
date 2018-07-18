@@ -24,3 +24,11 @@
 	background-color: darkgrey;
 	outline: 1px solid slategrey;
 }
+
+.material-icons.search {
+	left: 20px;
+	top: 16px;
+	position: relative;
+	cursor: pointer;
+	font-size: -webkit-xxx-large;
+}

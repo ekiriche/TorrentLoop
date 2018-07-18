@@ -30,8 +30,13 @@ class ViewProfile extends Component  {
     }
 
     render() {
-      if (!this.state.picture)
-        return <div></div>
+      if (!this.state.picture) {
+        return (
+          <div className="progress">
+            <div className="indeterminate"></div>
+          </div>
+        )
+      }
 
         return (
             <div className="movie-flex">

@@ -35,7 +35,7 @@ class Movie extends Component  {
 
 	componentWillMount() {
 		const params = "movie_details.json?movie_id=" + this.props.match.params.id;
-		if (this.state.movie === undefined) {
+		if (this.state.movie === undefined || this.state.movie === '') {
 			GetFilmsInfo(params)
 			.then ((result) => {
 				this.setState({ movie: result.data.movie});
@@ -44,7 +44,7 @@ class Movie extends Component  {
 	}
 
 	render() {
-		if (this.state.movie === undefined) {
+		if (this.state.movie === undefined || this.state.movie === '') {
 			return (
 				<div className="progress">
 					<div className="indeterminate"></div>
