@@ -25,3 +25,6 @@ Route::post('profile/set-password', 'UserProfile\ProfileController@setPassword')
 Route::post('movie/download-subtitles', 'Movies\SubtitleController@downloadSubtitles');
 Route::post('movie/download-movie', 'Movies\TorrentController@downloadMovie');
 Route::post('movie/get-download-percentage', 'Movies\TorrentController@getDownloadPercentage');
+Route::post('movie/add-comment', 'CommentsLikes\CommentsController@addComment');
+Route::post('movie/add-like', 'CommentsLikes\LikesController@addLike');
+Route::post('movie/remove-like', 'CommentsLikes\LikesController@removeLike');

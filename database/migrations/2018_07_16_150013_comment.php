@@ -18,7 +18,7 @@ class Comment extends Migration
         $table->integer('user_id');
         $table->integer('film_id');
         $table->string('content', 255);
-        $table->integer('likes');
+        $table->integer('likes')->default(0);
         $table->timestamps();
       });
     }
