@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Input, Col } from 'react-materialize';
 import { Link } from 'react-router-dom';
+import { withLocalize, Translate } from 'react-localize-redux';
 
 import { Route, HashRouter } from 'react-router-dom';
 import Nouislider from 'react-nouislider';
@@ -29,10 +30,10 @@ class RatingSearch extends Component  {
 	render() {
 		return (
 			<div>
-				<div className="rating-settings-title"><i className="material-icons">grade</i>Rating: {this.state.ratingValue + "+"}</div>
+				<div className="rating-settings-title"><i className="material-icons">grade</i><Translate id="search-rating">Rating</Translate>: {this.state.ratingValue + "+"}</div>
 				<div className="radio rating">
 					<label className="rating-container">
-						<p className="label-rating">All</p>
+						<p className="label-rating"><Translate id="search-all">All</Translate></p>
 						<input type="radio" name="ratingGroup" value='0' onChange={this.handleRatingValue}/>
 						<span className="checkmark"></span>
 					</label>
@@ -86,7 +87,7 @@ class RatingSearch extends Component  {
 		)
 	}
 }
-export default RatingSearch;
+export default withLocalize(RatingSearch);
 
 
 // <Input name='group2' type='radio' value='0' label='All' onChange={this.handleratingValue} />

@@ -27,6 +27,21 @@ class MovieData extends Component  {
 		this.getDownloadPercentage = this.getDownloadPercentage.bind(this);
 	}
 
+	componentWillMount(){
+		let jwt = localStorage.getItem('accessToken');
+		PostData('profile/save-history', {
+			'imdb_code': this.state.movie.imdb_code,
+			'medium_cover_image': this.state.movie.medium_cover_image,
+			'title_english': this.state.movie.title_english,
+			'year': this.state.movie.year,
+			'rating': this.state.movie.rating,
+			'jwt': jwt
+		}).then ((result) => {
+			console.log(result);
+		});
+		// console.log(localStorage.getItem('accessToken'));
+	}
+
 	startDownload() {
 		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
 		})
