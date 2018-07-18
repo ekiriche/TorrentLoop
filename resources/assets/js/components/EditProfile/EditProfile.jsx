@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import { Row, Input, Button } from 'react-materialize';
+import { Row, Input, Button, CardPanel } from 'react-materialize';
 import { Link } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import { PostData } from '../../functions/PostData';
 /*localization*/
-import { renderToStaticMarkup } from "react-dom/server";
 import { withLocalize, Translate } from "react-localize-redux";
-import globalTranslations from '../translations/global.json';
-import ToggleButton from 'react-toggle-button';
 /*localization end*/
 
 import { Card, CardTitle , Col} from 'react-materialize';
@@ -37,6 +34,12 @@ class EditProfile extends Component  {
 		this.handlePhotoChange = this.handlePhotoChange.bind(this);
 		this.handleInfoChange = this.handleInfoChange.bind(this);
 		this.handleOAuthPassword = this.handleOAuthPassword.bind(this);
+		let token =  localStorage.getItem('accessToken');
+    let user = jwtDecode(token);
+		axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid, 'jwt' : token}).then (result => {
+			if (result.data == 'expired')
+				localStorage.removeItem('accessToken');
+		});
 	}
 
 	componentWillMount() {
@@ -140,73 +143,82 @@ class EditProfile extends Component  {
 	}
 
 	render() {
-
 		return (
-			<div className="movie-flex">
+			<div className="profile-flex">
 				<Navbar />
-				<form onSubmit={this.handleInfoChange}>
-				<h5>Account information</h5>
-				<div className="row">
-					 <div className="input-field col s6">
-							<input type="text" name="firstname" id="first_name" value={ this.state.firstname } onChange={ this.handleChange }/>
-							{ this.state.firstname ? ( <label className="active">First Name</label> ) : ( <label>First Name</label> )}
-					 </div>
-					 <div className="input-field col s6">
-							<input type="text" name="lastname" id="last_name" value={ this.state.lastname } onChange={ this.handleChange }/>
-							{ this.state.lastname ? ( <label className="active">Last Name</label> ) : ( <label>Last Name</label> )}
-					 </div>
-					 <div className="input-field col s12">
-							<input type="text" name="email" id="email" value={ this.state.email } onChange={ this.handleChange }/>
-							{ this.state.email ? ( <label className="active">Email</label> ) : ( <label>Email</label> )}
-					 </div>
-					 <div className="input-field col s12">
-					 		<textarea name="info" id="info" className="materialize-textarea" value={ this.state.info } onChange={ this.handleChange }/>
-							{ this.state.info ? ( <label className="active">Additional info</label> ) : ( <label>Additional info</label> )}
-					 </div>
-					 { this.state.info_change == "changed" && ( <div className="row"><span className="alert alert-success">Info changed!</span></div> ) }
-					 { this.state.info_change == "not changed" && ( <div className="row"><span className="alert alert-danger">{this.state.info_error}</span></div> ) }
-					 <Button waves='light'>Change information</Button>
-				 </div>
-			 </form>
-			 <h5>Photo</h5>
-			 <div className="row">
-					<img src={this.state.photo} id="photo"/>
-					<input id="input-file" accept=".png, .jpg, .jpeg" type="file" onChange={ (e) => this.handlePhotoChange(e.target.files)} id="new_photo" />
-				</div>
-				<h5>Password</h5>
+				<CardPanel className="black-text profile">
+					<h5><Translate id="changePhotoHeader">Photo</Translate></h5>
+					<div className="row photo">
+						<label htmlFor="new_photo">
+        			<img src={this.state.photo} id="photo"/>
+    				</label>
+						<input
+							id="input-file"
+							style={{display: 'none'}}
+							accept=".png, .jpg, .jpeg"
+							type="file"
+							onChange={ (e) => this.handlePhotoChange(e.target.files)}
+							id="new_photo" />
+					</div>
+					<form onSubmit={this.handleInfoChange}>
+						<h5><Translate id="changeAccountInformationHeader">Account information</Translate></h5>
+						<div className="row">
+							<div className="input-field col s6">
+								<input type="text" name="firstname" id="first_name" value={ this.state.firstname } onChange={ this.handleChange }/>
+								{ this.state.firstname ? ( <label className="active"><Translate id="changeFirstnameLabor">First Name</Translate></label> ) : ( <label><Translate id="changeFirstnameLabor">First Name</Translate></label> )}
+							</div>
+							<div className="input-field col s6">
+								<input type="text" name="lastname" id="last_name" value={ this.state.lastname } onChange={ this.handleChange }/>
+								{ this.state.lastname ? ( <label className="active"><Translate id="changeLastnameLabor">Last Name</Translate></label> ) : ( <label><Translate id="changeLastnameLabor">Last Name</Translate></label> )}
+							</div>
+							<div className="input-field col s12">
+								<input type="text" name="email" id="email" value={ this.state.email } onChange={ this.handleChange }/>
+								{ this.state.email ? ( <label className="active"><Translate id="changeEmailLaber">Email</Translate></label> ) : ( <label><Translate id="changeEmailLaber">Email</Translate></label> )}
+							</div>
+							<div className="input-field col s12">
+								<textarea name="info" id="info" className="materialize-textarea" value={ this.state.info } onChange={ this.handleChange }/>
+								{ this.state.info ? ( <label className="active"><Translate id="changeAdditionalInfoLaber">Additional info</Translate></label> ) : ( <label><Translate id="changeAdditionalInfoLaber">Additional info</Translate></label> )}
+							</div>
+							{ this.state.info_change == "changed" && ( <div className="row"><span className="alert alert-success">Info changed!</span></div> ) }
+							{ this.state.info_change == "not changed" && ( <div className="row"><span className="alert alert-danger">{this.state.info_error}</span></div> ) }
+							<Button waves='light'><Translate id="changeInformationButton">Change information</Translate></Button>
+						</div>
+					</form>
+					<h5><Translate id="changePasswordHeader">Password</Translate></h5>
 					{ this.state.password != undefined ? (
 						<form onSubmit={this.handlePasswordChange} className="password-change">
 							<div className="row">
 								<div className="input-field col s12">
-									<label>Old password</label>
-		          		<input type="password" s={12} id="oldpass" name="old_password" required onChange={this.handleChange}/>
+									<label><Translate id="changeOldPasswordLaber">Old password</Translate></label>
+									<input type="password" s={12} id="oldpass" name="old_password" required onChange={this.handleChange}/>
 								</div>
 								<div className="input-field col s12">
-									<label>New password</label>
+									<label><Translate id="changeNewPasswordLaber">New password</Translate></label>
 									<input type="password" s={12} id="newpass" name="new_password" required onChange={this.handleChange}/>
 								</div>
 								{ this.state.oldpassword_error && ( <div className="row"><span className="alert alert-danger">{this.state.oldpassword_error}</span></div> ) }
 								{ this.state.newpassword_error && ( <div className="row"><span className="alert alert-danger">{this.state.newpassword_error}</span></div> ) }
 								{ this.state.password_change_success && ( <div className="row"><span className="alert alert-success">Password changed!</span></div> ) }
-								<Button waves='light'>Change password</Button>
+								<Button waves='light'><Translate id="changePasswordButton">Change password</Translate></Button>
 							</div>
 						</form>
 					) : (
 						<form onSubmit={this.handleOAuthPassword} className="password-change">
 							<div className="row">
 								<div className="input-field col s12">
-									<label>New password</label>
-		            	<input type="password" s={12} id="new_oauth_password" name="new_oauth_password" required onChange={this.handleChange}/>
+									<label><Translate id="changeNewPasswordLaber">New password</Translate></label>
+									<input type="password" s={12} id="new_oauth_password" name="new_oauth_password" required onChange={this.handleChange}/>
 								</div>
 								{ this.state.newpassword_error && ( <div className="row"><span className="alert alert-danger">{this.state.newpassword_error}</span></div> ) }
 								{ this.state.password_change_success && ( <div className="row"><span className="alert alert-success">Password changed!</span></div> ) }
-								<Button waves='light'>Change password</Button>
+								<Button waves='light'><Translate id="changePasswordButton">Change password</Translate></Button>
 							</div>
 						</form>
 					)}
+				</CardPanel>
 				<Foot />
 			</div>
 		);
 	}
 }
-export default EditProfile;
+export default withLocalize(EditProfile);

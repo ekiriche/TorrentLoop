@@ -32,12 +32,13 @@ class TorrentController extends Controller
 		$session->setDownloadDir($pwd . '/movies/' . $request->input('imdb-id'));
 		/* $session->setDownloadDir('/tmp/movies/' . $request->input('imdb-id'));*/
 		$session->save();
-		$torrent = $transmission->add($this->_getDownloadUrl($request->input('imdb-id')));
+		$torrent = $transmission->add($this->_getDownloadUrl($request->input('imdb-id'), $request->input('quality')));
 		return "true";
 	}
 
-	private function _getDownloadUrl($imdbId)
+	private function _getDownloadUrl($imdbId, $quality)
 	{
+		return ($quality);
 		$url = 'https://yts.am/api/v2/list_movies.json?query_term=' . $imdbId;
 		$options = array(
 			'https' => array(

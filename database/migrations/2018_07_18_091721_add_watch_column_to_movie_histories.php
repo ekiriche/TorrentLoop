@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMovieHistoriesTable extends Migration
+class AddWatchColumnToMovieHistories extends Migration
 {
 	/**
 	* Run the migrations.
@@ -13,11 +13,8 @@ class CreateMovieHistoriesTable extends Migration
 	*/
 	public function up()
 	{
-		Schema::create('movie_histories', function (Blueprint $table) {
-			$table->increments('id');
-			$table->unsignedBigInteger('user_id');
-			$table->string('imdb_code');
-			$table->timestamps();
+		Schema::table('movie_histories', function (Blueprint $table) {
+			$table->string('watch');
 		});
 	}
 
@@ -28,6 +25,8 @@ class CreateMovieHistoriesTable extends Migration
 	*/
 	public function down()
 	{
-		Schema::dropIfExists('movie_histories');
+		Schema::table('movie_histories', function (Blueprint $table) {
+			$table->dropColumn('watch');
+		});
 	}
 }

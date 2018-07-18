@@ -1,0 +1,28 @@
+div .input-field.input-search input {
+	height: auto;
+	font-size: 1.2rem;
+	border-bottom: 1px;
+	background-color: grey;
+}
+
+nav {
+	overflow-y: scroll;
+}
+
+nav::-webkit-scrollbar {
+	width: 0.5em;
+}
+
+nav::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.3);
+}
+
+nav::-webkit-scrollbar-thumb {
+	background-color: darkgrey;
+	outline: 1px solid slategrey;
+}
+
+/* .search-button{
+	width: 100%;
+
+} */

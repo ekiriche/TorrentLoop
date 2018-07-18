@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 /*localization*/
 import { renderToStaticMarkup } from "react-dom/server";
 import { withLocalize, Translate } from "react-localize-redux";
@@ -10,7 +12,7 @@ import ToggleButton from 'react-toggle-button';
 
 import './Library.css';
 
-import Search from '../Search/Search';
+// import Search from '../Search/Search';
 import Navbar from '../Navbar/Navbar';
 import Foot from '../Footer/Footer';
 import FilmSet from '../FilmSet/FilmSet';
@@ -18,6 +20,18 @@ import FilmSet from '../FilmSet/FilmSet';
 class Library extends Component  {
 	constructor(props) {
 		super(props);
+
+		let jwt = localStorage.getItem('accessToken');
+		let user = jwtDecode(jwt);
+
+		axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then (result => {
+			if (result.data == 'expired')
+				localStorage.removeItem('accessToken');
+		});
+
+		this.state = {
+			filmRequest: "list_movies.json?sort_by=rating&limit=" + 48 + "&page=" + 1,
+		}
 
 		this.props.initialize({
 			languages: [
@@ -40,7 +54,6 @@ class Library extends Component  {
 			<div className="library-flex">
 				<Navbar />
 				<div className="library">
-					<Search />
 					<FilmSet />
 				</div>
 				<Foot />
@@ -50,4 +63,4 @@ class Library extends Component  {
 }
 export default withLocalize(Library);
 
-	//
+//

@@ -1,9 +1,23 @@
 #photo {
-  border-radius: 150px;
   width: 200px;
   height: 200px;
 }
 
-#input-file {
-  
+.profile-flex {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.profile {
+  max-width: 1450px;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  margin: auto;
+}
+.photo {
+  margin-left: 12px;
 }
