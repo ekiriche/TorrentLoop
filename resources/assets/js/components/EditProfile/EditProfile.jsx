@@ -34,17 +34,15 @@ class EditProfile extends Component  {
 		this.handlePhotoChange = this.handlePhotoChange.bind(this);
 		this.handleInfoChange = this.handleInfoChange.bind(this);
 		this.handleOAuthPassword = this.handleOAuthPassword.bind(this);
-		let token =  localStorage.getItem('accessToken');
-    let user = jwtDecode(token);
-		axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid, 'jwt' : token}).then (result => {
-			if (result.data == 'expired')
-				localStorage.removeItem('accessToken');
-		});
 	}
 
 	componentWillMount() {
     let token =  localStorage.getItem('accessToken');
     let id = jwtDecode(token);
+		axios.post('http://localhost:8100/auth/token-update', {'id' : id.uid, 'jwt' : token}).then (result => {
+			if (result.data == 'expired')
+				localStorage.removeItem('accessToken');
+		});
     axios.post('http://localhost:8100/profile/get-user-info', {'id' : id.uid}).then (result => {
 			if (result.data.info == null)
 				this.setState({ 'info' : '' });
