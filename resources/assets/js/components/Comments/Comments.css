@@ -2,6 +2,17 @@
   width: 200px;
   margin: auto;
 }
+
+.comment-rating-position {
+  position: absolute;
+  width: 42px;
+  height: 46px;
+  overflow: hidden;
+  left: 25px;
+  bottom: -20px;
+  display: inline-block;
+  vertical-align: middle;
+}
 .comment-form-flex {
   display: flex;
     flex-direction: column;
@@ -13,8 +24,28 @@
   margin: 0 10px;
 }
 .comment-like-positon {
-  top: 0px!important;
+  float: right;
 }
 .like-position {
   float: right;
+}
+
+.rating > span:hover:before {
+   content: "\2605";
+   position: absolute;
+}
+
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
 }
