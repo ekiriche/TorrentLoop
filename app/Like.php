@@ -8,6 +8,8 @@ class Like extends Model
 {
   protected $fillable = [
     'user_id',
-    'target_id'
+    'rating',
+    'commentId',
+    'film_id'
   ];
 }

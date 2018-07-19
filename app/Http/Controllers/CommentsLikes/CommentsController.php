@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\CommentsLikes;
 
 use App\Comment;
+use App\Like;
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -37,10 +39,30 @@ class CommentsController extends Controller
 
   public function getComments(Request $request)
   {
-    return Comment::where('film_id', $request->input('film_id'))->get();
-    /*return Comment::where('comments')
-            ->join('users', 'users.id', '=', 'comments.user_id')
-            ->select('users.*', 'users.firstname', 'users.lastname')
-            ->get();*/
+    $var = Comment::join('users', 'users.id', '=', 'comments.user_id')
+    ->select('users.firstname', 'users.lastname', 'users.photo', 'comments.content', 'comments.id', 'comments.created_at')
+    ->where('film_id', '=', $request->input('film_id'))
+    ->get('users.id as user_id');
+    foreach ($var as $key => $item)
+    {
+      $temp = $this->avgRating($item, $request->input('film_id'));
+      $var[$key]['avgRating'] = round($temp, 1);
+    }
+    return $var;
+  }
+
+  private function avgRating($comment, $film_id)
+  {
+    return Comment::join('likes', 'likes.commentId', '=', 'comments.id')
+    ->where('likes.film_id', $film_id)
+    ->where('likes.commentId', $comment['id'])
+    ->avg('rating');
   }
 }
+/*
+
+*/
+
+/*join('likes', 'likes.commentId', '=', 'comments.id')
+->where('likes.film_id', $request->input('film_id'))
+->avg('rating');*/

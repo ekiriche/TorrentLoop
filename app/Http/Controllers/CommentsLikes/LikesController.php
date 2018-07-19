@@ -12,20 +12,20 @@ class LikesController extends Controller
 {
     public function addLike(Request $request)
     {
-      Like::create([
-        'user_id' => $request->input('user_id'),
-        'target_id' => $request->input('target_id'),
-      ]);
-      Comment::where('id', $request->input('target_id'))->increment('likes');
-      return "OK";
+        $isSet = Like::where('user_id', $request->input('user_id'))
+        ->where('film_id', $request->input('film_id'))
+        ->select('id')->first();
+        if ($isSet != '')
+        return ;
+        Like::create([
+            'user_id' => $request->input('user_id'),
+            'rating' => $request->input('rating'),
+            'commentId' => $request->input('commentId'),
+            'film_id' => $request->input('film_id')
+        ]);
+        return 'ok';
     }
 
-    public function removeLike(Request $request)
-    {
-      Like::where('user_id', $request->input('user_id'))->where('target_id', $request->input('target_id'))->delete();
-      Comment::where('id', $request->input('target_id'))->decrement('likes');
-      return "OK";
-    }
 
     public function getLikes(Request $request)
     {

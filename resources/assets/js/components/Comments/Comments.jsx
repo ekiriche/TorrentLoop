@@ -30,6 +30,7 @@ class Comments extends Component  {
 	}
 
 	componentWillMount () {
+		console.log(this.state);
 		let token =localStorage.getItem('accessToken');
 		let decoded = jwtDecode(token);
 		this.setState({ user_id: decoded.uid });
@@ -38,9 +39,9 @@ class Comments extends Component  {
 			const commentsList = result.map((comment, i) =>
 			<ul key={i} className="collection">
 				<li className="collection-item avatar collection-item">
-					<img src="http://localhost:8100/./profile_pictures/1531896702.png" alt="" className="circle" />
-					<span className="comment-rating-position" >4.1</span>
-					<span className="title">Vladimir Gryshchenko</span>
+					<img src={comment.photo} alt="" className="circle" />
+					{(comment.avgRating > 0) ? <span className="comment-rating-position" >{comment.avgRating}</span> : null }
+					<span className="title">{comment.firstname} {comment.lastname}</span>
 					<p className="comments-text-style">
 						{comment.content}
 					</p>
@@ -66,8 +67,12 @@ class Comments extends Component  {
 	setLike(event) {
 		let rating = event.target.getAttribute('data-rating');
 		let commentId = event.target.getAttribute('data-comment-id');
-
-		PostData(	'movie/add-like', {'rating' : rating,
+console.log(rating);
+console.log(commentId);
+console.log(this.state.film_id);
+console.log(this.state.user_id);
+		PostData(	'movie/add-like', {
+							'rating' : rating,
 							'commentId' : commentId,
 							'film_id' : this.state.film_id,
 							'user_id' : this.state.user_id
