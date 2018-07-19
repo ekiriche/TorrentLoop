@@ -21,14 +21,6 @@ class Library extends Component  {
 	constructor(props) {
 		super(props);
 
-		let jwt = localStorage.getItem('accessToken');
-		let user = jwtDecode(jwt);
-
-		axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then (result => {
-			if (result.data == 'expired')
-				localStorage.removeItem('accessToken');
-		});
-
 		this.state = {
 			filmRequest: "list_movies.json?sort_by=rating&limit=" + 48 + "&page=" + 1,
 		}
@@ -47,6 +39,16 @@ class Library extends Component  {
 		const prevLangCode = prevProps.activeLanguage && prevProps.activeLanguage.code;
 		const curLangCode = this.props.activeLanguage && this.props.activeLanguage.code;
 		const hasLanguageChanged = prevLangCode !== curLangCode;
+	}
+
+	componentWillMount()
+	{
+		let jwt = localStorage.getItem('accessToken');
+		let user = jwtDecode(jwt);
+		axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then (result => {
+			if (result.data == 'expired')
+				localStorage.removeItem('accessToken');
+		});
 	}
 
 	render() {

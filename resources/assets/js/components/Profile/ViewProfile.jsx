@@ -21,15 +21,15 @@ class ViewProfile extends Component  {
 			'id': this.props.match.params.id,
 			'links': []
 		};
-    let jwt = localStorage.getItem('accessToken');
+	}
+
+	componentWillMount() {
+		let jwt = localStorage.getItem('accessToken');
     let user = jwtDecode(jwt);
     axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then (result => {
       if (result.data == 'expired')
         localStorage.removeItem('accessToken');
     });
-	}
-
-	componentWillMount() {
 		axios.post('http://localhost:8100/profile/get-user-info', {'id': this.state.id}).then(result => {
 			this.setState({
 				'firstname': result.data.firstname,
@@ -38,8 +38,6 @@ class ViewProfile extends Component  {
 				'info': result.data.info
 			});
 		});
-
-		let jwt = localStorage.getItem('accessToken');
 		PostData('profile/get-history', {
 			'jwt': jwt
 		}).then ((result) => {
