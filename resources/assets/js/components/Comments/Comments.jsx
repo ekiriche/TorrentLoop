@@ -33,34 +33,57 @@ class Comments extends Component  {
 		let token =localStorage.getItem('accessToken');
 		let decoded = jwtDecode(token);
 		this.setState({ user_id: decoded.uid });
-		PostData('movie/get-comment', this.state).then ((result) => {
+		PostData('movie/get-comment', {'film_id': this.state.film_id, 'user_id': decoded.uid}).then ((result) => {
+			console.log("return", result);
 			const commentsList = result.map((comment, i) =>
 			<ul key={i} className="collection">
 				<li className="collection-item avatar collection-item">
-					<img src="http://localhost:8100/./profile_pictures/1531896702.png" alt="" className="circle" />
-					<span className="title">Vladimir Gryshchenko</span>
+					<img src={comment.photo} alt="" className="circle" />
+					{(comment.avgRating > 0) ? <span className="comment-rating-position" >{comment.avgRating}</span> : null }
+					<span className="title">{comment.firstname} {comment.lastname}</span>
 					<p className="comments-text-style">
 						{comment.content}
 					</p>
-					 <span className="secondary-content">{comment.created_at}</span>
-					 <div className="like-position">
-						 <a onClick={this.setLike} className="comment-like-positon"><i id="1" className="material-icons">grade</i></a>
-						 <a onClick={this.setLike} className="comment-like-positon"><i id="2" className="material-icons">grade</i></a>
-						 <a onClick={this.setLike} className="comment-like-positon"><i id="3" className="material-icons">grade</i></a>
-						 <a onClick={this.setLike} className="comment-like-positon"><i id="4" className="material-icons">grade</i></a>
-						 <a onClick={this.setLike} className="comment-like-positon"><i id="5" className="material-icons">grade</i></a>
-					 </div>
+					<span className="secondary-content">{comment.created_at}</span>
+					{(comment.currentUserRating == undefined) ?
+						<div className="rating comment-like-positon">
+							<span onClick={this.setLike} data-rating="5" data-comment-id={comment.id}>☆</span>
+							<span onClick={this.setLike} data-rating="4" data-comment-id={comment.id}>☆</span>
+							<span onClick={this.setLike} data-rating="3" data-comment-id={comment.id}>☆</span>
+							<span onClick={this.setLike} data-rating="2" data-comment-id={comment.id}>☆</span>
+							<span onClick={this.setLike} data-rating="1" data-comment-id={comment.id}>☆</span>
+						</div>
+						: <div className="comment-like-positon">
+								<span>Your rating is : {comment.currentUserRating.rating}</span>
+							</div>
+				}
+
 				</li>
 			</ul>
 		)
 		this.setState({comments: commentsList});
 		})
 	}
-	setLike(event) {
-		console.log(event.target);
-	}
+
 	getValueFromForm(event) {
 		this.setState({ [event.target.name] : event.target.value});
+	}
+
+	setLike(event) {
+		let rating = event.target.getAttribute('data-rating');
+		let commentId = event.target.getAttribute('data-comment-id');
+//console.log(rating);
+console.log(commentId);
+//console.log(this.state.film_id);
+//console.log(this.state.user_id);
+		PostData(	'movie/add-like', {
+							'rating' : rating,
+							'commentId' : commentId,
+							'film_id' : this.state.film_id,
+							'user_id' : this.state.user_id
+						}).then ((result) => {
+			console.log(result);
+		})
 	}
 
 	handleSubmit(event) {
@@ -94,3 +117,14 @@ class Comments extends Component  {
 }
 }
 export default withLocalize(Comments);
+
+/*
+<div className="like-position">
+	<a onClick={this.setLike} className="comment-like-positon"><i id="1" className="material-icons">grade</i></a>
+	<a onClick={this.setLike} className="comment-like-positon"><i id="2" className="material-icons">grade</i></a>
+	<a onClick={this.setLike} className="comment-like-positon"><i id="3" className="material-icons">grade</i></a>
+	<a onClick={this.setLike} className="comment-like-positon"><i id="4" className="material-icons">grade</i></a>
+	<a onClick={this.setLike} className="comment-like-positon"><i id="5" className="material-icons">grade</i></a>
+</div>
+
+*/

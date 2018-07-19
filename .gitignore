@@ -13,7 +13,7 @@ npm-debug.log
 yarn-error.log
 .env
 public/js/app.js
-public/profile_pictures/*.png
+profile_pictures/default_photo.png
 .DS_Store
 .eslintrc.json
 tags
