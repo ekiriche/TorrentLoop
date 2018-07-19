@@ -30,12 +30,11 @@ class Comments extends Component  {
 	}
 
 	componentWillMount () {
-		console.log(this.state);
 		let token =localStorage.getItem('accessToken');
 		let decoded = jwtDecode(token);
 		this.setState({ user_id: decoded.uid });
-		PostData('movie/get-comment', this.state).then ((result) => {
-			console.log(result);
+		PostData('movie/get-comment', {'film_id': this.state.film_id, 'user_id': decoded.uid}).then ((result) => {
+			console.log("return", result);
 			const commentsList = result.map((comment, i) =>
 			<ul key={i} className="collection">
 				<li className="collection-item avatar collection-item">
@@ -46,13 +45,19 @@ class Comments extends Component  {
 						{comment.content}
 					</p>
 					<span className="secondary-content">{comment.created_at}</span>
-					<div className="rating comment-like-positon">
-						<span onClick={this.setLike} data-rating="5" data-comment-id={comment.id}>☆</span>
-						<span onClick={this.setLike} data-rating="4" data-comment-id={comment.id}>☆</span>
-						<span onClick={this.setLike} data-rating="3" data-comment-id={comment.id}>☆</span>
-						<span onClick={this.setLike} data-rating="2" data-comment-id={comment.id}>☆</span>
-						<span onClick={this.setLike} data-rating="1" data-comment-id={comment.id}>☆</span>
-					</div>
+					{(comment.currentUserRating == undefined) ?
+						<div className="rating comment-like-positon">
+							<span onClick={this.setLike} data-rating="5" data-comment-id={comment.id}>☆</span>
+							<span onClick={this.setLike} data-rating="4" data-comment-id={comment.id}>☆</span>
+							<span onClick={this.setLike} data-rating="3" data-comment-id={comment.id}>☆</span>
+							<span onClick={this.setLike} data-rating="2" data-comment-id={comment.id}>☆</span>
+							<span onClick={this.setLike} data-rating="1" data-comment-id={comment.id}>☆</span>
+						</div>
+						: <div className="comment-like-positon">
+								<span>Your rating is : {comment.currentUserRating.rating}</span>
+							</div>
+				}
+
 				</li>
 			</ul>
 		)
@@ -67,10 +72,10 @@ class Comments extends Component  {
 	setLike(event) {
 		let rating = event.target.getAttribute('data-rating');
 		let commentId = event.target.getAttribute('data-comment-id');
-console.log(rating);
+//console.log(rating);
 console.log(commentId);
-console.log(this.state.film_id);
-console.log(this.state.user_id);
+//console.log(this.state.film_id);
+//console.log(this.state.user_id);
 		PostData(	'movie/add-like', {
 							'rating' : rating,
 							'commentId' : commentId,

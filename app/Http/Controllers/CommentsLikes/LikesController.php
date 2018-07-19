@@ -13,10 +13,10 @@ class LikesController extends Controller
     public function addLike(Request $request)
     {
         $isSet = Like::where('user_id', $request->input('user_id'))
-        ->where('film_id', $request->input('film_id'))
+        ->where('commentId', $request->input('commentId'))
         ->select('id')->first();
         if ($isSet != '')
-        return ;
+            return ;
         Like::create([
             'user_id' => $request->input('user_id'),
             'rating' => $request->input('rating'),

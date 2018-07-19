@@ -46,7 +46,9 @@ class CommentsController extends Controller
     foreach ($var as $key => $item)
     {
       $temp = $this->avgRating($item, $request->input('film_id'));
+      $currentUserRating = $this->currentUserRating($item['id'], $request->input('user_id'));
       $var[$key]['avgRating'] = round($temp, 1);
+      $var[$key]['currentUserRating'] = $currentUserRating;
     }
     return $var;
   }
@@ -58,11 +60,34 @@ class CommentsController extends Controller
     ->where('likes.commentId', $comment['id'])
     ->avg('rating');
   }
+  private function currentUserRating($comment_id, $user_id)
+  {
+    return Comment::join('likes', 'likes.commentId', '=', 'comments.id')
+    ->where('comments.id', $comment_id)
+    ->where('likes.user_id', $user_id)
+    ->first();
+  }
 }
 /*
+public function getComments(Request $request)
+{
+  $var = Comment::join('users', 'users.id', '=', 'comments.user_id')
+  ->select('users.firstname', 'users.lastname', 'users.photo', 'comments.content', 'comments.id', 'comments.created_at')
+  ->where('film_id', '=', $request->input('film_id'))
+  ->get('users.id as user_id');
+  foreach ($var as $key => $item)
+  {
+    $temp = $this->avgRating($item, $request->input('film_id'));
+    $var[$key]['avgRating'] = round($temp, 1);
+  }
+  return $var;
+}
 
+private function avgRating($comment, $film_id)
+{
+  return Comment::join('likes', 'likes.commentId', '=', 'comments.id')
+  ->where('likes.film_id', $film_id)
+  ->where('likes.commentId', $comment['id'])
+  ->avg('rating');
+}
 */
-
-/*join('likes', 'likes.commentId', '=', 'comments.id')
-->where('likes.film_id', $request->input('film_id'))
-->avg('rating');*/
