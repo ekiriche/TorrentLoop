@@ -27,18 +27,31 @@ class Comments extends Component  {
 		this.getValueFromForm = this.getValueFromForm.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.setLike = this.setLike.bind(this);
+		this.createRatngArray = this.createRatngArray.bind(this);
 	}
 
+createRatngArray(rating) {
+	let arr = [];
+	let span = '☆';
+
+	for (let i = 0; i < rating; i++) {
+	  arr[i] = span;
+	}
+	return (arr);
+}
 	componentWillMount () {
 		let token =localStorage.getItem('accessToken');
 		let decoded = jwtDecode(token);
 		this.setState({ user_id: decoded.uid });
 		PostData('movie/get-comment', {'film_id': this.state.film_id, 'user_id': decoded.uid}).then ((result) => {
-			let AddCurrentUserId = result.map(x => ({ /*add current user to id to result obj*/
-				...x,
-				'current_user_id': decoded.uid
+			let AddCurrentUserId = result.map((comment) => ({ /*add current user to id to result obj*/
+				...comment,
+				'current_user_id': decoded.uid,
+				'rating_array': this.createRatngArray(comment.avgRating)
 			}));
+			console.log(AddCurrentUserId);
 			const commentsList = AddCurrentUserId.map((comment, i) => {
+				//console.log(i);
 				if (comment.current_user_id != comment.user_id) {
 					return (
 						<ul key={i} className="collection">
@@ -58,7 +71,7 @@ class Comments extends Component  {
 										<span onClick={this.setLike} data-rating="2" data-comment-id={comment.id}>☆</span>
 										<span onClick={this.setLike} data-rating="1" data-comment-id={comment.id}>☆</span>
 									</div>
-									: <span className="comment-like-positon">Your rating is {comment.currentUserRating.rating}</span>
+									: <span className="comment-like-positon user-rating-color">{comment.rating_array}</span>
 							}
 						</li>
 					</ul>
