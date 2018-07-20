@@ -25,6 +25,14 @@ class Movie extends Component  {
 		this.state = {
 			movie: isMovie
 		}
+		this.props.initialize({
+			languages: [
+				{ name: "EN", code: "en" },
+				{ name: "UA", code: "ua" }
+			],
+			translation: globalTranslations,
+			options: { renderToStaticMarkup }
+		});
 	}
 
 	componentDidUpdate(prevProps) {
