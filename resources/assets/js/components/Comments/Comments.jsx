@@ -182,7 +182,6 @@ setLike(event) {
 handleSubmit(event) {
 	event.preventDefault();
 	PostData('movie/add-comment', this.state).then ((result) => {
-		console.log(result);
 		this.createComments(result, this.state.user_id );
 		this.setState({comment_data: result});
 		/*
