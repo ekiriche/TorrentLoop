@@ -34,15 +34,26 @@ class CommentsController extends Controller
     if ($validator->fails())
       return $validator->errors();
     $this->create($request->all());
-    return ("ok");
+    $var = Comment::join('users', 'users.id', '=', 'comments.user_id')
+    ->select('users.id as user_id', 'users.firstname', 'users.lastname', 'users.photo', 'comments.content', 'comments.id', 'comments.created_at')
+    ->where('film_id', '=', $request->input('film_id'))
+    ->get();
+    foreach ($var as $key => $item)
+    {
+      $temp = $this->avgRating($item, $request->input('film_id'));
+      $currentUserRating = $this->currentUserRating($item['id'], $request->input('user_id'));
+      $var[$key]['avgRating'] = round($temp, 1);
+      $var[$key]['currentUserRating'] = $currentUserRating;
+    }
+    return $var;
   }
 
   public function getComments(Request $request)
   {
     $var = Comment::join('users', 'users.id', '=', 'comments.user_id')
-    ->select('users.firstname', 'users.lastname', 'users.photo', 'comments.content', 'comments.id', 'comments.created_at')
+    ->select('users.id as user_id', 'users.firstname', 'users.lastname', 'users.photo', 'comments.content', 'comments.id', 'comments.created_at')
     ->where('film_id', '=', $request->input('film_id'))
-    ->get('users.id as user_id');
+    ->get();
     foreach ($var as $key => $item)
     {
       $temp = $this->avgRating($item, $request->input('film_id'));

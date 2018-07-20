@@ -3,12 +3,16 @@
   margin: auto;
 }
 
+.user-rating-color {
+  color: #FFD700;
+}
+
 .comment-rating-position {
   position: absolute;
   width: 42px;
   height: 46px;
   overflow: hidden;
-  left: 25px;
+  left: 30px;
   bottom: -20px;
   display: inline-block;
   vertical-align: middle;

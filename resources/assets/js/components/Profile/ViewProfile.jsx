@@ -4,6 +4,8 @@ import jwtDecode from 'jwt-decode';
 /*localization*/
 import { renderToStaticMarkup } from "react-dom/server";
 import { withLocalize, Translate } from "react-localize-redux";
+import globalTranslations from '../translations/global.json';
+import ToggleButton from 'react-toggle-button';
 /*localization end*/
 
 import './Profile.css';
@@ -21,6 +23,19 @@ class ViewProfile extends Component  {
 			'id': this.props.match.params.id,
 			'links': []
 		};
+		this.props.initialize({
+			languages: [
+				{ name: "EN", code: "en" },
+				{ name: "UA", code: "ua" }
+			],
+			translation: globalTranslations,
+			options: { renderToStaticMarkup }
+		});
+	}
+	componentDidUpdate(prevProps) {
+		const prevLangCode = prevProps.activeLanguage && prevProps.activeLanguage.code;
+		const curLangCode = this.props.activeLanguage && this.props.activeLanguage.code;
+		const hasLanguageChanged = prevLangCode !== curLangCode;
 	}
 
 	componentWillMount() {
