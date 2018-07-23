@@ -11,6 +11,7 @@ class VideoPlayer extends Component  {
 		super(props);
 		this.state = {
 			movie: this.props.movieData,
+			moviePath: this.props.moviePath,
 			subtitles: this.props.subtitles,
 		}
 	}
@@ -29,7 +30,7 @@ class VideoPlayer extends Component  {
 						onCanPlayThrough={() => {
 							this.refs.video.videoEl.pause();
 						}}>
-						<source src="https://download.blender.org/durian/trailer/sintel_trailer-720p.mp4" type="video/webm" />
+						<source src={this.state.moviePath} type="video/webm" />
 						{listSubtitles}
 				</Video>
 		);

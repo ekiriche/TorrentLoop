@@ -52,7 +52,8 @@ class MovieData extends Component  {
 	}
 
 	startDownload(event) {
-		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code, 'quality': event.target.id }).then ((result) => {
+		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code }).then ((moviepath) => {
+			this.setState({ moviePath : 'http://localhost:8100/movies/' + moviepath });
 		})
 		PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
 			this.setState({subtitles: result});
@@ -117,7 +118,7 @@ class MovieData extends Component  {
 						</div>
 				</div>
 			</Card>
-			{(this.state.download) ? <VideoPlayer subtitles={this.state.subtitles} movieData={this.state.movie}/> : null}
+			{(this.state.download) ? <VideoPlayer subtitles={this.state.subtitles} movieData={this.state.movie} moviePath={this.state.moviePath}/> : null}
 			<Comments data={this.state.movie}/>
 		</Col>
 	);

@@ -1,27 +1,38 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const port = 8142;
 
 var torrentStream = require('torrent-stream');
 const magnetLink = require('magnet-link');
 
-app.get('/', (request, response) => {
-    magnetLink('https://yts.am/torrent/download/5BBBEEA6265E3C934AD7D657D5C5D5BC49DD6C87', (err, link) => {
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
+
+app.post('/get-stream', function(req, res) {
+
+//    res.send(req.body);
+    magnetLink(req.body.torrent, (err, link) => {
         var engine = torrentStream(link, {
-                path: '../'
+                path: '../movies/'
             }
         );
 
         engine.on('ready', function() {
-            console.log(this.files);
             engine.files.forEach(function(file) {
-                console.log('filename:', file.name);
-                var stream = file.createReadStream();
-                // stream is readable stream to containing the file content
+                console.log('filepath:', file.path);
+                let format = file.name.split('.').pop();
+                if (format === 'mp4' || format === 'webm' || format === 'ogg' || format === 'mkv')
+                {
+                  var stream = file.createReadStream();
+                  res.send(file.path);
+                }
             });
         });
-        response.send('Hello from Express!')
-    });
+    //    response.send('Hello from Express!')
+  });
 });
 
 app.listen(port, (err) => {
