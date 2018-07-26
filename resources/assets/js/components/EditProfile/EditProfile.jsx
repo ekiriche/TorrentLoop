@@ -5,7 +5,10 @@ import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 import { PostData } from '../../functions/PostData';
 /*localization*/
+import { renderToStaticMarkup } from "react-dom/server";
 import { withLocalize, Translate } from "react-localize-redux";
+import globalTranslations from '../translations/global.json';
+import ToggleButton from 'react-toggle-button';
 /*localization end*/
 
 import { Card, CardTitle , Col} from 'react-materialize';
@@ -29,6 +32,16 @@ class EditProfile extends Component  {
 			'oldpassword_error' : false,
 			'photo_change' : false
     }
+
+		this.props.initialize({
+			languages: [
+				{ name: "EN", code: "en" },
+				{ name: "UA", code: "ua" }
+			],
+			translation: globalTranslations,
+			options: { renderToStaticMarkup }
+		});
+
     this.handleChange = this.handleChange.bind(this);
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
 		this.handlePhotoChange = this.handlePhotoChange.bind(this);
@@ -59,6 +72,12 @@ class EditProfile extends Component  {
       console.log(this.state);
     });
 	}
+
+		componentDidUpdate(prevProps) {
+			const prevLangCode = prevProps.activeLanguage && prevProps.activeLanguage.code;
+			const curLangCode = this.props.activeLanguage && this.props.activeLanguage.code;
+			const hasLanguageChanged = prevLangCode !== curLangCode;
+		}
 
   handleChange(event)
   {
