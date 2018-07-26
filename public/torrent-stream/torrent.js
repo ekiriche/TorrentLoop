@@ -1,5 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const fs = require('fs');
+const path = require('path');
 const app = express();
 const port = 8142;
 
@@ -10,6 +12,8 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
 app.post('/get-stream', function(req, res) {
 
@@ -27,12 +31,18 @@ app.post('/get-stream', function(req, res) {
                 if (format === 'mp4' || format === 'webm' || format === 'ogg' || format === 'mkv')
                 {
                   var stream = file.createReadStream();
-                  res.send(file.path);
+        //          stream.pipe(fs.createWriteStream('../movies/' + file.path));
+                  var moviePath = 'http://localhost:8100/movies/' + file.path;
+                  res.send(moviePath);
                 }
             });
         });
-    //    response.send('Hello from Express!')
+
   });
+});
+
+app.get('/', function(req, res) {
+  res.render('index');
 });
 
 app.listen(port, (err) => {

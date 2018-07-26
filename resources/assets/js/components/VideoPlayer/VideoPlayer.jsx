@@ -3,6 +3,7 @@ import { Row, Input, Button } from 'react-materialize';
 import { Link } from 'react-router-dom';
 
 import { DefaultPlayer as Video } from 'react-html5video';
+import ReactPlayer from 'react-player';
 
 import './styles.css';
 
@@ -23,13 +24,13 @@ class VideoPlayer extends Component  {
 				<track key={i} kind="subtitles" label={subtitle.language} srcLang={subtitle.language} src={location + subtitle.language + '.vtt'} />
 			)
 
+			return <ReactPlayer url={this.state.moviePath} playing controls='true'/>
+
 		return (
-				<Video autoPlay loop muted ref="video"
+				<Video autoPlay loop
 						controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen', 'Captions']}
 						poster={this.state.movie.background_image}
-						onCanPlayThrough={() => {
-							this.refs.video.videoEl.pause();
-						}}>
+						>
 						<source src={this.state.moviePath} type="video/webm" />
 						{listSubtitles}
 				</Video>

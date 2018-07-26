@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
-import { Link } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 /*localization*/
@@ -24,10 +24,12 @@ class MovieData extends Component  {
 			movie: this.props.movieData,
 			download: false,
 			subtitles: '',
-			downloadPercent: 0
+			downloadPercent: 0,
+			moviePath: ''
 		}
 		this.startDownload = this.startDownload.bind(this);
 		this.getDownloadPercentage = this.getDownloadPercentage.bind(this);
+		console.log(window.location.href);
 	}
 
 	componentWillMount(){
@@ -53,13 +55,14 @@ class MovieData extends Component  {
 
 	startDownload(event) {
 		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code }).then ((moviepath) => {
-			this.setState({ moviePath : 'http://localhost:8100/movies/' + moviepath });
-		})
-		PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
-			this.setState({subtitles: result});
-			this.setState({ download : true});
-		})
-
+			this.setState({ moviePath : moviepath });
+			setTimeout(function() {
+				PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
+					this.setState({ subtitles: result });
+					this.setState({ download : true });
+					})
+				}.bind(this), 7000);
+			})
 	}
 
 	getDownloadPercentage() {
@@ -94,7 +97,6 @@ class MovieData extends Component  {
 				<i className="material-icons left" >cloud_download</i>{size.quality}</a>
 		</li>
 	)
-
 
 	return (
 		<Col m={7} s={12}>

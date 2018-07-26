@@ -26,7 +26,7 @@ class MovieHistoryController extends Controller
 		$user = User::where('id', $uid);
 		$history = new MovieHistory();
 		if ($user) {
-			$existed = $history->where('imdb_code', $request->input('imdb_code'))->first();
+			$existed = $history->where('imdb_code', $request->input('imdb_code'))->where('user_id', $uid)->first();
 			if ($existed)
 				$existed->increment('watch');
 			else
