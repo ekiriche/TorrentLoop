@@ -29,3 +29,5 @@ Route::post('movie/add-comment', 'CommentsLikes\CommentsController@addComment');
 Route::post('movie/get-comment', 'CommentsLikes\CommentsController@getComments');
 Route::post('movie/add-like', 'CommentsLikes\LikesController@addLike');
 Route::post('movie/remove-like', 'CommentsLikes\LikesController@removeLike');
+Route::post('movie/add-film-to-db', 'Movies\MoviesDeletionController@addFilmToDB');
+Route::get('movie/delete-not-watched-films', 'Movies\MoviesDeletionController@deleteNotWatchedFilms');
