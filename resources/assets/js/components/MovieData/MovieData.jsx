@@ -52,13 +52,19 @@ class MovieData extends Component  {
 	}
 
 	startDownload(event) {
-		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code, 'quality': event.target.id }).then ((result) => {
-		})
-		PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
-			this.setState({subtitles: result});
-			this.setState({ download : true});
-		})
-
+		setTimeout(function() {
+		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code }).then ((moviepath) => {
+			console.log(moviepath);
+			this.setState({ moviePath : moviepath });
+			this.setState({ download : true });
+	/*		setTimeout(function() {
+				PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
+					this.setState({ subtitles: result });
+					this.setState({ download : true });
+					})
+				}.bind(this), 7000); */
+			})
+		}.bind(this), 7000);
 	}
 
 	getDownloadPercentage() {

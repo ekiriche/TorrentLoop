@@ -6,7 +6,7 @@ import jwtDecode from 'jwt-decode';
 import { Row, Input, Button } from 'react-materialize';
 import { withLocalize, Translate } from 'react-localize-redux';
 
-import LanguageToggle from '../Library/LanguageToggle';
+import LanguageToggle from '../../functions/LanguageToggle';
 import './Navbar.css';
 
 

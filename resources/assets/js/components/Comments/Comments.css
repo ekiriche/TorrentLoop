@@ -1,6 +1,5 @@
 .comment-button-float {
   width: 200px;
-  margin: auto;
 }
 
 .user-rating-color {
@@ -39,6 +38,11 @@
    position: absolute;
 }
 
+.recaptcha-block {
+  display: flex;
+  justify-content: space-between;
+}
+
 .rating {
   unicode-bidi: bidi-override;
   direction: rtl;
@@ -52,4 +56,18 @@
 .rating > span:hover ~ span:before {
    content: "\2605";
    position: absolute;
+}
+@media screen and (max-width: 450px) {
+  /* Small phones to small tablets: from 481px to 767px*/
+  .recaptcha-block {
+    flex-direction: column;
+  }
+  #g-recaptcha {
+    transform:scale(0.77) !important;
+    transform-origin:0 0 !important;
+  }
+  .comment-button-float {
+    margin: 20px;
+  }
+
 }

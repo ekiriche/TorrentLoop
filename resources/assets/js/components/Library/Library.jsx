@@ -11,7 +11,7 @@ import ToggleButton from 'react-toggle-button';
 /*localization end*/
 
 import './Library.css';
-
+import { PostData } from '../../functions/PostData';
 // import Search from '../Search/Search';
 import Navbar from '../Navbar/Navbar';
 import Foot from '../Footer/Footer';
@@ -45,8 +45,8 @@ class Library extends Component  {
 	{
 		let jwt = localStorage.getItem('accessToken');
 		let user = jwtDecode(jwt);
-		axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then (result => {
-			if (result.data == 'expired')
+		PostData('auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then (result => {
+			if (result == 'expired')
 				localStorage.removeItem('accessToken');
 		});
 	}
