@@ -10,7 +10,6 @@ import { withLocalize, Translate } from "react-localize-redux";
 import globalTranslations from '../translations/global.json';
 import ToggleButton from 'react-toggle-button';
 /*localization end*/
-
 import { Card, CardTitle , Col} from 'react-materialize';
 
 import Navbar from '../Navbar/Navbar';
@@ -52,21 +51,22 @@ class EditProfile extends Component  {
 	componentWillMount() {
     let token =  localStorage.getItem('accessToken');
     let id = jwtDecode(token);
-		axios.post('http://localhost:8100/auth/token-update', {'id' : id.uid, 'jwt' : token}).then (result => {
+		PostData('auth/token-update', {'id' : id.uid, 'jwt' : token}).then (result => {
 			if (result.data == 'expired')
 				localStorage.removeItem('accessToken');
 		});
-    axios.post('http://localhost:8100/profile/get-user-info', {'id' : id.uid}).then (result => {
-			if (result.data.info == null)
+    PostData('profile/get-user-info', {'id' : id.uid}).then (result => {
+			console.log(result);
+			if (result.info == null)
 				this.setState({ 'info' : '' });
 			else
-				this.setState({ 'info' : result.data.info });
+				this.setState({ 'info' : result.info });
       this.setState({
-        'firstname' : result.data.firstname,
-        'lastname' : result.data.lastname,
-        'email' : result.data.email,
-        'photo' : result.data.photo,
-        'password' : result.data.password,
+        'firstname' : result.firstname,
+        'lastname' : result.lastname,
+        'email' : result.email,
+        'photo' : result.photo,
+        'password' : result.password,
 				'user_id' : id.uid
       });
       console.log(this.state);
@@ -94,11 +94,11 @@ class EditProfile extends Component  {
 		this.setState({ newpassword_error : false});
 		this.setState({ password_change_success : false });
 		console.log(oldpass.value);
-    axios.post('http://localhost:8100/auth/update-pass', {'oldpass' : oldpass.value, 'newpass' : newpass.value, 'id' : this.state.user_id}).then (result => {
-			console.log(result.data);
+    PostData('auth/update-pass', {'oldpass' : oldpass.value, 'newpass' : newpass.value, 'id' : this.state.user_id}).then (result => {
+			console.log(result);
 			if (result.data == 'Wrong password')
 				this.setState({ oldpassword_error : "Wrong password" });
-			else if (result.data != "OK")
+			else if (result!= "OK")
 				this.setState({ newpassword_error : "New password should have at least six symbols, including one capital letter and one digital" });
 			else
 				this.setState({ password_change_success : true });
@@ -118,7 +118,7 @@ class EditProfile extends Component  {
 		reader.readAsDataURL(selectorFiles[0]);
 		reader.onloadend = function() {
 			photo.setAttribute('src', reader.result);
-			axios.post('http://localhost:8100/profile/set-picture', { 'img' : reader.result, 'id' : id.uid }).then (result => {
+			PostData('profile/set-picture', { 'img' : reader.result, 'id' : id.uid }).then (result => {
 				console.log(result);
 			})
 		}
@@ -131,9 +131,9 @@ class EditProfile extends Component  {
     let id = jwtDecode(token);
 		this.setState({ info_change : '' });
 		console.log(this.state);
-		axios.post('http://localhost:8100/profile/set-info', {'id' : id.uid, 'firstname' : this.state.firstname, 'lastname' : this.state.lastname, 'email' : this.state.email, 'info' : this.state.info}).then (result => {
-			console.log(result.data);
-			if (result.data == "OK")
+		PostData('profile/set-info', {'id' : id.uid, 'firstname' : this.state.firstname, 'lastname' : this.state.lastname, 'email' : this.state.email, 'info' : this.state.info}).then (result => {
+			console.log(result);
+			if (result == "OK")
 				this.setState({ info_change : 'changed' });
 			else
 			{
@@ -150,9 +150,9 @@ class EditProfile extends Component  {
     let id = jwtDecode(token);
 		this.setState({ newpassword_error : false});
 		this.setState({ password_change_success : false });
-		axios.post('http://localhost:8100/profile/set-password', { 'id' : id.uid, 'password' : this.state.new_oauth_password }).then (result => {
-			console.log(result.data);
-			if (result.data == "OK")
+		PostData('profile/set-password', { 'id' : id.uid, 'password' : this.state.new_oauth_password }).then (result => {
+			console.log(result);
+			if (result == "OK")
 				this.setState({ password_change_success : true });
 			else {
 				this.setState({ newpassword_error : "New password should have at least six symbols, including one capital letter and one digital" });
