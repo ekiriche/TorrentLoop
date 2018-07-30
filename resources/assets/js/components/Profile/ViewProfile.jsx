@@ -41,6 +41,20 @@ class ViewProfile extends Component  {
 	componentWillMount() {
 		let jwt = localStorage.getItem('accessToken');
     let user = jwtDecode(jwt);
+		PostData('auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then ((result) => {
+			console.log(result);
+			if (result == 'expired')
+        localStorage.removeItem('accessToken');
+		})
+		PostData('profile/get-user-info', {'id': this.state.id}).then ((result) => {
+			console.log(result);
+			this.setState({
+				'firstname': result.firstname,
+				'lastname': result.lastname,
+				'picture': result.photo,
+				'info': result.info
+			});
+		})/*
     axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then (result => {
       if (result.data == 'expired')
         localStorage.removeItem('accessToken');
@@ -52,7 +66,7 @@ class ViewProfile extends Component  {
 				'picture': result.data.photo,
 				'info': result.data.info
 			});
-		});
+		});*/
 		PostData('profile/get-history', {
 			'jwt': jwt
 		}).then ((result) => {
@@ -90,7 +104,7 @@ class ViewProfile extends Component  {
 				movieId={link.movie_id}
 				/>
 		)
-
+console.log(this.state.picture);
 		return (
 			<div className="movie-flex">
 				<Navbar />
@@ -99,10 +113,10 @@ class ViewProfile extends Component  {
 						<Col m={12} s={12}>
 							<Card horizontal header={<CardTitle image={this.state.picture}></CardTitle>}>
 								<h4>{this.state.firstname} {this.state.lastname}</h4>
-								<h6>Bio</h6>
+								<h6><Translate id="bio">Bio</Translate></h6>
 								<p>{this.state.info}</p>
 							</Card>
-							<Card horizontal title="Recently viewed">
+							<Card horizontal title={<Translate id="recently_viewed">Recently viewed</Translate>}>
 								<div className="view-history">{allFilms}</div>
 							</Card>
 						</Col>

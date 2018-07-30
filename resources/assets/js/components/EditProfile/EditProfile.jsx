@@ -77,6 +77,7 @@ class EditProfile extends Component  {
 			const prevLangCode = prevProps.activeLanguage && prevProps.activeLanguage.code;
 			const curLangCode = this.props.activeLanguage && this.props.activeLanguage.code;
 			const hasLanguageChanged = prevLangCode !== curLangCode;
+
 		}
 
   handleChange(event)

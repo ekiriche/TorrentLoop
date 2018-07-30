@@ -12,7 +12,7 @@ class VideoPlayer extends Component  {
 		super(props);
 		this.state = {
 			movie: this.props.movieData,
-			moviePath: this.props.moviePath,
+			moviePath: 'http://localhost:8100/movies/The%20Mountain%20II%20(2016)%20[WEBRip]%20[720p]%20[YTS.AM]/The.Mountain.II.2016.720p.WEBRip.x264-[YTS.AM].mp4',
 			subtitles: this.props.subtitles,
 		}
 	}
@@ -26,15 +26,18 @@ class VideoPlayer extends Component  {
 
 			return <ReactPlayer url={this.state.moviePath} playing controls='true'/>
 
-		return (
-				<Video autoPlay loop
-						controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen', 'Captions']}
-						poster={this.state.movie.background_image}
-						>
-						<source src={this.state.moviePath} type="video/webm" />
-						{listSubtitles}
-				</Video>
-		);
+
 	}
 }
 export default VideoPlayer;
+/*
+return (
+		<Video autoPlay loop
+				controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen', 'Captions']}
+				poster={this.state.movie.background_image}
+				>
+				<source src={this.state.moviePath} type="video/webm" />
+				{listSubtitles}
+		</Video>
+);
+*/
