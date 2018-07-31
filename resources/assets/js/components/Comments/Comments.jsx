@@ -208,7 +208,7 @@ render() {
 					</div>
 				</form>
 				<div>
-					<h5>Sort by:</h5>
+					<h5>Sort by</h5>
 					<div className="comment-sort">
 						<Button onClick={this.commentSort} className="comment-sort-button" id="date-upward" waves='light'>Date<Icon left>arrow_upward</Icon></Button>
 						<Button onClick={this.commentSort} className="comment-sort-button" id="date-downward" waves='light'>Date<Icon left>arrow_downward</Icon></Button>
