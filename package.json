@@ -55,8 +55,10 @@
         "redux": "^4.0.0",
         "redux-devtools-extension": "^2.13.5",
         "redux-form": "^7.4.2",
+        "srt-to-vtt": "^1.1.2",
         "torrent-search-api": "^1.1.5",
         "torrent-stream": "^1.0.4",
-        "video-react": "^0.13.0"
+        "video-react": "^0.13.0",
+        "yifysubtitles-api": "0.0.1"
     }
 }

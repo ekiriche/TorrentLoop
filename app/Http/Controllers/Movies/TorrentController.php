@@ -28,7 +28,7 @@ class TorrentController extends Controller
 	//	$result = http_get('http://localhost:8142', array('torrent' => _getDownloadUrl($request->input('imdb-id'))));
 		$url = "http://localhost:8142/get-stream";
 		$torrent = $this->_getDownloadUrl($request->input('imdb-id'));
-		$data = array('torrent' => $torrent);
+		$data = array('torrent' => $torrent, 'imdb' => $request->input('imdb-id'));
 		$options = array(
     'http' => array(
         'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
