@@ -57,6 +57,11 @@
    content: "\2605";
    position: absolute;
 }
+.comment-sort {
+  display: flex;
+  justify-content: space-between;
+  margin: 2% 0;
+}
 @media screen and (max-width: 450px) {
   /* Small phones to small tablets: from 481px to 767px*/
   .recaptcha-block {
@@ -68,6 +73,13 @@
   }
   .comment-button-float {
     margin: 20px;
+  }
+  .comment-sort {
+    margin: 2% 20px;
+    flex-direction: column;
+  }
+  .comment-sort-button {
+    margin-top: 10px;
   }
 
 }

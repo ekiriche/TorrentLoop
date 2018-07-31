@@ -13,7 +13,7 @@ import axios from 'axios';
 
 import './Comments.css';
 import { PostData } from '../../functions/PostData';
-import { Card, Col, Chip, Row, Input, Button } from 'react-materialize';
+import { Card, Col, Chip, Row, Input, Button, Icon } from 'react-materialize';
 
 class Comments extends Component  {
 	constructor(props) {
@@ -36,6 +36,7 @@ class Comments extends Component  {
 		this.createComments = this.createComments.bind(this);
 		this.recaptchaLoaded = this.recaptchaLoaded.bind(this);
 		this.userCanSendMassage = this.userCanSendMassage.bind(this);
+		this.commentSort = this.commentSort.bind(this);
 	}
 
 	createRatingArray(rating) {
@@ -49,6 +50,7 @@ class Comments extends Component  {
 	}
 
 	createComments(result, uid) {
+		console.log(result);
 		let AddCurrentUserId = result.map((comment) => ({
 			...comment,
 			'current_user_id': uid, /*add current user to id to result obj*/
@@ -107,6 +109,7 @@ class Comments extends Component  {
 			this.createComments(result, decoded.uid );
 		})
 		//this.setState({comments: commentsList});
+
 	}
 
 getValueFromForm(event) {
@@ -154,6 +157,32 @@ recaptchaLoaded() {
 userCanSendMassage() {
 	this.setState({userVerifyRecaptcha: true})
 }
+commentSort(event) {
+	console.log(event.target.id);
+	let whatSort, type, sorted;
+	[ whatSort, type ] = [ event.target.id.split('-')[0], event.target.id.split('-')[1]];
+	if (type === 'upward' && whatSort === 'date') {
+		sorted = this.state.comment_data.sort(function(a, b) {
+			return a.created_at > b.created_at;
+		});
+		this.createComments(sorted, this.state.user_id);
+	} else if (type === 'downward' && whatSort === 'date') {
+		sorted = this.state.comment_data.sort(function(a, b) {
+			return a.created_at < b.created_at;
+		});
+		this.createComments(sorted, this.state.user_id);
+	} else if (type === 'upward' && whatSort === 'rating') {
+		sorted = this.state.comment_data.sort(function(a, b) {
+			return a.avgRating > b.avgRating;
+		});
+		this.createComments(sorted, this.state.user_id);
+	} else if (type === 'downward' && whatSort === 'rating') {
+		sorted = this.state.comment_data.sort(function(a, b) {
+			return a.avgRating < b.avgRating;
+		});
+		this.createComments(sorted, this.state.user_id);
+	}
+}
 
 render() {
 	let recaptchaInstance;
@@ -178,6 +207,15 @@ render() {
 							/>
 					</div>
 				</form>
+				<div>
+					<h5>Sort by:</h5>
+					<div className="comment-sort">
+						<Button onClick={this.commentSort} className="comment-sort-button" id="date-upward" waves='light'>Date<Icon left>arrow_upward</Icon></Button>
+						<Button onClick={this.commentSort} className="comment-sort-button" id="date-downward" waves='light'>Date<Icon left>arrow_downward</Icon></Button>
+						<Button onClick={this.commentSort} className="comment-sort-button" id="rating-upward" waves='light'>Rating<Icon right>arrow_upward</Icon></Button>
+						<Button onClick={this.commentSort} className="comment-sort-button" id="rating-downward" waves='light'>Rating<Icon right>arrow_downward</Icon></Button>
+					</div>
+				</div>
 				{(this.state.comment_error) ? <span className="alert alert-danger">{this.state.comment_error}</span> : null}
 				{(this.state.comment_add) ? <span className="alert alert-success">Comment added</span> : null}
 				{(this.state.comments_list) ? this.state.comments_list : null }
