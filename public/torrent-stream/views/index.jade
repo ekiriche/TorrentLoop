@@ -12,13 +12,4 @@ html
             h1.header= 'movie'
 
             video#my-player.video-js.vjs-default-skin(controls='', width='1280', height='720')
-                source(src= src, type='video/mp4', data-res='720')
-                p.vjs-no-js
-                    | To view this video please enable JavaScript, and consider upgrading to a
-                    | web browser that
-                    a(href='http://videojs.com/html5-video-support/', target='_blank')
-                        | supports HTML5 video
-            .wrapper
-                h3.fim-plot Plot:
-                div
-                    p.plot= "Description"
+                source(src= moviePath, type='video/mp4', data-res='720')

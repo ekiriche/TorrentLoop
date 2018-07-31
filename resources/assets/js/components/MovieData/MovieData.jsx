@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import axios from 'axios';
 /*localization*/
@@ -24,12 +24,10 @@ class MovieData extends Component  {
 			movie: this.props.movieData,
 			download: false,
 			subtitles: '',
-			downloadPercent: 0,
-			moviePath: ''
+			downloadPercent: 0
 		}
 		this.startDownload = this.startDownload.bind(this);
 		this.getDownloadPercentage = this.getDownloadPercentage.bind(this);
-		console.log(window.location.href);
 	}
 
 	componentWillMount(){
@@ -40,6 +38,11 @@ class MovieData extends Component  {
 				localStorage.removeItem('accessToken');
 		});
 		console.log("result");
+	}
+
+	startDownload(event) {
+		let jwt = localStorage.getItem('accessToken');
+		let user = jwtDecode(jwt);
 		PostData('profile/save-history', {
 			'movie_id': this.state.movie.id,
 			'imdb_code': this.state.movie.imdb_code,
@@ -47,13 +50,10 @@ class MovieData extends Component  {
 			'title_english': this.state.movie.title_english,
 			'year': this.state.movie.year,
 			'rating': this.state.movie.rating,
-			'jwt': jwt
+			'user_id': user.uid
 		}).then ((result) => {
 			console.log(result);
 		});
-	}
-
-	startDownload(event) {
 		setTimeout(function() {
 		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code }).then ((moviepath) => {
 			console.log(moviepath);
@@ -102,6 +102,7 @@ class MovieData extends Component  {
 		</li>
 	)
 
+
 	return (
 		<Col m={7} s={12}>
 			<Card horizontal header={<CardTitle image={this.state.movie.large_cover_image}></CardTitle>}>
@@ -124,7 +125,7 @@ class MovieData extends Component  {
 						</div>
 				</div>
 			</Card>
-			{(this.state.download) ? <VideoPlayer subtitles={this.state.subtitles} movieData={this.state.movie} moviePath={this.state.moviePath}/> : null}
+			{(this.state.download) ? <VideoPlayer subtitles={this.state.subtitles} movieData={this.state.movie}/> : null}
 			<Comments data={this.state.movie}/>
 		</Col>
 	);

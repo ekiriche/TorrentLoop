@@ -263,5 +263,14 @@
 	"changePhotoHeader": [
 		null,
 		"Фотографія"
+	],
+	"bio": [
+		null,
+		"Біографія"
+	]
+	,
+	"recently_viewed": [
+		null,
+		"Історія переглядів"
 	]
 }
