@@ -13,6 +13,7 @@ const magnetLink = require('magnet-link');
 
 let moviePath = '';
 let subPath = '';
+let dansGame = 0;
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -66,7 +67,7 @@ app.post('/get-stream', function(req, res) {
         });
 
         engine.on('download', () => {
-          moviePath = moviePath + '';
+          dansGame++;
         })
         res.send('OK');
   });
@@ -75,7 +76,7 @@ app.post('/get-stream', function(req, res) {
 app.get('/', function(req, res) {
   setTimeout(() => {
     res.render('index', {moviePath : moviePath, subPath : subPath});
-  }, 5000);
+  }, 2000);
 });
 
 app.listen(port, (err) => {

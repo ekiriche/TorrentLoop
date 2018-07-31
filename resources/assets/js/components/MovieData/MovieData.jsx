@@ -38,6 +38,11 @@ class MovieData extends Component  {
 				localStorage.removeItem('accessToken');
 		});
 		console.log("result");
+	}
+
+	startDownload(event) {
+		let jwt = localStorage.getItem('accessToken');
+		let user = jwtDecode(jwt);
 		PostData('profile/save-history', {
 			'movie_id': this.state.movie.id,
 			'imdb_code': this.state.movie.imdb_code,
@@ -45,13 +50,10 @@ class MovieData extends Component  {
 			'title_english': this.state.movie.title_english,
 			'year': this.state.movie.year,
 			'rating': this.state.movie.rating,
-			'jwt': jwt
+			'user_id': user.uid
 		}).then ((result) => {
 			console.log(result);
 		});
-	}
-
-	startDownload(event) {
 		setTimeout(function() {
 		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code }).then ((moviepath) => {
 			console.log(moviepath);

@@ -21,9 +21,9 @@ class MovieHistoryController extends Controller
 
 	public function saveMovieToHistory(Request $request)
 	{
-		$token = new Tokens();
+		/*$token = new Tokens();
 		$uid = $token->getTokenUid($request->input('jwt'));
-		$user = User::where('id', $uid);
+		$user = User::where('id', $uid)->first();
 		$history = new MovieHistory();
 		if ($user) {
 			$existed = $history->where('imdb_code', $request->input('imdb_code'))->where('user_id', $uid)->first();
@@ -44,5 +44,24 @@ class MovieHistoryController extends Controller
 			return "true";
 		}
 		return "false";
+	}*/
+		$user = User::where('id', $request->input('user_id'))->first();
+		if ($user == '')
+			return 'false';
+		$history = History::where('user_id', $request->input('user_id'))->where('imdb_code', $request->input('imdb_code'))->first();
+		if ($history == '')
+		{
+			History::create([
+				'user_id' => $request->input('user_id'),
+				'movie_id' => $request->input('movie_id'),
+				'imdb_code' => $request->input('imdb_code'),
+				'medium_cover_image' => $request->input('medium_cover_image'),
+				'title_english' => $request->input('title_english'),
+				'year' => $request->input('year'),
+				'rating' => $request->input('rating'),
+				'watch' => 0
+			]);
+		}
+		return "true";
 	}
 }
