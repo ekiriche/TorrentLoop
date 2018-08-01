@@ -125,7 +125,6 @@ class MovieData extends Component  {
 						</div>
 				</div>
 			</Card>
-			{(this.state.download) ? <VideoPlayer subtitles={this.state.subtitles} movieData={this.state.movie}/> : null}
 			<Comments data={this.state.movie}/>
 		</Col>
 	);

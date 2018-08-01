@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 
 import Recaptcha from 'react-recaptcha';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 /*localization*/
 import { renderToStaticMarkup } from "react-dom/server";
@@ -28,6 +29,14 @@ class Comments extends Component  {
 			recaptchaLoaded: false,
 			userVerifyRecaptcha: false
 		}
+		this.props.initialize({
+			languages: [
+				{ name: "EN", code: "en" },
+				{ name: "UA", code: "ua" }
+			],
+			translation: globalTranslations,
+			options: { renderToStaticMarkup }
+		});
 
 		this.getValueFromForm = this.getValueFromForm.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,6 +46,12 @@ class Comments extends Component  {
 		this.recaptchaLoaded = this.recaptchaLoaded.bind(this);
 		this.userCanSendMassage = this.userCanSendMassage.bind(this);
 		this.commentSort = this.commentSort.bind(this);
+	}
+
+	componentDidUpdate(prevProps) {
+		const prevLangCode = prevProps.activeLanguage && prevProps.activeLanguage.code;
+		const curLangCode = this.props.activeLanguage && this.props.activeLanguage.code;
+		const hasLanguageChanged = prevLangCode !== curLangCode;
 	}
 
 	createRatingArray(rating) {
@@ -192,11 +207,11 @@ render() {
 	};
 	return (
 		<Col m={7} s={12}>
-			<Card title='Comments'>
+			<Card title={<Translate id="comments">Comments</Translate>}>
 				<form onSubmit={this.handleSubmit} className="comment-form-flex">
-					<Input type="textarea" name="content" label="Left comment" required s={12} onChange={this.getValueFromForm} />
+					<Input type="textarea" name="content" label={<Translate id="left-comment">Left comment</Translate>} required s={12} onChange={this.getValueFromForm} />
 					<div className="recaptcha-block">
-						<Button waves='light' className="comment-button-float" onClick={resetRecaptcha}>Send comment</Button>
+						<Button waves='light' className="comment-button-float" onClick={resetRecaptcha}><Translate id="send-comment">Send comment</Translate></Button>
 						<Recaptcha
 							ref={e => recaptchaInstance = e}
 							sitekey="6LctM2cUAAAAAF7nJiEOp_rvgyJ81_tPLfopHbiH"
@@ -208,17 +223,24 @@ render() {
 					</div>
 				</form>
 				<div>
-					<h5>Sort by</h5>
+					<h5><Translate id="sort">Sort by</Translate></h5>
 					<div className="comment-sort">
-						<Button onClick={this.commentSort} className="comment-sort-button" id="date-upward" waves='light'>Date<Icon left>arrow_upward</Icon></Button>
-						<Button onClick={this.commentSort} className="comment-sort-button" id="date-downward" waves='light'>Date<Icon left>arrow_downward</Icon></Button>
-						<Button onClick={this.commentSort} className="comment-sort-button" id="rating-upward" waves='light'>Rating<Icon right>arrow_upward</Icon></Button>
-						<Button onClick={this.commentSort} className="comment-sort-button" id="rating-downward" waves='light'>Rating<Icon right>arrow_downward</Icon></Button>
+						<Button onClick={this.commentSort} className="comment-sort-button" id="date-upward" waves='light'><Translate id="date">Date</Translate><Icon left>arrow_upward</Icon></Button>
+						<Button onClick={this.commentSort} className="comment-sort-button" id="date-downward" waves='light'><Translate id="date">Date</Translate><Icon left>arrow_downward</Icon></Button>
+						<Button onClick={this.commentSort} className="comment-sort-button" id="rating-upward" waves='light'><Translate id="rating">Rating</Translate><Icon right>arrow_upward</Icon></Button>
+						<Button onClick={this.commentSort} className="comment-sort-button" id="rating-downward" waves='light'><Translate id="rating">Rating</Translate><Icon right>arrow_downward</Icon></Button>
 					</div>
 				</div>
 				{(this.state.comment_error) ? <span className="alert alert-danger">{this.state.comment_error}</span> : null}
-				{(this.state.comment_add) ? <span className="alert alert-success">Comment added</span> : null}
-				{(this.state.comments_list) ? this.state.comments_list : null }
+				{(this.state.comment_add) ? <span className="alert alert-success"><Translate id="comment-added">Comment added</Translate></span> : null}
+
+				<ReactCSSTransitionGroup
+					transitionName="example"
+				    transitionEnterTimeout={500}
+				    transitionLeaveTimeout={300}>
+
+					{(this.state.comments_list) ? this.state.comments_list : null }
+				</ReactCSSTransitionGroup>
 			</Card>
 		</Col>
 	);
