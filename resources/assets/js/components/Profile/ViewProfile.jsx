@@ -23,6 +23,7 @@ class ViewProfile extends Component  {
 			'id': this.props.match.params.id,
 			'links': []
 		};
+
 		this.props.initialize({
 			languages: [
 				{ name: "EN", code: "en" },
@@ -37,6 +38,7 @@ class ViewProfile extends Component  {
 		const curLangCode = this.props.activeLanguage && this.props.activeLanguage.code;
 		const hasLanguageChanged = prevLangCode !== curLangCode;
 	}
+
 
 	componentWillMount() {
 		let jwt = localStorage.getItem('accessToken');
@@ -82,6 +84,7 @@ class ViewProfile extends Component  {
 	}
 
 	render() {
+
 		if (!this.state.picture) {
 			return (
 				<div className="progress">
@@ -104,7 +107,6 @@ class ViewProfile extends Component  {
 				movieId={link.movie_id}
 				/>
 		)
-console.log(this.state.picture);
 		return (
 			<div className="movie-flex">
 				<Navbar />

@@ -272,5 +272,36 @@
 	"recently_viewed": [
 		null,
 		"Історія переглядів"
+	],
+	"_comment": "movie page",
+	"send-comment": [
+		null,
+		"Надіслати коментар"
+	],
+	"date": [
+		null,
+		"Дата"
+	],
+	"rating": [
+		null,
+		"Рейтинг"
+	]
+	,
+	"comment-added": [
+		null,
+		"Коментар додано"
+	],
+	"comments": [
+		null,
+		"Коментарі"
+	]
+	,
+	"sort": [
+		null,
+		"Сортувати за"
+	],
+	"left-comment": [
+		null,
+		"Залишити коментар"
 	]
 }
