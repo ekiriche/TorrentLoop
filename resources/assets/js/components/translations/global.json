@@ -303,5 +303,22 @@
 	"left-comment": [
 		null,
 		"Залишити коментар"
+	],
+	"_comment": "navigations",
+	"profile": [
+		null,
+		"Профіль"
+	],"library": [
+		null,
+		"Бібліотека"
+	],"settings": [
+		null,
+		"Налаштування"
+	],"logout": [
+		null,
+		"Вийти"
+	],"nav-title": [
+		null,
+		"Навігація"
 	]
 }
