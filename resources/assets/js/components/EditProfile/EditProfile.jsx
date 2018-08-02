@@ -10,7 +10,6 @@ import { withLocalize, Translate } from "react-localize-redux";
 import globalTranslations from '../translations/global.json';
 import ToggleButton from 'react-toggle-button';
 /*localization end*/
-
 import { Card, CardTitle , Col} from 'react-materialize';
 
 import Navbar from '../Navbar/Navbar';
@@ -32,6 +31,16 @@ class EditProfile extends Component  {
 			'oldpassword_error' : false,
 			'photo_change' : false
     }
+
+		this.props.initialize({
+			languages: [
+				{ name: "EN", code: "en" },
+				{ name: "UA", code: "ua" }
+			],
+			translation: globalTranslations,
+			options: { renderToStaticMarkup }
+		});
+
     this.handleChange = this.handleChange.bind(this);
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
 		this.handlePhotoChange = this.handlePhotoChange.bind(this);
@@ -42,22 +51,34 @@ class EditProfile extends Component  {
 	componentWillMount() {
     let token =  localStorage.getItem('accessToken');
     let id = jwtDecode(token);
-    axios.post('http://localhost:8100/profile/get-user-info', {'id' : id.uid}).then (result => {
-			if (result.data.info == null)
+		PostData('auth/token-update', {'id' : id.uid, 'jwt' : token}).then (result => {
+			if (result.data == 'expired')
+				localStorage.removeItem('accessToken');
+		});
+    PostData('profile/get-user-info', {'id' : id.uid}).then (result => {
+			console.log(result);
+			if (result.info == null)
 				this.setState({ 'info' : '' });
 			else
-				this.setState({ 'info' : result.data.info });
+				this.setState({ 'info' : result.info });
       this.setState({
-        'firstname' : result.data.firstname,
-        'lastname' : result.data.lastname,
-        'email' : result.data.email,
-        'photo' : result.data.photo,
-        'password' : result.data.password,
+        'firstname' : result.firstname,
+        'lastname' : result.lastname,
+        'email' : result.email,
+        'photo' : result.photo,
+        'password' : result.password,
 				'user_id' : id.uid
       });
       console.log(this.state);
     });
 	}
+
+		componentDidUpdate(prevProps) {
+			const prevLangCode = prevProps.activeLanguage && prevProps.activeLanguage.code;
+			const curLangCode = this.props.activeLanguage && this.props.activeLanguage.code;
+			const hasLanguageChanged = prevLangCode !== curLangCode;
+
+		}
 
   handleChange(event)
   {
@@ -73,11 +94,11 @@ class EditProfile extends Component  {
 		this.setState({ newpassword_error : false});
 		this.setState({ password_change_success : false });
 		console.log(oldpass.value);
-    axios.post('http://localhost:8100/auth/update-pass', {'oldpass' : oldpass.value, 'newpass' : newpass.value, 'id' : this.state.user_id}).then (result => {
-			console.log(result.data);
+    PostData('auth/update-pass', {'oldpass' : oldpass.value, 'newpass' : newpass.value, 'id' : this.state.user_id}).then (result => {
+			console.log(result);
 			if (result.data == 'Wrong password')
 				this.setState({ oldpassword_error : "Wrong password" });
-			else if (result.data != "OK")
+			else if (result!= "OK")
 				this.setState({ newpassword_error : "New password should have at least six symbols, including one capital letter and one digital" });
 			else
 				this.setState({ password_change_success : true });
@@ -97,7 +118,7 @@ class EditProfile extends Component  {
 		reader.readAsDataURL(selectorFiles[0]);
 		reader.onloadend = function() {
 			photo.setAttribute('src', reader.result);
-			axios.post('http://localhost:8100/profile/set-picture', { 'img' : reader.result, 'id' : id.uid }).then (result => {
+			PostData('profile/set-picture', { 'img' : reader.result, 'id' : id.uid }).then (result => {
 				console.log(result);
 			})
 		}
@@ -110,9 +131,9 @@ class EditProfile extends Component  {
     let id = jwtDecode(token);
 		this.setState({ info_change : '' });
 		console.log(this.state);
-		axios.post('http://localhost:8100/profile/set-info', {'id' : id.uid, 'firstname' : this.state.firstname, 'lastname' : this.state.lastname, 'email' : this.state.email, 'info' : this.state.info}).then (result => {
-			console.log(result.data);
-			if (result.data == "OK")
+		PostData('profile/set-info', {'id' : id.uid, 'firstname' : this.state.firstname, 'lastname' : this.state.lastname, 'email' : this.state.email, 'info' : this.state.info}).then (result => {
+			console.log(result);
+			if (result == "OK")
 				this.setState({ info_change : 'changed' });
 			else
 			{
@@ -129,9 +150,9 @@ class EditProfile extends Component  {
     let id = jwtDecode(token);
 		this.setState({ newpassword_error : false});
 		this.setState({ password_change_success : false });
-		axios.post('http://localhost:8100/profile/set-password', { 'id' : id.uid, 'password' : this.state.new_oauth_password }).then (result => {
-			console.log(result.data);
-			if (result.data == "OK")
+		PostData('profile/set-password', { 'id' : id.uid, 'password' : this.state.new_oauth_password }).then (result => {
+			console.log(result);
+			if (result == "OK")
 				this.setState({ password_change_success : true });
 			else {
 				this.setState({ newpassword_error : "New password should have at least six symbols, including one capital letter and one digital" });
@@ -144,7 +165,7 @@ class EditProfile extends Component  {
 			<div className="profile-flex">
 				<Navbar />
 				<CardPanel className="black-text profile">
-					<h5>Photo</h5>
+					<h5><Translate id="changePhotoHeader">Photo</Translate></h5>
 					<div className="row photo">
 						<label htmlFor="new_photo">
         			<img src={this.state.photo} id="photo"/>
@@ -158,57 +179,57 @@ class EditProfile extends Component  {
 							id="new_photo" />
 					</div>
 					<form onSubmit={this.handleInfoChange}>
-						<h5>Account information</h5>
+						<h5><Translate id="changeAccountInformationHeader">Account information</Translate></h5>
 						<div className="row">
 							<div className="input-field col s6">
 								<input type="text" name="firstname" id="first_name" value={ this.state.firstname } onChange={ this.handleChange }/>
-								{ this.state.firstname ? ( <label className="active">First Name</label> ) : ( <label>First Name</label> )}
+								{ this.state.firstname ? ( <label className="active"><Translate id="changeFirstnameLabor">First Name</Translate></label> ) : ( <label><Translate id="changeFirstnameLabor">First Name</Translate></label> )}
 							</div>
 							<div className="input-field col s6">
 								<input type="text" name="lastname" id="last_name" value={ this.state.lastname } onChange={ this.handleChange }/>
-								{ this.state.lastname ? ( <label className="active">Last Name</label> ) : ( <label>Last Name</label> )}
+								{ this.state.lastname ? ( <label className="active"><Translate id="changeLastnameLabor">Last Name</Translate></label> ) : ( <label><Translate id="changeLastnameLabor">Last Name</Translate></label> )}
 							</div>
 							<div className="input-field col s12">
 								<input type="text" name="email" id="email" value={ this.state.email } onChange={ this.handleChange }/>
-								{ this.state.email ? ( <label className="active">Email</label> ) : ( <label>Email</label> )}
+								{ this.state.email ? ( <label className="active"><Translate id="changeEmailLaber">Email</Translate></label> ) : ( <label><Translate id="changeEmailLaber">Email</Translate></label> )}
 							</div>
 							<div className="input-field col s12">
 								<textarea name="info" id="info" className="materialize-textarea" value={ this.state.info } onChange={ this.handleChange }/>
-								{ this.state.info ? ( <label className="active">Additional info</label> ) : ( <label>Additional info</label> )}
+								{ this.state.info ? ( <label className="active"><Translate id="changeAdditionalInfoLaber">Additional info</Translate></label> ) : ( <label><Translate id="changeAdditionalInfoLaber">Additional info</Translate></label> )}
 							</div>
 							{ this.state.info_change == "changed" && ( <div className="row"><span className="alert alert-success">Info changed!</span></div> ) }
 							{ this.state.info_change == "not changed" && ( <div className="row"><span className="alert alert-danger">{this.state.info_error}</span></div> ) }
-							<Button waves='light'>Change information</Button>
+							<Button waves='light'><Translate id="changeInformationButton">Change information</Translate></Button>
 						</div>
 					</form>
-					<h5>Password</h5>
+					<h5><Translate id="changePasswordHeader">Password</Translate></h5>
 					{ this.state.password != undefined ? (
 						<form onSubmit={this.handlePasswordChange} className="password-change">
 							<div className="row">
 								<div className="input-field col s12">
-									<label>Old password</label>
+									<label><Translate id="changeOldPasswordLaber">Old password</Translate></label>
 									<input type="password" s={12} id="oldpass" name="old_password" required onChange={this.handleChange}/>
 								</div>
 								<div className="input-field col s12">
-									<label>New password</label>
+									<label><Translate id="changeNewPasswordLaber">New password</Translate></label>
 									<input type="password" s={12} id="newpass" name="new_password" required onChange={this.handleChange}/>
 								</div>
 								{ this.state.oldpassword_error && ( <div className="row"><span className="alert alert-danger">{this.state.oldpassword_error}</span></div> ) }
 								{ this.state.newpassword_error && ( <div className="row"><span className="alert alert-danger">{this.state.newpassword_error}</span></div> ) }
 								{ this.state.password_change_success && ( <div className="row"><span className="alert alert-success">Password changed!</span></div> ) }
-								<Button waves='light'>Change password</Button>
+								<Button waves='light'><Translate id="changePasswordButton">Change password</Translate></Button>
 							</div>
 						</form>
 					) : (
 						<form onSubmit={this.handleOAuthPassword} className="password-change">
 							<div className="row">
 								<div className="input-field col s12">
-									<label>New password</label>
+									<label><Translate id="changeNewPasswordLaber">New password</Translate></label>
 									<input type="password" s={12} id="new_oauth_password" name="new_oauth_password" required onChange={this.handleChange}/>
 								</div>
 								{ this.state.newpassword_error && ( <div className="row"><span className="alert alert-danger">{this.state.newpassword_error}</span></div> ) }
 								{ this.state.password_change_success && ( <div className="row"><span className="alert alert-success">Password changed!</span></div> ) }
-								<Button waves='light'>Change password</Button>
+								<Button waves='light'><Translate id="changePasswordButton">Change password</Translate></Button>
 							</div>
 						</form>
 					)}
@@ -218,4 +239,4 @@ class EditProfile extends Component  {
 		);
 	}
 }
-export default EditProfile;
+export default withLocalize(EditProfile);

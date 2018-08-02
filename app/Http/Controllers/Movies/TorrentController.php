@@ -10,17 +10,9 @@ use Transmission\Client;
 
 class TorrentController extends Controller
 {
-	/**
-	 * Downloads movie from torrent url to a specific folder,
-	 * imdb-id will be the name of the folder
-	 *
-	 * @param Request $request
-	 * @key imdb-id
-	 * @return string ("true" or "false")
-	 */
 	public function downloadMovie(Request $request)
 	{
-		if (!file_exists('movies')) {
+/*		if (!file_exists('movies')) {
 			mkdir('movies', 0755, true);
 		}
 		if (!file_exists('movies/' . $request->input('imdb-id'))) {
@@ -30,15 +22,28 @@ class TorrentController extends Controller
 		$transmission = new Transmission();
 		$session = $transmission->getSession();
 		$session->setDownloadDir($pwd . '/movies/' . $request->input('imdb-id'));
-		/* $session->setDownloadDir('/tmp/movies/' . $request->input('imdb-id'));*/
 		$session->save();
 		$torrent = $transmission->add($this->_getDownloadUrl($request->input('imdb-id'), $request->input('quality')));
-		return "true";
+		return "true"; */
+	//	$result = http_get('http://localhost:8142', array('torrent' => _getDownloadUrl($request->input('imdb-id'))));
+		$url = "http://localhost:8142/get-stream";
+		$torrent = $this->_getDownloadUrl($request->input('imdb-id'));
+		$data = array('torrent' => $torrent, 'imdb' => $request->input('imdb-id'));
+		$options = array(
+    'http' => array(
+        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+        'method'  => 'POST',
+        'content' => http_build_query($data)
+    	)
+		);
+		$context = stream_context_create($options);
+		$result = file_get_contents($url, false, $context);
+		return $result;
 	}
 
-	private function _getDownloadUrl($imdbId, $quality)
+	private function _getDownloadUrl($imdbId)
 	{
-		return ($quality);
+//		return ($quality);
 		$url = 'https://yts.am/api/v2/list_movies.json?query_term=' . $imdbId;
 		$options = array(
 			'https' => array(

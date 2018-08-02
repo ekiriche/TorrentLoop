@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 /*localization*/
 import { renderToStaticMarkup } from "react-dom/server";
 import { withLocalize, Translate } from "react-localize-redux";
+import globalTranslations from '../translations/global.json';
+import ToggleButton from 'react-toggle-button';
 /*localization end*/
 
 import './Profile.css';
@@ -20,9 +23,44 @@ class ViewProfile extends Component  {
 			'id': this.props.match.params.id,
 			'links': []
 		};
+
+		this.props.initialize({
+			languages: [
+				{ name: "EN", code: "en" },
+				{ name: "UA", code: "ua" }
+			],
+			translation: globalTranslations,
+			options: { renderToStaticMarkup }
+		});
+	}
+	componentDidUpdate(prevProps) {
+		const prevLangCode = prevProps.activeLanguage && prevProps.activeLanguage.code;
+		const curLangCode = this.props.activeLanguage && this.props.activeLanguage.code;
+		const hasLanguageChanged = prevLangCode !== curLangCode;
 	}
 
+
 	componentWillMount() {
+		let jwt = localStorage.getItem('accessToken');
+    let user = jwtDecode(jwt);
+		PostData('auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then ((result) => {
+			console.log(result);
+			if (result == 'expired')
+        localStorage.removeItem('accessToken');
+		})
+		PostData('profile/get-user-info', {'id': this.state.id}).then ((result) => {
+			console.log(result);
+			this.setState({
+				'firstname': result.firstname,
+				'lastname': result.lastname,
+				'picture': result.photo,
+				'info': result.info
+			});
+		})/*
+    axios.post('http://localhost:8100/auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then (result => {
+      if (result.data == 'expired')
+        localStorage.removeItem('accessToken');
+    });
 		axios.post('http://localhost:8100/profile/get-user-info', {'id': this.state.id}).then(result => {
 			this.setState({
 				'firstname': result.data.firstname,
@@ -30,9 +68,7 @@ class ViewProfile extends Component  {
 				'picture': result.data.photo,
 				'info': result.data.info
 			});
-		});
-
-		let jwt = localStorage.getItem('accessToken');
+		});*/
 		PostData('profile/get-history', {
 			'jwt': jwt
 		}).then ((result) => {
@@ -48,6 +84,7 @@ class ViewProfile extends Component  {
 	}
 
 	render() {
+
 		if (!this.state.picture) {
 			return (
 				<div className="progress">
@@ -70,7 +107,6 @@ class ViewProfile extends Component  {
 				movieId={link.movie_id}
 				/>
 		)
-
 		return (
 			<div className="movie-flex">
 				<Navbar />
@@ -79,10 +115,10 @@ class ViewProfile extends Component  {
 						<Col m={12} s={12}>
 							<Card horizontal header={<CardTitle image={this.state.picture}></CardTitle>}>
 								<h4>{this.state.firstname} {this.state.lastname}</h4>
-								<h6>Bio</h6>
+								<h6><Translate id="bio">Bio</Translate></h6>
 								<p>{this.state.info}</p>
 							</Card>
-							<Card horizontal title="Recently viewed">
+							<Card horizontal title={<Translate id="recently_viewed">Recently viewed</Translate>}>
 								<div className="view-history">{allFilms}</div>
 							</Card>
 						</Col>

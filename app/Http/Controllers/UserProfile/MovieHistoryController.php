@@ -23,10 +23,10 @@ class MovieHistoryController extends Controller
 	{
 		$token = new Tokens();
 		$uid = $token->getTokenUid($request->input('jwt'));
-		$user = User::where('id', $uid);
+		$user = User::where('id', $uid)->first();
 		$history = new MovieHistory();
 		if ($user) {
-			$existed = $history->where('imdb_code', $request->input('imdb_code'))->first();
+			$existed = $history->where('imdb_code', $request->input('imdb_code'))->where('user_id', $uid)->first();
 			if ($existed)
 				$existed->increment('watch');
 			else

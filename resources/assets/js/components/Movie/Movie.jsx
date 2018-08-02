@@ -25,6 +25,14 @@ class Movie extends Component  {
 		this.state = {
 			movie: isMovie
 		}
+		this.props.initialize({
+			languages: [
+				{ name: "EN", code: "en" },
+				{ name: "UA", code: "ua" }
+			],
+			translation: globalTranslations,
+			options: { renderToStaticMarkup }
+		});
 	}
 
 	componentDidUpdate(prevProps) {
@@ -56,7 +64,7 @@ class Movie extends Component  {
 			<div className="movie-flex">
 				<Navbar />
 					<div className="container">
-						<MovieData movieData={this.state.movie}/>
+						<MovieData movieData={this.state.movie} sources='{"type": "video/mp4", "src": "//vjs.zencdn.net/v/oceans.mp4"}'/>
 					</div>
 				<Foot />
 			</div>

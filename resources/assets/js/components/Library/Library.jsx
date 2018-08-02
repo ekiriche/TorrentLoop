@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Input, Button } from 'react-materialize';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 /*localization*/
 import { renderToStaticMarkup } from "react-dom/server";
 import { withLocalize, Translate } from "react-localize-redux";
@@ -9,7 +11,7 @@ import ToggleButton from 'react-toggle-button';
 /*localization end*/
 
 import './Library.css';
-
+import { PostData } from '../../functions/PostData';
 // import Search from '../Search/Search';
 import Navbar from '../Navbar/Navbar';
 import Foot from '../Footer/Footer';
@@ -37,6 +39,16 @@ class Library extends Component  {
 		const prevLangCode = prevProps.activeLanguage && prevProps.activeLanguage.code;
 		const curLangCode = this.props.activeLanguage && this.props.activeLanguage.code;
 		const hasLanguageChanged = prevLangCode !== curLangCode;
+	}
+
+	componentWillMount()
+	{
+		let jwt = localStorage.getItem('accessToken');
+		let user = jwtDecode(jwt);
+		PostData('auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then (result => {
+			if (result == 'expired')
+				localStorage.removeItem('accessToken');
+		});
 	}
 
 	render() {
