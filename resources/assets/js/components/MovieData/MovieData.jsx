@@ -43,7 +43,7 @@ class MovieData extends Component  {
 	startDownload(event) {
 		let jwt = localStorage.getItem('accessToken');
 		let user = jwtDecode(jwt);
-		PostData('profile/save-history', {
+		/*PostData('profile/save-history', {
 			'movie_id': this.state.movie.id,
 			'imdb_code': this.state.movie.imdb_code,
 			'medium_cover_image': this.state.movie.medium_cover_image,
@@ -53,7 +53,7 @@ class MovieData extends Component  {
 			'user_id': user.uid
 		}).then ((result) => {
 			console.log(result);
-		});
+		});*/
 		setTimeout(function() {
 		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code }).then ((moviepath) => {
 			console.log(moviepath);
@@ -103,6 +103,7 @@ class MovieData extends Component  {
 	)
 
 
+console.log(this.state.movie);
 	return (
 		<Col m={7} s={12}>
 			<Card horizontal header={<CardTitle image={this.state.movie.large_cover_image}></CardTitle>}>
