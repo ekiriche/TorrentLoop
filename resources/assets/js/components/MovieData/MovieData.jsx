@@ -55,6 +55,8 @@ class MovieData extends Component  {
 			console.log(result);
 		});*/
 		setTimeout(function() {
+
+		
 		PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code }).then ((moviepath) => {
 			console.log(moviepath);
 			this.setState({ moviePath : moviepath });
