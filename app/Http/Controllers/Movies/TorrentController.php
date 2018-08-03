@@ -29,14 +29,14 @@ class TorrentController extends Controller
 		$url = "http://localhost:3000/get-stream";
 
 		$torrent = $this->_getDownloadUrl($request->input('imdb-id'));
-
+		// return ($request->input('imdb-id')); //////////////////////////////////////////////////////////////////////////////////////////
 		$data = array('torrent' => $torrent, 'imdb' => $request->input('imdb-id'));
 		$options = array(
-    'http' => array(
-        'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-        'method'  => 'POST',
-        'content' => http_build_query($data)
-    	)
+    		'http' => array(
+        	'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+        	'method'  => 'POST',
+        	'content' => http_build_query($data)
+    		)
 		);
 		$context = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);
@@ -63,7 +63,7 @@ class TorrentController extends Controller
 		if ($result === FALSE) {
 			return "false";
 		}
-	
+
 		return $result['data']['movies'][0]['torrents'][
 			array_search(
 				'720p',

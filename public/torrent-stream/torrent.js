@@ -40,10 +40,15 @@ console.log(123);
 res.send('OK');
 });
 
-app.get('/video', function(req, res) {
-
-  if (beginDownload == false)
-  {
+app.get('/video/:id', function(req, res) {
+	// if () {
+	console.log("=================================================================================================================");
+	console.log(req);
+	console.log("=================================================================================================================");
+	console.log(req.params.id);
+	console.log("*****************************************************************************************************************");
+  // if (beginDownload == false)
+  // {
     magnetLink(torrentFile, (err, link) => {
       var engine = torrentStream(link, {
         path: 'public/downloaded_movies'
@@ -63,26 +68,26 @@ app.get('/video', function(req, res) {
       })
     })
   })
-  beginDownload = true;
-}
+//   beginDownload = true;
+// }
 console.log(moviePath);
 const path = moviePath;
 const stat = fs.statSync(path)
 const fileSize = 367001600;//stat.size
 const range = req.headers.range
-console.log("range", range);
+// console.log("range", range);
 
 if (range) {
-  console.log("file-size", stat.size);
+  // console.log("file-size", stat.size);
 
   const parts = range.replace(/bytes=/, "").split("-")
-  console.log(parts);
+  // console.log(parts);
   const start = parseInt(parts[0], 10)
   const end = parts[1]
   ? parseInt(parts[1], 10)
   : fileSize-1
-console.log('parts start', start);
-console.log('parts end', end);
+// console.log('parts start', start);
+// console.log('parts end', end);
   const chunksize = (end-start)+1
   console.log('chunksize ', chunksize);
   const file = fs.createReadStream(path, {start, end})
@@ -104,6 +109,7 @@ console.log('parts end', end);
   .writeHead(200, head)
   fs.createReadStream(path).pipe(res)
 }
+
 })
 
 app.listen(3000, function () {

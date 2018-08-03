@@ -24,13 +24,15 @@ class MovieData extends Component  {
 			movie: this.props.movieData,
 			download: false,
 			subtitles: '',
-			downloadPercent: 0
+			downloadPercent: 0,
+			videoSrc: "http://localhost:3000/video/" + this.props.movieData.id
 		}
 		this.startDownload = this.startDownload.bind(this);
 		this.getDownloadPercentage = this.getDownloadPercentage.bind(this);
 	}
 
 	componentWillMount(){
+		console.log(this.state.videoSrc);
 		let jwt = localStorage.getItem('accessToken');
 		let user = jwtDecode(jwt);
 		PostData('profile/save-history', {
@@ -48,7 +50,7 @@ class MovieData extends Component  {
 		// 	if (result.data == 'expired')
 		// 	localStorage.removeItem('accessToken');
 		// 	console.log(this.state.movie.id);
-        //
+		//
 		// });
 	}
 
@@ -56,20 +58,20 @@ class MovieData extends Component  {
 		let jwt = localStorage.getItem('accessToken');
 		let user = jwtDecode(jwt);
 		/*PostData('profile/save-history', {
-			'movie_id': this.state.movie.id,
-			'imdb_code': this.state.movie.imdb_code,
-			'medium_cover_image': this.state.movie.medium_cover_image,
-			'title_english': this.state.movie.title_english,
-			'year': this.state.movie.year,
-			'rating': this.state.movie.rating,
-			'user_id': user.uid
+		'movie_id': this.state.movie.id,
+		'imdb_code': this.state.movie.imdb_code,
+		'medium_cover_image': this.state.movie.medium_cover_image,
+		'title_english': this.state.movie.title_english,
+		'year': this.state.movie.year,
+		'rating': this.state.movie.rating,
+		'user_id': user.uid
 		}).then ((result) => {
 
-			console.log(result);
+		console.log(result);
 		});*/
 		setTimeout(function() {
 			PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code }).then ((moviepath) => {
-				// console.log(moviepath);
+				console.log(moviepath);
 				this.setState({ moviePath : moviepath });
 				this.setState({ download : true });
 				/*		setTimeout(function() {
@@ -79,7 +81,7 @@ class MovieData extends Component  {
 				})
 				}.bind(this), 7000); */
 			})
-		}.bind(this), 7000);
+		}.bind(this), 1000);
 	}
 
 	getDownloadPercentage() {
@@ -108,15 +110,18 @@ class MovieData extends Component  {
 	)
 
 	const videoQuality = this.state.movie.torrents
-	const videoQualityList = videoQuality.map((size, i) =>
-	<li key={i}>
-		<a className="waves-effect waves-light btn" onClick={this.startDownload} id={size.quality}>
-			<i className="material-icons left" >cloud_download</i>{size.quality}</a>
-		</li>
+	const videoQualityList = videoQuality.map(
+		(size, i) =>
+			<li key={i}>
+				<a className="waves-effect waves-light btn" onClick={this.startDownload} id={size.quality}>
+					<i className="material-icons left" >cloud_download</i>{size.quality}
+				</a>
+			</li>
 	)
 
 
-console.log(this.state.movie);
+	console.log(this.state.movie);
+	console.log(this.state.download);
 	return (
 		<Col m={7} s={12}>
 			<Card horizontal header={<CardTitle image={this.state.movie.large_cover_image}></CardTitle>}>
@@ -134,8 +139,9 @@ console.log(this.state.movie);
 					{this.state.movie.runtime}
 					<h6>Year</h6>
 					{this.state.movie.year}
+
 					<div className="videoQuality">
-						{(!this.state.download) ? videoQualityList : null}
+						{(!this.state.download) ? videoQualityList : <video id="videoPlayer" controls><source src={this.state.videoSrc} type="video/mp4" /></video>}
 					</div>
 				</div>
 			</Card>
@@ -153,3 +159,5 @@ export default withLocalize(MovieData);
 ? <div className="progress percentLoader"><div className="determinate" style={{width: this.state.downloadPercent + '%'}}></div></div>
 : null}
 */
+
+//	<video id="videoPlayer" controls><source src={(!this.state.download) ? "#" : "http://localhost:3000/video"} type="video/mp4" /></video>

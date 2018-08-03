@@ -38,8 +38,8 @@ class ExtraSearch extends Component  {
 							<span className="checkmark"></span>
 						</label>
 						<label className="extra-container">
-							<p className="label-extra"><Translate id="search-latest">Latest</Translate></p>
-							<input type="radio" name="extraGroup" value='latest' onChange={this.handleSortBy}/>
+							<p className="label-extra"><Translate id="search-latest">Year</Translate></p>
+							<input type="radio" name="extraGroup" value='year' onChange={this.handleSortBy}/>
 							<span className="checkmark"></span>
 						</label>
 					</div>
