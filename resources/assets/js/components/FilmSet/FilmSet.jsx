@@ -36,6 +36,7 @@ class FilmSet extends Component  {
 			this.setState({ movies: result.data.movies});
 			this.setState({ page: this.state.page + 1 });
 			this.setState({ pas: true });
+			console.log(result);
 		});
 	}
 
