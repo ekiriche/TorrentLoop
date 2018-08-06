@@ -35,7 +35,7 @@ class MovieData extends Component  {
 		console.log(this.state.videoSrc);
 		let jwt = localStorage.getItem('accessToken');
 		let user = jwtDecode(jwt);
-		PostData('profile/save-history', {
+	/*	PostData('profile/save-history', {
 			'movie_id': this.state.movie.id,
 			'imdb_code': this.state.movie.imdb_code,
 			'medium_cover_image': this.state.movie.medium_cover_image,
@@ -45,7 +45,7 @@ class MovieData extends Component  {
 			'jwt': jwt
 		}).then ((result) => {
 			console.log(result);
-		});
+		});*/
 		// PostData('http://localhost:8100/auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then (result => {
 		// 	if (result.data == 'expired')
 		// 	localStorage.removeItem('accessToken');
@@ -57,6 +57,16 @@ class MovieData extends Component  {
 	startDownload(event) {
 		let jwt = localStorage.getItem('accessToken');
 		let user = jwtDecode(jwt);
+		PostData('profile/save-history', { 'user_id' : user.uid,
+			'imdb_code' : this.state.movie.imdb_code,
+			'movie_id': this.state.movie.id,
+			'imdb_code': this.state.movie.imdb_code,
+			'medium_cover_image': this.state.movie.medium_cover_image,
+			'title_english': this.state.movie.title_english,
+			'year': this.state.movie.year,
+			'rating': this.state.movie.rating}).then ((result) => {
+			//	console.log(result);
+			})
 		/*PostData('profile/save-history', {
 		'movie_id': this.state.movie.id,
 		'imdb_code': this.state.movie.imdb_code,
