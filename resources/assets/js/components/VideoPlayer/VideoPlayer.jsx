@@ -37,6 +37,7 @@ class VideoPlayer extends Component  {
 
 	}
 	render() {
+		console.log(this.state.moviePath);
 		return <ReactPlayer
 			playing
 			controls = {true}

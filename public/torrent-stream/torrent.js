@@ -82,7 +82,7 @@ app.get('/video/:id', function(req, res) {
 							}
 						},
 						function(err,httpResponse,body) {
-							console.log("RESPONSE: ", body);
+						 	console.log("RESPONSE: ", body);
 							// console.log(err);
 							// console.log(body);
 						}
@@ -92,46 +92,42 @@ app.get('/video/:id', function(req, res) {
 			})
 		})
 	});
-	setTimeout(() => {
-		console.log("ALERT");
-	}, 15000);
-
 }
+setTimeout(() => {
+	console.log('moviePath', moviePath);
+	let path = moviePath;
+	let stat = fs.statSync(path);
+	// console.log(stat);
+	let range = req.headers.range;
 
-console.log('moviePath', moviePath);
-let path = moviePath;
-let stat = fs.statSync(path);
-// console.log(stat);
-let range = req.headers.range;
+	if (range) {
+		let parts = range.replace(/bytes=/, "").split("-");
+		let start = parseInt(parts[0], 10);
+		let end = parts[1]
+		? parseInt(parts[1], 10)
+		: fileSize-1;
+		let chunksize = (end-start)+1;
 
-if (range) {
-	let parts = range.replace(/bytes=/, "").split("-");
-	let start = parseInt(parts[0], 10);
-	let end = parts[1]
-	? parseInt(parts[1], 10)
-	: fileSize-1;
-	let chunksize = (end-start)+1;
+		console.log('chunksize ', chunksize);
+		let file = fs.createReadStream(path, {start, end});
+		let head = {
+			'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+			'Accept-Ranges': 'bytes',
+			'Content-Length': chunksize,
+			'Content-Type': 'video/mp4',
+		};
 
-	console.log('chunksize ', chunksize);
-	let file = fs.createReadStream(path, {start, end});
-	let head = {
-		'Content-Range': `bytes ${start}-${end}/${fileSize}`,
-		'Accept-Ranges': 'bytes',
-		'Content-Length': chunksize,
-		'Content-Type': 'video/mp4',
-	};
-
-	res.writeHead(206, head);
-	file.pipe(res);
-} else {
-	let head = {
-		'Content-Length': fileSize,
-		'Content-Type': 'video/mp4',
-	};
-	res.writeHead(200, head);
-	fs.createReadStream(path).pipe(res);
-}
-
+		res.writeHead(206, head);
+		file.pipe(res);
+	} else {
+		let head = {
+			'Content-Length': fileSize,
+			'Content-Type': 'video/mp4',
+		};
+		res.writeHead(200, head);
+		fs.createReadStream(path).pipe(res);
+	}
+}, 15000);
 //
 // console.log('moviePath', moviePath);
 // let path = moviePath;

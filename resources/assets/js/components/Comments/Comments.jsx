@@ -208,7 +208,8 @@ render() {
 	};
 	return (
 		<Col m={7} s={12}>
-			<Card title={<Translate id="comments">Comments</Translate>}>
+			<Card >
+				<h5><Translate id="comments">Comments</Translate></h5>
 				<form onSubmit={this.handleSubmit} className="comment-form-flex">
 					<Input type="textarea" name="content" label={<Translate id="left-comment">Left comment</Translate>} required s={12} onChange={this.getValueFromForm} />
 					<div className="recaptcha-block">
