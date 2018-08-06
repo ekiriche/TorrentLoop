@@ -28,7 +28,7 @@ class TorrentController extends Controller
 	//	$result = http_get('http://localhost:8142', array('torrent' => _getDownloadUrl($request->input('imdb-id'))));
 		$url = "http://localhost:3000/get-stream";
 
-		$torrent = $this->_getDownloadUrl($request->input('imdb-id'));
+		$torrent = $this->_getDownloadUrl($request->input('imdb-id'), $request->input('quality'));
 		// return ($request->input('imdb-id')); //////////////////////////////////////////////////////////////////////////////////////////
 		$data = array('torrent' => $torrent, 'imdb' => $request->input('imdb-id'));
 		$options = array(
@@ -44,7 +44,7 @@ class TorrentController extends Controller
 		return $result;
 	}
 
-	private function _getDownloadUrl($imdbId)
+	private function _getDownloadUrl($imdbId, $quality)
 	{
 //		return ($quality);
 
@@ -66,7 +66,7 @@ class TorrentController extends Controller
 
 		return $result['data']['movies'][0]['torrents'][
 			array_search(
-				'720p',
+				$quality,
 				array_column($result['data']['movies'][0]['torrents'], 'quality')
 			)
 		]['url'];

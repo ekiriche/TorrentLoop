@@ -23,6 +23,7 @@ class MovieData extends Component  {
 		this.state = {
 			movie: this.props.movieData,
 			download: false,
+			startDownload: true,
 			downloadSubtitles: false,
 			subtitles: '',
 			downloadPercent: 0,
@@ -58,9 +59,10 @@ class MovieData extends Component  {
 	startDownload(event) {
 		let jwt = localStorage.getItem('accessToken');
 		let user = jwtDecode(jwt);
-		console.log(this.state.movie);
+		let quality =  event.target.id;
+		this.setState({startDownload: false});
 		setTimeout(function() {
-			PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code }).then ((moviepath) => {
+			PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code, 'quality': quality}).then ((moviepath) => {
 				this.setState({ moviePath : moviepath });
 				this.setState({ download : true });
 				setTimeout(function() {
@@ -106,7 +108,6 @@ class MovieData extends Component  {
 				</a>
 			</li>
 	)
-console.log(this.state.subtitles);
 	return (
 		<Col m={7} s={12}>
 			<Card horizontal header={<CardTitle image={this.state.movie.large_cover_image}></CardTitle>}>
@@ -125,7 +126,8 @@ console.log(this.state.subtitles);
 					<h6>Year</h6>
 					{this.state.movie.year}
 					<div className="videoQuality">
-						{videoQualityList}
+						{(this.state.startDownload) ? videoQualityList : null }
+
 					</div>
 				</div>
 			</Card>
