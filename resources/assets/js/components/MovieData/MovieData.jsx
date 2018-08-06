@@ -23,6 +23,7 @@ class MovieData extends Component  {
 		this.state = {
 			movie: this.props.movieData,
 			download: false,
+			downloadSubtitles: false,
 			subtitles: '',
 			downloadPercent: 0,
 			videoSrc: "http://localhost:3000/video/" + this.props.movieData.id
@@ -57,29 +58,17 @@ class MovieData extends Component  {
 	startDownload(event) {
 		let jwt = localStorage.getItem('accessToken');
 		let user = jwtDecode(jwt);
-		/*PostData('profile/save-history', {
-		'movie_id': this.state.movie.id,
-		'imdb_code': this.state.movie.imdb_code,
-		'medium_cover_image': this.state.movie.medium_cover_image,
-		'title_english': this.state.movie.title_english,
-		'year': this.state.movie.year,
-		'rating': this.state.movie.rating,
-		'user_id': user.uid
-		}).then ((result) => {
-
-		console.log(result);
-		});*/
+		console.log(this.state.movie);
 		setTimeout(function() {
 			PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code }).then ((moviepath) => {
-				console.log(moviepath);
 				this.setState({ moviePath : moviepath });
 				this.setState({ download : true });
-				/*		setTimeout(function() {
+				setTimeout(function() {
 				PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
 				this.setState({ subtitles: result });
-				this.setState({ download : true });
+				this.setState({ downloadSubtitles : true });
 				})
-				}.bind(this), 7000); */
+				}.bind(this), 7000);
 			})
 		}.bind(this), 1000);
 	}
@@ -91,7 +80,6 @@ class MovieData extends Component  {
 	}
 
 	render() {
-
 		if (this.state.subtitles === false) {
 			return (
 				<div className="progress">
@@ -118,10 +106,7 @@ class MovieData extends Component  {
 				</a>
 			</li>
 	)
-
-
-	console.log(this.state.movie);
-	console.log(this.state.download);
+console.log(this.state.subtitles);
 	return (
 		<Col m={7} s={12}>
 			<Card horizontal header={<CardTitle image={this.state.movie.large_cover_image}></CardTitle>}>
@@ -139,12 +124,21 @@ class MovieData extends Component  {
 					{this.state.movie.runtime}
 					<h6>Year</h6>
 					{this.state.movie.year}
-
 					<div className="videoQuality">
-						{(!this.state.download) ? videoQualityList : <video id="videoPlayer" controls><source src={this.state.videoSrc} type="video/mp4" /></video>}
+						{videoQualityList}
 					</div>
 				</div>
 			</Card>
+			{(this.state.downloadSubtitles) ?
+				<Card>
+					<VideoPlayer
+						src={this.state.videoSrc}
+						subtitles={this.state.subtitles}
+						movie={this.state.movie}
+						/>
+				</Card>
+				: null
+			}
 			<Comments data={this.state.movie}/>
 		</Col>
 	);
@@ -152,6 +146,7 @@ class MovieData extends Component  {
 }
 export default withLocalize(MovieData);
 /*
+<video id="videoPlayer" controls><source src={this.state.videoSrc} type="video/mp4" /></video>
 {(!this.state.download)
 ? <a className="waves-effect waves-light btn" onClick={this.startDownload}><i className="material-icons left">cloud_download</i>Watch</a>
 : <a className="btn disabled" ><i className="material-icons left">cloud_download</i>Watch</a>}

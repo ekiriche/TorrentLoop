@@ -11,12 +11,42 @@ class VideoPlayer extends Component  {
 	constructor(props) {
 		super(props);
 		this.state = {
-			moviePath: this.props.moviePath,
+			movie: this.props.movie,
+			moviePath: this.props.src,
+			subtitles: this.props.subtitles,
+			subtitlesArr: ''
+
 		}
 	}
-	render() {
+	componentWillMount() {
+		console.log(this.props);
+		console.log("test", this.state.movie);
+		console.log("test2",this.state.subtitles);
+		if (this.state.subtitles) {
+			let id =this.state.movie.imdb_code;
+			let SubtitlesArr = this.state.subtitles.map((arr) => ({
+				...arr,
+				'imdb-id': id,
+				'kind': 'subtitles',
+				'srcLang': arr.language
+			}));
+			SubtitlesArr.forEach( function(obj) { obj.src = 'http://localhost:8100/movies/'+ obj['imdb-id'] + '/' + obj.language + '.vtt'; } );
+			this.setState({subtitlesArr: SubtitlesArr});
 
-			return <ReactPlayer url={this.state.moviePath} playing controls='true' preload='true'/>
+		}
+
+	}
+	render() {
+		return <ReactPlayer
+			playing
+			controls = {true}
+			url={this.state.moviePath}
+			config={{ file: {
+		    tracks: this.state.subtitlesArr
+		  }}}
+			width='100%'
+			height='100%'
+			/>
 
 	}
 }
