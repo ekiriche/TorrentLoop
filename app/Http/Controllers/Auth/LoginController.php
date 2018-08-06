@@ -14,16 +14,16 @@ class LoginController extends Controller
 	{
 		$user = User::where('login', $request->input('login'))->first();
 		if ($user == '')
-			return "false";
+			return "NE OK";
 		if ($user->access_level == 0)
-			return "false";
+			return "NE OK";
 		if (Hash::check($request->input('password'), $user->password))
 		{
 			$token = new Tokens();
 			$jwt = $token->createAccessToken($user->id, 86400);
 			return $jwt;
 		}
-		return "false";
+		return "NE OK";
 	}
 
 	public function updateAccessToken(Request $request)

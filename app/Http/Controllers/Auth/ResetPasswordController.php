@@ -64,12 +64,14 @@ class ResetPasswordController extends Controller
 				'password' => Hash::make($tempPass)
 			])->save();
 			$sendMail = new SendMail();
-			return $sendMail->send_mail(
+			$sendMail->send_mail(
 				$user->email,
 				$this->_emailContent($tempPass),
 				"Password Reset"
 			);
+			return "OK";
 		}
+		return "false";
 	}
 
 	private function _emailContent($password)
