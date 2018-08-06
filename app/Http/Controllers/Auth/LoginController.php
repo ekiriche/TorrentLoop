@@ -14,16 +14,16 @@ class LoginController extends Controller
 	{
 		$user = User::where('login', $request->input('login'))->first();
 		if ($user == '')
-			return "User is not found";
+			return "NE OK";
 		if ($user->access_level == 0)
-			return "Email is not verificated";
+			return "NE OK";
 		if (Hash::check($request->input('password'), $user->password))
 		{
 			$token = new Tokens();
 			$jwt = $token->createAccessToken($user->id, 86400);
 			return $jwt;
 		}
-		return "Password is wrong";
+		return "NE OK";
 	}
 
 	public function updateAccessToken(Request $request)

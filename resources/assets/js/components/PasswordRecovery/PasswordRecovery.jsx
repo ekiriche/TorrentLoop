@@ -37,9 +37,7 @@ class PasswordRecovery extends Component  {
 								registrationFalse : ''
 				 });
 			} else {
-				this.setState({ registrationFalse : returnText[0],
-								registrationFalse : ''
-				 });
+				this.setState({ registrationFalse : returnText[0] });
 			}
 		})
 	}
