@@ -21,6 +21,7 @@ class SubtitleController extends Controller
 		if (!file_exists('movies')) {
 			mkdir('movies', 0755, true);
 		}
+
 		if (!file_exists('movies/' . $request->input('imdb-id'))) {
 			mkdir('movies/' . $request->input('imdb-id'), 0755, true);
 		}
@@ -39,11 +40,15 @@ class SubtitleController extends Controller
 			'https' => array(
 				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
 				'method'  => 'GET'
-			)
+			),
+			"ssl"=>array(
+				"verify_peer"=>false,
+				"verify_peer_name"=>false,
+			),
 		);
+
 		$context  = stream_context_create($options);
 		$result = json_decode(file_get_contents($url, false, $context), TRUE);
-
 		if ($result === FALSE) {
 			return "false";
 		}
@@ -86,7 +91,11 @@ class SubtitleController extends Controller
 			'https' => array(
 				'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
 				'method'  => 'GET'
-			)
+			),
+			"ssl"=>array(
+				"verify_peer"=>false,
+				"verify_peer_name"=>false,
+			),
 		);
 		$context  = stream_context_create($options);
 		$result = file_get_contents($url, false, $context);

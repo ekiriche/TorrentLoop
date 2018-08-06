@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import { Modal, Button, Icon, Row, Col } from 'react-materialize';
 import { Route, HashRouter, Redirect } from 'react-router-dom';
@@ -29,6 +30,7 @@ class Search extends Component  {
 			toFind: '',
 			genre: '',
 			sortBy: 'rating',
+			orderBy: 'desc',
 			minRating: 0,
 			redirect: false
 		}
@@ -59,7 +61,7 @@ class Search extends Component  {
 	}
 
 	findFilm() {
-		this.props.handlerFilmRequest("list_movies.json?sort_by=" + this.state.sortBy + "&genre=" + this.state.genre + "&minimum_rating=" + this.state.minRating + "&query_term=" + this.state.title + "&limit=" + 48 + "&page=");
+		this.props.handlerFilmRequest("list_movies.json?sort_by=" + this.state.sortBy + "&order_by" + this.state.orderBy + "&genre=" + this.state.genre + "&minimum_rating=" + this.state.minRating + "&query_term=" + this.state.title + "&limit=" + 48 + "&page=");
 	}
 
 	render() {

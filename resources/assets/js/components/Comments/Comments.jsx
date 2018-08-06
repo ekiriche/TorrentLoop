@@ -120,6 +120,7 @@ class Comments extends Component  {
 		let decoded = jwtDecode(token);
 		this.setState({ user_id: decoded.uid });
 		PostData('movie/get-comment', {'film_id': this.state.film_id, 'user_id': decoded.uid}).then ((result) => {
+			console.log(result);
 			this.setState({comment_data: result});
 			this.createComments(result, decoded.uid );
 		})

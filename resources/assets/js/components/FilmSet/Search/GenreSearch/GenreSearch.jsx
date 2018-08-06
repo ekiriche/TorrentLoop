@@ -143,7 +143,7 @@ class GenreSearch extends Component  {
 							<span className="checkmark"></span>
 						</label>
 						<label className="genre-container">
-							<p className="label-genre"><Translate id="search-sport">Sport</Translate></p>
+							<p className="label-genre"><Translate id="search-sport">Short</Translate></p>
 							<input type="radio" name="genreGroup" value='short' onChange={this.handleGenreValue}/>
 							<span className="checkmark"></span>
 						</label>
