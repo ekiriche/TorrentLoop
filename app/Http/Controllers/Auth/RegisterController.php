@@ -45,7 +45,7 @@ class RegisterController extends Controller
 		$hashed_link = hash("sha256", rand(0, 1000));
 		$this->create($request->all(), $hashed_link);
 		$SendMail = new SendMail();
-		return $SendMail->send_mail($request->input('email'), "Click on the link to confirm your account: http://localhost:8100/confirm?email=" . $request->input('email') . "&reg_link=" . $hashed_link, "User creation");
+		return $SendMail->send_mail($request->input('email'), "Click on the link to confirm your account: http://localhost:8100/auth/confirm?email=" . $request->input('email') . "&reg_link=" . $hashed_link, "User creation");
 	}
 
 	public function confirmViaEmail()

@@ -25,9 +25,10 @@ class MovieData extends Component  {
 			download: false,
 			startDownload: true,
 			downloadSubtitles: false,
+			firstEntry: true,
 			subtitles: '',
 			downloadPercent: 0,
-			videoSrc: "http://localhost:3000/video/" + this.props.movieData.id
+			videoSrc: "#"
 		}
 		this.startDownload = this.startDownload.bind(this);
 		this.getDownloadPercentage = this.getDownloadPercentage.bind(this);
@@ -35,9 +36,10 @@ class MovieData extends Component  {
 
 	componentWillMount(){
 		console.log(this.state.videoSrc);
+		console.log(this.state.movie.torrents[0].size_bytes);
 		let jwt = localStorage.getItem('accessToken');
 		let user = jwtDecode(jwt);
-		PostData('profile/save-history', {
+	/*	PostData('profile/save-history', {
 			'movie_id': this.state.movie.id,
 			'imdb_code': this.state.movie.imdb_code,
 			'medium_cover_image': this.state.movie.medium_cover_image,
@@ -47,7 +49,7 @@ class MovieData extends Component  {
 			'jwt': jwt
 		}).then ((result) => {
 			console.log(result);
-		});
+		});*/
 		// PostData('http://localhost:8100/auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then (result => {
 		// 	if (result.data == 'expired')
 		// 	localStorage.removeItem('accessToken');
@@ -61,18 +63,35 @@ class MovieData extends Component  {
 		let user = jwtDecode(jwt);
 		let quality =  event.target.id;
 		this.setState({startDownload: false});
-		setTimeout(function() {
-			PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code, 'quality': quality}).then ((moviepath) => {
-				this.setState({ moviePath : moviepath });
-				this.setState({ download : true });
-				setTimeout(function() {
-				PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
-				this.setState({ subtitles: result });
-				this.setState({ downloadSubtitles : true });
-				})
-				}.bind(this), 7000);
+		PostData('profile/save-history', { 'user_id' : user.uid,
+			'imdb_code' : this.state.movie.imdb_code,
+			'movie_id': this.state.movie.id,
+			'imdb_code': this.state.movie.imdb_code,
+			'medium_cover_image': this.state.movie.medium_cover_image,
+			'title_english': this.state.movie.title_english,
+			'year': this.state.movie.year,
+			'rating': this.state.movie.rating}).then ((result) => {
+			//	console.log(result);
 			})
-		}.bind(this), 1000);
+
+		setTimeout(function() {
+			console.log("TEST BOBOBO");
+			PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code, 'quality': quality }).then ((result) => {
+				console.log(result);
+				this.setState({ download : true });
+				this.setState({ videoSrc : "http://localhost:3000/video/" + this.state.movie.id + "?movieSize=" + this.state.movie.torrents[0].size_bytes});
+				// this.setState({ firstEntry: false });
+
+				 setTimeout(function() {
+					this.setState({ firstEntry: false });
+					console.log("TIMEOUT");
+					 PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
+					 this.setState({ subtitles: result });
+					 this.setState({ downloadSubtitles : true });
+					 })
+				 }.bind(this), 10000);
+			})
+		}.bind(this), 10);
 	}
 
 	getDownloadPercentage() {
@@ -102,9 +121,9 @@ class MovieData extends Component  {
 	const videoQuality = this.state.movie.torrents
 	const videoQualityList = videoQuality.map(
 		(size, i) =>
-			<li key={i}>
-				<a className="waves-effect waves-light btn" onClick={this.startDownload} id={size.quality}>
-					<i className="material-icons left" >cloud_download</i>{size.quality}
+		<li key={i}>
+			<a className="waves-effect waves-light btn" onClick={this.startDownload} id={size.quality}>
+				<i className="material-icons left" >cloud_download</i>{size.quality}
 				</a>
 			</li>
 	)
@@ -147,6 +166,12 @@ class MovieData extends Component  {
 }
 }
 export default withLocalize(MovieData);
+// "http://localhost:3000/video/" + this.props.movieData.id + "?movieSize=" + this.props.movieData.torrents[0].size_bytes
+
+//{(!this.state.download) ? videoQualityList : <video id="videoPlayer" controls><source src={this.state.videoSrc} type="video/mp4" /></video>}
+
+// {(!this.state.download) ? <video id="videoPlayer" controls><source src="#" type="video/mp4" /></video> : null}
+// {(this.state.download) ? <video id="videoPlayer" width="320" height="240" autoPlay controls><source src={this.state.videoSrc} type="video/mp4" /></video> : null}
 /*
 <video id="videoPlayer" controls><source src={this.state.videoSrc} type="video/mp4" /></video>
 {(!this.state.download)
