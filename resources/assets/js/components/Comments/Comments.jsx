@@ -202,7 +202,7 @@ commentSort(event) {
 
 render() {
 	let recaptchaInstance;
-
+	
 	const resetRecaptcha = () => {
 		recaptchaInstance.reset();
 	};
