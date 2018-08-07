@@ -22,6 +22,8 @@ class MoviesDeletionController extends Controller
 	public function addFilmToDB(Request $request)
 	{
 		// return $request->input('path');
+		if ($request->input('path') == '')
+			return "NE OK";
 		$path = $request->input('path');
 		$delete_time = $request->input('timeToDelete');
 		$film = Film::where('path', $path)->first();
@@ -30,7 +32,7 @@ class MoviesDeletionController extends Controller
 			Film::create(
 				[
 					'path' => $path,
-					'delete_time' => $delete_time
+					'delete_time' => 0
 				]
 			);
 		}
@@ -38,11 +40,12 @@ class MoviesDeletionController extends Controller
 		{
 			$film->fill(
 				[
-					'delete_time' => $delete_time
+					'upadated_at' => now()
 				]
 			)->save();
 		}
 		return "OK";
+
 	}
 
 	public function deleteNotWatchedFilms(Request $request)
@@ -52,9 +55,7 @@ class MoviesDeletionController extends Controller
 		{
 			if (now()->timestamp - $item->updated_at->timestamp >= 2592000)
 			{
-				if (is_dir("torrent-stream/public/downloaded_movies/" . $item->imdb_id)) {
-					$this->removeDirectory("torrent-stream/public/downloaded_movies/" . $item->imdb_id);
-				}
+				unlink('torrent-stream/' . $item->path);
 				$item->delete();
 			}
 		}
