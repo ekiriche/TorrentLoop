@@ -37,7 +37,7 @@ app.get('/', function(req, res) {
 
 app.post('/get-stream', function(req, res) {
 	//console.log(123);
-	console.log(0);
+	console.log(1);
 	if (!fs.existsSync('public/downloaded_movies'))
 	fs.mkdir('public/downloaded_movies');
 	if (!fs.existsSync('public/not_downloaded_movies'))
@@ -50,9 +50,12 @@ app.post('/get-stream', function(req, res) {
 });
 
 app.get('/video/:id', function(req, res) {
-	console.log('0+');
+	console.log(2);
 	if (req.params.id in moviesArr) {
-		console.log(1);
+		console.log(3);
+		console.log('***************************************************************')
+		console.log('ARRAY', moviesArr);
+		console.log('***************************************************************')
 		moviePath = moviesArr[req.params.id];
 		request.post(
 			{
@@ -70,7 +73,7 @@ app.get('/video/:id', function(req, res) {
 		)
 		// moviesArr[requestId][deleteDate] = Math.floor(date / 1000) + 2592000;
 	} else {
-		console.log(2);
+		console.log(4);
 		var requestId = req.params.id;
 		console.log("not exists");
 		magnetLink(torrentFile, (err, link) => {
@@ -114,7 +117,7 @@ setTimeout(() => {
 	//let fileSize = 360000000;
 
 	if (range) {
-		console.log(3);
+		console.log(5);
 		let parts = range.replace(/bytes=/, "").split("-");
 		let start = parseInt(parts[0], 10);
 		let end = parts[1]
