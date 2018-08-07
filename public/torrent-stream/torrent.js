@@ -25,10 +25,10 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.static(path.join(__dirname, 'public')));
- schedule.scheduleJob('*/1 * * * *', function() {
-  axios.get('http://localhost:8100/movie/delete-not-watched-films').then (result => {
-    console.log('Schedule: ', result.data);
-  })
+schedule.scheduleJob('*/1 * * * *', function() {
+	axios.get('http://localhost:8100/movie/delete-not-watched-films').then (result => {
+		console.log('Schedule: ', result.data);
+	})
 });
 
 app.get('/', function(req, res) {
@@ -50,7 +50,7 @@ app.post('/get-stream', function(req, res) {
 });
 
 app.get('/video/:id', function(req, res) {
-console.log('0+');
+	console.log('0+');
 	if (req.params.id in moviesArr) {
 		console.log(1);
 		moviePath = moviesArr[req.params.id];

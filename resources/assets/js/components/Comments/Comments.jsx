@@ -65,7 +65,7 @@ class Comments extends Component  {
 	}
 
 	createComments(result, uid) {
-		console.log(result);
+		
 		let AddCurrentUserId = result.map((comment) => ({
 			...comment,
 			'current_user_id': uid, /*add current user to id to result obj*/
@@ -120,7 +120,7 @@ class Comments extends Component  {
 		let decoded = jwtDecode(token);
 		this.setState({ user_id: decoded.uid });
 		PostData('movie/get-comment', {'film_id': this.state.film_id, 'user_id': decoded.uid}).then ((result) => {
-			console.log(result);
+			
 			this.setState({comment_data: result});
 			this.createComments(result, decoded.uid );
 		})
@@ -174,7 +174,7 @@ userCanSendMassage() {
 	this.setState({userVerifyRecaptcha: true})
 }
 commentSort(event) {
-	console.log(event.target.id);
+	
 	let whatSort, type, sorted;
 	[ whatSort, type ] = [ event.target.id.split('-')[0], event.target.id.split('-')[1]];
 	if (type === 'upward' && whatSort === 'date') {
@@ -202,7 +202,7 @@ commentSort(event) {
 
 render() {
 	let recaptchaInstance;
-	
+
 	const resetRecaptcha = () => {
 		recaptchaInstance.reset();
 	};

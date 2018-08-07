@@ -44,12 +44,12 @@ class ViewProfile extends Component  {
 		let jwt = localStorage.getItem('accessToken');
     let user = jwtDecode(jwt);
 		PostData('auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then ((result) => {
-			console.log(result);
+			
 			if (result == 'expired')
         localStorage.removeItem('accessToken');
 		})
 		PostData('profile/get-user-info', {'id': this.state.id}).then ((result) => {
-			console.log(result);
+			
 			this.setState({
 				'firstname': result.firstname,
 				'lastname': result.lastname,
@@ -77,7 +77,7 @@ class ViewProfile extends Component  {
 					'links': result
 				},
 				() => {
-					console.log(this.state.links);
+					
 				}
 			)
 		});
