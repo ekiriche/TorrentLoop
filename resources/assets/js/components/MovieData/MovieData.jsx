@@ -35,8 +35,8 @@ class MovieData extends Component  {
 	}
 
 	componentWillMount(){
-		
-		
+
+
 		let jwt = localStorage.getItem('accessToken');
 		let user = jwtDecode(jwt);
 	/*	PostData('profile/save-history', {
@@ -48,12 +48,12 @@ class MovieData extends Component  {
 			'rating': this.state.movie.rating,
 			'jwt': jwt
 		}).then ((result) => {
-			
+
 		});*/
 		// PostData('http://localhost:8100/auth/token-update', {'id' : user.uid, 'jwt' : jwt}).then (result => {
 		// 	if (result.data == 'expired')
 		// 	localStorage.removeItem('accessToken');
-		// 	
+		//
 		//
 		// });
 	}
@@ -71,13 +71,13 @@ class MovieData extends Component  {
 			'title_english': this.state.movie.title_english,
 			'year': this.state.movie.year,
 			'rating': this.state.movie.rating}).then ((result) => {
-			//	
+					console.log(result);
 			})
 
-			
+
 			PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code, 'quality': quality }).then ((result) => {
 				this.setState({ download : true });
-				this.setState({ videoSrc : "http://localhost:3000/video/" + this.state.movie.id + "?movieSize=" + this.state.movie.torrents[0].size_bytes});
+				this.setState({ videoSrc : "http://localhost:3000/video/" + this.state.movie.id});
 				this.setState({ firstEntry: false });
 			}).then(() => {
 				PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
@@ -85,7 +85,7 @@ class MovieData extends Component  {
 				this.setState({ downloadSubtitles : true });
 				})
 			}).catch(() => {
-				
+
 				this.setState({ error: true });
 			})
 	}

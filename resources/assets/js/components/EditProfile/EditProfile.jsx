@@ -56,7 +56,7 @@ class EditProfile extends Component  {
 				localStorage.removeItem('accessToken');
 		});
     PostData('profile/get-user-info', {'id' : id.uid}).then (result => {
-			
+
 			if (result.info == null)
 				this.setState({ 'info' : '' });
 			else
@@ -69,7 +69,7 @@ class EditProfile extends Component  {
         'password' : result.password,
 				'user_id' : id.uid
       });
-      
+
     });
 	}
 
@@ -93,9 +93,9 @@ class EditProfile extends Component  {
 		this.setState({ oldpassword_error : false});
 		this.setState({ newpassword_error : false});
 		this.setState({ password_change_success : false });
-		
+
     PostData('auth/update-pass', {'oldpass' : oldpass.value, 'newpass' : newpass.value, 'id' : this.state.user_id}).then (result => {
-			
+
 			if (result.data == 'Wrong password')
 				this.setState({ oldpassword_error : "Wrong password" });
 			else if (result!= "OK")
@@ -110,7 +110,7 @@ class EditProfile extends Component  {
 		event.preventDefault();
 		let token =  localStorage.getItem('accessToken');
     let id = jwtDecode(token);
-		
+
 		this.setState({ photo_change : true });
 		let reader = new FileReader();
 		//let new_photo = document.getElementById("new_photo");
@@ -119,7 +119,7 @@ class EditProfile extends Component  {
 		reader.onloadend = function() {
 			photo.setAttribute('src', reader.result);
 			PostData('profile/set-picture', { 'img' : reader.result, 'id' : id.uid }).then (result => {
-				
+
 			})
 		}
 	}
@@ -130,15 +130,19 @@ class EditProfile extends Component  {
 		let token =  localStorage.getItem('accessToken');
     let id = jwtDecode(token);
 		this.setState({ info_change : '' });
-		
+		//console.log(this.state);
 		PostData('profile/set-info', {'id' : id.uid, 'firstname' : this.state.firstname, 'lastname' : this.state.lastname, 'email' : this.state.email, 'info' : this.state.info}).then (result => {
-			
+			console.log(result.email);
 			if (result == "OK")
 				this.setState({ info_change : 'changed' });
 			else
 			{
+				//console.log(result.data[0].email);
 				this.setState({ info_change : 'not changed' });
-				this.setState({ info_error : result.data[0] });
+				if (result.email)
+					this.setState({ info_error : result.email })
+				else
+					this.setState({ info_error : result.data[0] });
 			}
 		})
 	}
@@ -151,7 +155,7 @@ class EditProfile extends Component  {
 		this.setState({ newpassword_error : false});
 		this.setState({ password_change_success : false });
 		PostData('profile/set-password', { 'id' : id.uid, 'password' : this.state.new_oauth_password }).then (result => {
-			
+
 			if (result == "OK")
 				this.setState({ password_change_success : true });
 			else {
