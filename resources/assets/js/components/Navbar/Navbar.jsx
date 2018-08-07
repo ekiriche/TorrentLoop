@@ -51,6 +51,7 @@ class Navbar extends Component {
 
 	logout()
 	{
+		window.location.href = "http://localhost:8100/#/"
 		localStorage.removeItem('accessToken');
 	}
 

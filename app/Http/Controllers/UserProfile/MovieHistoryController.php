@@ -13,10 +13,11 @@ class MovieHistoryController extends Controller
 {
 	public function getHistory(Request $request)
 	{
-		$token = new Tokens();
+		/*$token = new Tokens();
 		$uid = $token->getTokenUid($request->input('jwt'));
 		$history = MovieHistory::where('user_id', $uid)->orderBy('updated_at', 'desc')->get();
-		return $history;
+		return $history;*/
+		return MovieHistory::where('user_id', $request->input('user_id'))->orderBy('updated_at', 'desc')->get();
 	}
 
 	public function saveMovieToHistory(Request $request)

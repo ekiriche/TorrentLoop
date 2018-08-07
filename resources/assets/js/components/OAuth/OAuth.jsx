@@ -23,19 +23,19 @@ class OAuth extends Component  {
 			redirect_uri: 'http://localhost:8100',
 			code: code
 		};
-		console.log(1);
+		
 		if (path.indexOf('code=') != -1)
 		{
-			console.log(2);
+			
 			FortyTwoPost('https://api.intra.42.fr/oauth/token', this.state).then ((result) => {
-				console.log(result.access_token);
+				
 				this.state = {access_token : result.access_token};
-				console.log(this.state);
+				
 				var stringa = 'https://api.intra.42.fr/v2/me?access_token=' + result.access_token;
 				axios.get(stringa).then(response => {
-					console.log(response.data);
+					
           axios.post('http://localhost:8100/auth/osignup', {email : response.data.email, firstname : response.data.first_name, lastname : response.data.last_name, img : response.data.image_url}).then(response => {
-      			console.log(response.data);
+      			
 						localStorage.setItem('accessToken', response.data);
 						history.push('/#/library');
       		});
@@ -53,12 +53,12 @@ class OAuth extends Component  {
 	{
 		if (event.error)
 			return ;
-		console.log(event);
+		
 		var fullName = event.name.split(' ');
 		var firstname = fullName[0];
 		var lastname = fullName[1];
 		axios.post('http://localhost:8100/auth/osignup', {email : event.email, firstname : firstname, lastname : lastname, img : event.picture.data.url}).then(response => {
-			console.log(response.data);
+			
 			localStorage.setItem('accessToken', response.data);
 			history.push('/#/library');
 		});
@@ -66,9 +66,9 @@ class OAuth extends Component  {
 
 	registerViaGoogle(event)
 	{
-		console.log(event.profileObj.imageUrl);
+		
 		axios.post('http://localhost:8100/auth/osignup', {email : event.profileObj.email, firstname : event.profileObj.givenName, lastname : event.profileObj.familyName, img : event.profileObj.imageUrl}).then(response => {
-			console.log(response.data);
+			
 			localStorage.setItem('accessToken', response.data);
 			history.push('/#/library');
 		});

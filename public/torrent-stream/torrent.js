@@ -14,7 +14,6 @@ const magnetLink = require('magnet-link');
 let moviePath = '';
 let torrentFile = '';
 let beginDownload = false;
-let movieSize = 0;
 
 var moviesArr = [];
 
@@ -26,10 +25,10 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.static(path.join(__dirname, 'public')));
- schedule.scheduleJob('*/1 * * * *', function() {
-  axios.get('http://localhost:8100/movie/delete-not-watched-films').then (result => {
-    console.log('Schedule: ', result.data);
-  })
+schedule.scheduleJob('*/1 * * * *', function() {
+	axios.get('http://localhost:8100/movie/delete-not-watched-films').then (result => {
+		console.log('Schedule: ', result.data);
+	})
 });
 
 app.get('/', function(req, res) {
@@ -47,15 +46,14 @@ app.post('/get-stream', function(req, res) {
 	fs.mkdir('public/subtitles');
 
 	torrentFile = req.body.torrent;
-	imdb = req.body.imdb;
 	res.send('DONE');
 });
 
 app.get('/video/:id', function(req, res) {
-console.log('0+');
-	if (imdb in moviesArr) {
+	console.log('0+');
+	if (req.params.id in moviesArr) {
 		console.log(1);
-		moviePath = moviesArr[imdb];
+		moviePath = moviesArr[req.params.id];
 		request.post(
 			{
 				url:'http://localhost:8100/movie/add-film-to-db',
@@ -73,7 +71,7 @@ console.log('0+');
 		// moviesArr[requestId][deleteDate] = Math.floor(date / 1000) + 2592000;
 	} else {
 		console.log(2);
-		var requestId = imdb;
+		var requestId = req.params.id;
 		console.log("not exists");
 		magnetLink(torrentFile, (err, link) => {
 			var engine = torrentStream(link, {
@@ -88,7 +86,6 @@ console.log('0+');
 					let stream = file.createReadStream();
 					moviePath = 'public/downloaded_movies/' + file.path;
 					moviesArr[requestId] = moviePath;
-					movieSize = file.length;
 					request.post(
 						{
 							url:'http://localhost:8100/movie/add-film-to-db',
@@ -109,13 +106,12 @@ console.log('0+');
 		})
 	});
 }
-
 setTimeout(() => {
 	let path = moviePath;
 	let stat = fs.statSync(path);
 	let range = req.headers.range;
-	let fileSize = movieSize;
-//	let fileSize = 300000000;
+	let fileSize = req.query.movieSize;
+	//let fileSize = 360000000;
 
 	if (range) {
 		console.log(3);
