@@ -23,22 +23,22 @@ class OAuth extends Component  {
 			redirect_uri: 'http://localhost:8100',
 			code: code
 		};
-		
+
 		if (path.indexOf('code=') != -1)
 		{
-			
+
 			FortyTwoPost('https://api.intra.42.fr/oauth/token', this.state).then ((result) => {
-				
+
 				this.state = {access_token : result.access_token};
-				
+
 				var stringa = 'https://api.intra.42.fr/v2/me?access_token=' + result.access_token;
 				axios.get(stringa).then(response => {
-					
-          axios.post('http://localhost:8100/auth/osignup', {email : response.data.email, firstname : response.data.first_name, lastname : response.data.last_name, img : response.data.image_url}).then(response => {
-      			
+
+					axios.post('http://localhost:8100/auth/osignup', {email : response.data.email, firstname : response.data.first_name, lastname : response.data.last_name, img : response.data.image_url}).then(response => {
+
 						localStorage.setItem('accessToken', response.data);
 						history.push('/#/library');
-      		});
+					});
 				});
 			});
 		}
@@ -52,23 +52,28 @@ class OAuth extends Component  {
 	registerViaFacebook(event)
 	{
 		if (event.error)
-			return ;
-		
-		var fullName = event.name.split(' ');
-		var firstname = fullName[0];
-		var lastname = fullName[1];
-		axios.post('http://localhost:8100/auth/osignup', {email : event.email, firstname : firstname, lastname : lastname, img : event.picture.data.url}).then(response => {
-			
-			localStorage.setItem('accessToken', response.data);
-			history.push('/#/library');
-		});
+		return ;
+		if (event.name) {
+			var fullName = event.name.split(' ');
+
+			var firstname = fullName[0];
+			var lastname = fullName[1];
+			axios.post('http://localhost:8100/auth/osignup', {email : event.email, firstname : firstname, lastname : lastname, img : event.picture.data.url}).then(response => {
+
+				localStorage.setItem('accessToken', response.data);
+				history.push('/#/library');
+			})
+			.catch(() => {
+
+			});
+		}
 	}
 
 	registerViaGoogle(event)
 	{
-		
+
 		axios.post('http://localhost:8100/auth/osignup', {email : event.profileObj.email, firstname : event.profileObj.givenName, lastname : event.profileObj.familyName, img : event.profileObj.imageUrl}).then(response => {
-			
+
 			localStorage.setItem('accessToken', response.data);
 			history.push('/#/library');
 		});
@@ -87,7 +92,7 @@ class OAuth extends Component  {
 							onFailure={this.responseGoogle}
 							className="google fab fa-google-plus-g fa-2x"
 							tag="a"
-						/>
+							/>
 						<FacebookLogin
 							appId="241030700020959"
 							fields="name,email,picture"
@@ -96,7 +101,7 @@ class OAuth extends Component  {
 							icon="fab fa-facebook-f"
 							tag="a"
 							textButton=""
-						/>
+							/>
 					</ul>
 				</div>
 			</div>
