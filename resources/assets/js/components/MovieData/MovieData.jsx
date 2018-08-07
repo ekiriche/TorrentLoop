@@ -28,10 +28,10 @@ class MovieData extends Component  {
 			firstEntry: true,
 			subtitles: '',
 			downloadPercent: 0,
-			videoSrc: "#"
+			videoSrc: "#",
+			error: false
 		}
 		this.startDownload = this.startDownload.bind(this);
-		this.getDownloadPercentage = this.getDownloadPercentage.bind(this);
 	}
 
 	componentWillMount(){
@@ -74,30 +74,20 @@ class MovieData extends Component  {
 			//	console.log(result);
 			})
 
-		setTimeout(function() {
 			console.log("TEST BOBOBO");
 			PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code, 'quality': quality }).then ((result) => {
-				console.log(result);
 				this.setState({ download : true });
 				this.setState({ videoSrc : "http://localhost:3000/video/" + this.state.movie.id + "?movieSize=" + this.state.movie.torrents[0].size_bytes});
-				// this.setState({ firstEntry: false });
-
-				 setTimeout(function() {
-					this.setState({ firstEntry: false });
-					console.log("TIMEOUT");
-					 PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
-					 this.setState({ subtitles: result });
-					 this.setState({ downloadSubtitles : true });
-					 })
-				 }.bind(this), 10000);
+				this.setState({ firstEntry: false });
+			}).then(() => {
+				PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
+				this.setState({ subtitles: result });
+				this.setState({ downloadSubtitles : true });
+				})
+			}).catch(() => {
+				console.log("omg error");
+				this.setState({ error: true });
 			})
-		}.bind(this), 10);
-	}
-
-	getDownloadPercentage() {
-		PostData('movie/get-download-percentage', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {
-			this.setState({downloadPercent: result});
-		})
 	}
 
 	render() {
@@ -146,7 +136,6 @@ class MovieData extends Component  {
 					{this.state.movie.year}
 					<div className="videoQuality">
 						{(this.state.startDownload) ? videoQualityList : null }
-
 					</div>
 				</div>
 			</Card>

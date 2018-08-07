@@ -23,8 +23,10 @@ class OAuth extends Component  {
 			redirect_uri: 'http://localhost:8100',
 			code: code
 		};
+		console.log(1);
 		if (path.indexOf('code=') != -1)
 		{
+			console.log(2);
 			FortyTwoPost('https://api.intra.42.fr/oauth/token', this.state).then ((result) => {
 				console.log(result.access_token);
 				this.state = {access_token : result.access_token};

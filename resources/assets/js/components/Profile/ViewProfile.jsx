@@ -118,7 +118,8 @@ class ViewProfile extends Component  {
 								<h6><Translate id="bio">Bio</Translate></h6>
 								<p>{this.state.info}</p>
 							</Card>
-							<Card horizontal title={<Translate id="recently_viewed">Recently viewed</Translate>}>
+							<Card horizontal >
+								<h5><Translate id="recently_viewed">Recently viewed</Translate></h5>
 								<div className="view-history">{allFilms}</div>
 							</Card>
 						</Col>
