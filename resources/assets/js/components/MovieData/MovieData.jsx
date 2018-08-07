@@ -77,7 +77,7 @@ class MovieData extends Component  {
 			console.log("TEST BOBOBO");
 			PostData('movie/download-movie', { 'imdb-id': this.state.movie.imdb_code, 'quality': quality }).then ((result) => {
 				this.setState({ download : true });
-				this.setState({ videoSrc : "http://localhost:3000/video/" + this.state.movie.id + "?movieSize=" + this.state.movie.torrents[0].size_bytes});
+				this.setState({ videoSrc : "http://localhost:3000/video/" + this.state.movie.id});
 				this.setState({ firstEntry: false });
 			}).then(() => {
 				PostData('movie/download-subtitles', { 'imdb-id': this.state.movie.imdb_code }).then ((result) => {

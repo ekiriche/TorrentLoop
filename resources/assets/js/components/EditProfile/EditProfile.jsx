@@ -130,13 +130,14 @@ class EditProfile extends Component  {
 		let token =  localStorage.getItem('accessToken');
     let id = jwtDecode(token);
 		this.setState({ info_change : '' });
-		console.log(this.state);
+		//console.log(this.state);
 		PostData('profile/set-info', {'id' : id.uid, 'firstname' : this.state.firstname, 'lastname' : this.state.lastname, 'email' : this.state.email, 'info' : this.state.info}).then (result => {
-			console.log(result);
+			console.log(result.email);
 			if (result == "OK")
 				this.setState({ info_change : 'changed' });
 			else
 			{
+				console.log(result.data[0].email);
 				this.setState({ info_change : 'not changed' });
 				this.setState({ info_error : result.data[0] });
 			}
