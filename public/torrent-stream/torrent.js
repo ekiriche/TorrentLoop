@@ -5,7 +5,6 @@ const path = require('path');
 const schedule = require('node-schedule');
 const axios = require('axios');
 const srt2vtt = require('srt-to-vtt');
-const cron = require("node-cron");
 const request = require('request');
 const app = express();
 
@@ -25,22 +24,20 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.static(path.join(__dirname, 'public')));
+schedule.scheduleJob('*/1 * * * *', function() {
+	axios.get('http://localhost:8100/movie/delete-not-watched-films').then (result => {
+		console.log('Schedule: ', result.data);
+	})
+});
+
 app.get('/', function(req, res) {
 	res.sendFile(path.join(__dirname + '/views/index.html'))
 });
 
-cron.schedule("* * * * * *", function() {
-	var date = new Date;
-	// console.log(Math.floor(date / 1000));
-	moviesArr.forEach((film) => {
-		// console.log("delete time");
-	})
-
-});
-
 app.post('/get-stream', function(req, res) {
 	//console.log(123);
-	console.log(0);
+	console.log(1);
 	if (!fs.existsSync('public/downloaded_movies'))
 	fs.mkdir('public/downloaded_movies');
 	if (!fs.existsSync('public/not_downloaded_movies'))
@@ -53,9 +50,12 @@ app.post('/get-stream', function(req, res) {
 });
 
 app.get('/video/:id', function(req, res) {
-console.log('0+');
+	console.log(2);
 	if (req.params.id in moviesArr) {
-		console.log(1);
+		console.log(3);
+		console.log('***************************************************************')
+		console.log('ARRAY', moviesArr);
+		console.log('***************************************************************')
 		moviePath = moviesArr[req.params.id];
 		request.post(
 			{
@@ -73,7 +73,7 @@ console.log('0+');
 		)
 		// moviesArr[requestId][deleteDate] = Math.floor(date / 1000) + 2592000;
 	} else {
-		console.log(2);
+		console.log(4);
 		var requestId = req.params.id;
 		console.log("not exists");
 		magnetLink(torrentFile, (err, link) => {
@@ -117,7 +117,7 @@ setTimeout(() => {
 	//let fileSize = 360000000;
 
 	if (range) {
-		console.log(3);
+		console.log(5);
 		let parts = range.replace(/bytes=/, "").split("-");
 		let start = parseInt(parts[0], 10);
 		let end = parts[1]
