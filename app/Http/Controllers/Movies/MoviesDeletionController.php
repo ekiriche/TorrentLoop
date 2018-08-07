@@ -32,7 +32,7 @@ class MoviesDeletionController extends Controller
 			Film::create(
 				[
 					'path' => $path,
-					'delete_time' => 0
+					'delete_time' => $delete_time
 				]
 			);
 		}
@@ -40,7 +40,7 @@ class MoviesDeletionController extends Controller
 		{
 			$film->fill(
 				[
-					'upadated_at' => now()
+					'upadated_at' => $delete_time
 				]
 			)->save();
 		}
@@ -53,7 +53,7 @@ class MoviesDeletionController extends Controller
 		$films = Film::all();
 		foreach($films as $key => $item)
 		{
-			if (now()->timestamp - $item->updated_at->timestamp >= 2592000)
+			if (now()->timestamp >= $item->delete_time)
 			{
 				unlink('torrent-stream/' . $item->path);
 				$item->delete();

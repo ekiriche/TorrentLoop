@@ -36,27 +36,31 @@ class VideoPlayer extends Component  {
 		}
 
 	}
+
 	render() {
-		return <ReactPlayer
+		console.log(this.state.moviePath);
+		return (<ReactPlayer
 			playing
 			controls = {true}
 			url={this.state.moviePath}
 			config={{ file: {
-		    tracks: this.state.subtitlesArr
-		  }}}
+				tracks: this.state.subtitlesArr
+			}}}
 			width='100%'
-			height='100%'
-			/>
+			height='100%'/>
+	)
 
 	}
 }
 export default VideoPlayer;
-
-
-/*
-const subtitles = this.state.subtitles
-const location = "http://localhost:8100/movies/" + this.state.movie.imdb_code + '/';
-const listSubtitles = subtitles.map((subtitle, i) =>
-		<track key={i} kind="subtitles" label={subtitle.language} srcLang={subtitle.language} src={location + subtitle.language + '.vtt'} />
-	)
+/*<ReactPlayer
+	playing
+	controls = {true}
+	url={this.state.moviePath}
+	config={{ file: {
+		tracks: this.state.subtitlesArr
+	}}}
+	width='100%'
+	height='100%'
+	/>
 	*/
