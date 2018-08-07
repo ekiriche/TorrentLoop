@@ -19,9 +19,9 @@ class VideoPlayer extends Component  {
 		}
 	}
 	componentWillMount() {
-		
-		
-		
+
+
+
 		if (this.state.subtitles) {
 			let id =this.state.movie.imdb_code;
 			let SubtitlesArr = this.state.subtitles.map((arr) => ({
@@ -38,7 +38,7 @@ class VideoPlayer extends Component  {
 	}
 
 	render() {
-		
+
 		return (<ReactPlayer
 			playing
 			controls = {true}

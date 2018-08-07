@@ -22,7 +22,7 @@ class ProfileController extends Controller
 			'firstname' => 'required|string|max:32|min:2',
 			'lastname' => 'required|string|max:32|min:2',
 			'email' => 'required|string|email|max:64',
-			'info' => 'string|max:255'
+			'info' => 'max:255'
 		]);
 		if ($validator->fails())
 			return $validator->errors();

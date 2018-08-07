@@ -95,7 +95,6 @@ class EditProfile extends Component  {
 		this.setState({ password_change_success : false });
 
     PostData('auth/update-pass', {'oldpass' : oldpass.value, 'newpass' : newpass.value, 'id' : this.state.user_id}).then (result => {
-
 			if (result.data == 'Wrong password')
 				this.setState({ oldpassword_error : "Wrong password" });
 			else if (result!= "OK")
@@ -138,8 +137,18 @@ class EditProfile extends Component  {
 				this.setState({ info_change : 'not changed' });
 				if (result.email)
 					this.setState({ info_error : result.email })
-				else
-					this.setState({ info_error : result.data[0] });
+				else if (result.firstname)
+				{
+					this.setState({ info_error : result.firstname[0] });
+				}
+				else if (result.lastname)
+				{
+					this.setState({ info_error : result.lastname[0] });
+				}
+				else if (result.info)
+				{
+					this.setState({ info_error : result.info[0] });
+				}
 			}
 		})
 	}
