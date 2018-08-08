@@ -37,7 +37,7 @@ app.get('/', function(req, res) {
 
 app.post('/get-stream', function(req, res) {
 	//console.log(123);
-	console.log(0);
+	console.log(1);
 	if (!fs.existsSync('public/downloaded_movies'))
 	fs.mkdir('public/downloaded_movies');
 	if (!fs.existsSync('public/not_downloaded_movies'))
@@ -50,9 +50,12 @@ app.post('/get-stream', function(req, res) {
 });
 
 app.get('/video/:id', function(req, res) {
-	console.log('0+');
+	console.log(2);
 	if (req.params.id in moviesArr) {
-		console.log(1);
+		console.log(3);
+		console.log('***************************************************************')
+		console.log('ARRAY', moviesArr);
+		console.log('***************************************************************')
 		moviePath = moviesArr[req.params.id];
 		request.post(
 			{
@@ -70,7 +73,7 @@ app.get('/video/:id', function(req, res) {
 		)
 		// moviesArr[requestId][deleteDate] = Math.floor(date / 1000) + 2592000;
 	} else {
-		console.log(2);
+		console.log(4);
 		var requestId = req.params.id;
 		console.log("not exists");
 		magnetLink(torrentFile, (err, link) => {
@@ -113,32 +116,41 @@ setTimeout(() => {
 	let fileSize = req.query.movieSize;
 	//let fileSize = 360000000;
 
+	// if (range) {
+	// 	console.log(5);
+	// 	let parts = range.replace(/bytes=/, "").split("-");
+	// 	let start = parseInt(parts[0], 10);
+	// 	let end = parts[1]
+	// 	? parseInt(parts[1], 10)
+	// 	: fileSize-1;
+	// 	let chunksize = (end-start)+1;
+	// 	console.log('***************************************************************')
+	// 	console.log('HEADER', req.headers);
+	// 	console.log('RANGE', range);
+	// 	console.log('START', start);
+	// 	console.log('END', end);
+	// 	console.log('CHUNKSIZE', chunksize);
+	// 	console.log('***************************************************************')
+	// 	let file = fs.createReadStream(path, {start, end});
+	// 	let head = {
+	// 		'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+	// 		'Accept-Ranges': 'bytes',
+	// 		'Content-Length': chunksize,
+	// 		'Content-Type': 'video/mp4',
+	// 	};
+  //
+	// 	res.writeHead(206, head);
+	// 	file.pipe(res);
+	// } else {
+	// 	console.log(4);
+	// 	let head = {
+	// 		'Content-Length': fileSize,
+	// 		'Content-Type': 'video/mp4',
+	// 	};
+	// 	res.writeHead(200, head);
+	// 	fs.createReadStream(path).pipe(res);
+	// }
 	if (range) {
-		console.log(3);
-		let parts = range.replace(/bytes=/, "").split("-");
-		let start = parseInt(parts[0], 10);
-		let end = parts[1]
-		? parseInt(parts[1], 10)
-		: fileSize-1;
-		let chunksize = (end-start)+1;
-		console.log('***************************************************************')
-		console.log('HEADER', req.headers);
-		console.log('RANGE', range);
-		console.log('START', start);
-		console.log('END', end);
-		console.log('CHUNKSIZE', chunksize);
-		console.log('***************************************************************')
-		let file = fs.createReadStream(path, {start, end});
-		let head = {
-			'Content-Range': `bytes ${start}-${end}/${fileSize}`,
-			'Accept-Ranges': 'bytes',
-			'Content-Length': chunksize,
-			'Content-Type': 'video/mp4',
-		};
-
-		res.writeHead(206, head);
-		file.pipe(res);
-	} else {
 		console.log(4);
 		let head = {
 			'Content-Length': fileSize,
@@ -146,6 +158,8 @@ setTimeout(() => {
 		};
 		res.writeHead(200, head);
 		fs.createReadStream(path).pipe(res);
+	} else {
+
 	}
 }, 15000);
 //
