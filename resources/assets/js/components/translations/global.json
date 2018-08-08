@@ -151,7 +151,7 @@
 	],
 	"search-latest": [
 		null,
-		"Новіші"
+		"Рік"
 	],
 	"search-title": [
 		null,
@@ -320,5 +320,17 @@
 	],"nav-title": [
 		null,
 		"Навігація"
+	],
+	"order-by": [
+		null,
+		"Порядок"
+	],
+	"search-asc": [
+		null,
+		"Зростаючий"
+	],
+	"search-desc": [
+		null,
+		"Спадаючий"
 	]
 }

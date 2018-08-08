@@ -9,6 +9,7 @@ import './Search.css';
 import GenreSearch from './GenreSearch/GenreSearch';
 import RatingSearch from './RatingSearch/RatingSearch';
 import ExtraSearch from './ExtraSearch/ExtraSearch';
+import OrderBy from './OrderBy/OrderBy';
 
 import GetFilmsInfo from '../../../functions/GetFilmsInfo';
 
@@ -22,6 +23,7 @@ class Search extends Component  {
 		this.handleGenre = this.handleGenre.bind(this);
 		this.handleRating = this.handleRating.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.handleOrder = this.handleOrder.bind(this);
 		this.findFilm = this.findFilm.bind(this);
 
 		this.state = {
@@ -60,8 +62,14 @@ class Search extends Component  {
 		});
 	}
 
+	handleOrder(data) {
+		this.setState({
+			orderBy: data
+		});
+	}
+
 	findFilm() {
-		this.props.handlerFilmRequest("list_movies.json?sort_by=" + this.state.sortBy + "&order_by" + this.state.orderBy + "&genre=" + this.state.genre + "&minimum_rating=" + this.state.minRating + "&query_term=" + this.state.title + "&limit=" + 48 + "&page=");
+		this.props.handlerFilmRequest("list_movies.json?sort_by=" + this.state.sortBy + "&order_by=" + this.state.orderBy + "&genre=" + this.state.genre + "&minimum_rating=" + this.state.minRating + "&query_term=" + this.state.title + "&limit=" + 48 + "&page=");
 	}
 
 	render() {
@@ -84,6 +92,8 @@ class Search extends Component  {
 				<GenreSearch genreToFind={this.handleGenre} />
 				<hr />
 				<ExtraSearch sortBy={this.handleSort} />
+				<hr />
+				<OrderBy orderBy={this.handleOrder} />
 				<hr />
 				<Button waves='light' onClick={this.findFilm}>Find</Button>
 			</div>

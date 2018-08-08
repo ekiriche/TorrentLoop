@@ -50,12 +50,6 @@ class ExtraSearch extends Component  {
 							<input type="radio" name="extraGroup" value='title' onChange={this.handleSortBy}/>
 							<span className="checkmark"></span>
 						</label>
-
-						<label className="extra-container">
-							<p className="label-extra"><Translate id="search-oldest">Oldest</Translate></p>
-							<input type="radio" name="extraGroup" value='oldest' onChange={this.handleSortBy}/>
-							<span className="checkmark"></span>
-						</label>
 					</div>
 
 				</div>
