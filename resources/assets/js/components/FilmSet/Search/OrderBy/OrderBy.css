@@ -1,0 +1,69 @@
+.order-settings-title {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+
+/* The container */
+.order-container {
+	position: relative;
+	padding-left: 42px;
+	cursor: pointer;
+	font-size: 22px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	margin-left: -3px;
+	margin-right: 59px;
+}
+
+/* Hide the browser's default radio button */
+.order-container input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	background-color: white;
+	border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.order-container:hover input ~ .checkmark {
+	background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.order-container input:checked ~ .checkmark {
+	background-color: #4717C0;
+}
+
+label {
+	color: white;
+}
+
+.radio.order {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-start;
+}
+
+.label-order{
+	margin-top: -19px;
+}
+
+.radio-order-col {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+}

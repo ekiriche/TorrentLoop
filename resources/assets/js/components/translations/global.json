@@ -1,0 +1,336 @@
+{
+	"_comment": "data for auth page",
+	"signin": [
+		null,
+		"Увійти"
+	],
+	"login": [
+		null,
+		"Логін"
+	],
+	"password": [
+		null,
+		"Пароль"
+	],
+	"signin_button": [
+		null,
+		"Увійти"
+	],
+	"signup": [
+		null,
+		"Зареєструватися"
+	],
+	"firstname": [
+		null,
+		"Ваше ім’я"
+	],
+	"lastname": [
+		null,
+		"Прізвище"
+	],
+	"forgotpassword": [
+		null,
+		"Забули пароль ?"
+	],
+	"forgotpasswordButton": [
+		null,
+		"Надішліть мені листа"
+	],
+	"footer": [
+		null,
+		"Створений"
+	],
+	"_comment": "data for library",
+	"search-main-title": [
+		null,
+		"Пошук"
+	],
+	"search-all": [
+		null,
+		"Всі"
+	],
+	"search-adventure": [
+		null,
+		"Пригоди"
+	],
+	"search-biography": [
+		null,
+		"Біографія"
+	],
+	"search-crime": [
+		null,
+		"Кримінал"
+	],
+	"search-drama": [
+		null,
+		"Драма"
+	],
+	"search-fantasy": [
+		null,
+		"Фентезі"
+	],
+	"search-horror": [
+		null,
+		"Жахи"
+	],
+	"search-mystery": [
+		null,
+		"Містика"
+	],
+	"search-scifi": [
+		null,
+		"Фантастика"
+	],
+	"search-sport": [
+		null,
+		"Спорт"
+	],
+	"search-thriller": [
+		null,
+		"Триллер"
+	],
+	"search-western": [
+		null,
+		"Вестерн"
+	],
+	"search-action": [
+		null,
+		"Бойовик"
+	],
+	"search-animation": [
+		null,
+		"Мультфільм"
+	],
+	"search-comedy": [
+		null,
+		"Комедія"
+	],
+	"search-documentary": [
+		null,
+		"Документальний"
+	],
+	"search-family": [
+		null,
+		"Сімейний"
+	],
+	"search-history": [
+		null,
+		"Історичний"
+	],
+	"search-music": [
+		null,
+		"Музика"
+	],
+	"search-musical": [
+		null,
+		"Мюзикл"
+	],
+	"search-romance": [
+		null,
+		"Роман"
+	],
+	"search-sport": [
+		null,
+		"Спорт"
+	],
+	"search-superhero": [
+		null,
+		"Супергеройський"
+	],
+	"search-war": [
+		null,
+		"Військовий"
+	],
+	"search-sort": [
+		null,
+		"Сортувати"
+	],
+	"search-rating": [
+		null,
+		"Рейтинг"
+	],
+	"search-latest": [
+		null,
+		"Рік"
+	],
+	"search-title": [
+		null,
+		"Назва"
+	],
+	"search-oldest": [
+		null,
+		"Старіші"
+	],
+	"search-genre": [
+		null,
+		"Жанр"
+	],
+	"search-oldest": [
+		null,
+		"Старіші"
+	],
+	"search-rating": [
+		null,
+		"Рейтинг"
+	],
+	"_comment": "data for auth page",
+	"signin": [
+		null,
+		"Увійти"
+	],
+	"login": [
+		null,
+		"Логін"
+	],
+	"password": [
+		null,
+		"Пароль"
+	],
+	"signin_button": [
+		null,
+		"Увійти"
+	],
+	"signup": [
+		null,
+		"Зареєструватися"
+	],
+	"firstname": [
+		null,
+		"Ваше ім’я"
+	],
+	"lastname": [
+		null,
+		"Прізвище"
+	],
+	"forgotpassword": [
+		null,
+		"Забули пароль ?"
+	],
+	"forgotpasswordButton": [
+		null,
+		"Надішліть мені листа"
+	],
+	"footer": [
+		null,
+		"Створений"
+	],
+	"_comment": "data for search page",
+	"search": [
+		null,
+		"Пошук"
+	],
+	"_comment": "data for settings page",
+	"changePasswordButton": [
+		null,
+		"Змінити пароль"
+	],
+	"changeNewPasswordLaber": [
+		null,
+		"Новий пароль"
+	],
+	"changeOldPasswordLaber": [
+		null,
+		"Старий пароль"
+	],
+	"changePasswordHeader": [
+		null,
+		"Зміна паролю"
+	],
+	"changeInformationButton": [
+		null,
+		"Змінити інформацію"
+	],
+	"changeAdditionalInfoLaber": [
+		null,
+		"Додаткова інформація"
+	],
+	"changeEmailLaber": [
+		null,
+		"Електронна пошта"
+	],
+	"changeLastnameLabor": [
+		null,
+		"Прізвище"
+	],
+	"changeFirstnameLabor": [
+		null,
+		"Ім’я"
+	],
+	"changeAccountInformationHeader": [
+		null,
+		"Загальна інформація"
+	],
+	"changePhotoHeader": [
+		null,
+		"Фотографія"
+	],
+	"bio": [
+		null,
+		"Біографія"
+	]
+	,
+	"recently_viewed": [
+		null,
+		"Історія переглядів"
+	],
+	"_comment": "movie page",
+	"send-comment": [
+		null,
+		"Надіслати коментар"
+	],
+	"date": [
+		null,
+		"Дата"
+	],
+	"rating": [
+		null,
+		"Рейтинг"
+	]
+	,
+	"comment-added": [
+		null,
+		"Коментар додано"
+	],
+	"comments": [
+		null,
+		"Коментарі"
+	]
+	,
+	"sort": [
+		null,
+		"Сортувати за"
+	],
+	"left-comment": [
+		null,
+		"Залишити коментар"
+	],
+	"_comment": "navigations",
+	"profile": [
+		null,
+		"Профіль"
+	],"library": [
+		null,
+		"Бібліотека"
+	],"settings": [
+		null,
+		"Налаштування"
+	],"logout": [
+		null,
+		"Вийти"
+	],"nav-title": [
+		null,
+		"Навігація"
+	],
+	"order-by": [
+		null,
+		"Порядок"
+	],
+	"search-asc": [
+		null,
+		"Зростаючий"
+	],
+	"search-desc": [
+		null,
+		"Спадаючий"
+	]
+}

@@ -1,0 +1,33 @@
+.page-footer {
+  padding-top: 0 !important;
+}
+.creat-margin {
+  margin: 0 10px ;
+}
+
+footer.page-footer {
+    margin-top: 20px;
+    background-color:  #0E0B18 !important;
+}
+
+footer.page-footer .footer-copyright {
+    min-height: 64px !important;
+}
+
+.footer-text-position {
+  display: flex;
+  justify-content: center;
+}
+.creatBy-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+@media screen and (max-width: 479px) {
+  /* start of phone styles */
+  .creatBy-flex {
+    flex-direction: column;
+  }
+
+}
