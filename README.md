@@ -14,7 +14,7 @@ once the download is completed, but will be able to stream directly the video fe
 ## Install
 1. `npm install`
 2. `./composer.phar update`
-3. Open another window - `node public/torrent-stream/torrent.js`
+3. Open another bash window - `node public/torrent-stream/torrent.js`
 4. `npm run prod`
 
 ## Authorized tools
@@ -31,4 +31,14 @@ At least with Firefox (>= 41) and Chrome (>= 46).
 2. Client side - React.
 
 ## Screenshots
-asdqweqwe
+### Authorization page
+![Auth](/screenshots/authPage.png)
+
+### Library page
+![Library](/screenshots/libraryPage.png)
+
+### Search sidebar
+![Search](/screenshots/searchNav.png)
+
+### Movie page
+![Movie](/screenshots/moviePage.png)
