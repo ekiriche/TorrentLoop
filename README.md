@@ -11,3 +11,24 @@ Once the element selected, it will be downloaded from the server and streamed on
 web player at the same time. Which means that the player won’t only show the video
 once the download is completed, but will be able to stream directly the video feed.
 
+## Install
+1. `npm install`
+2. `./composer.phar update`
+3. Open another window - `node public/torrent-stream/torrent.js`
+4. `npm run prod`
+
+## Authorized tools
+All the framework, micro-framework, libraries etc. . . are authorized within the
+limits where they are not used to create a video stream from a torrent, thus limiting
+the educational purpose of this project. For example, libraries such as webtorrent,
+pulsar and peerflix are forbidden.
+
+## Compatibility
+At least with Firefox (>= 41) and Chrome (>= 46).
+
+## Structure
+1. Server side - Laravel/PHP for all plain stuff and Node JS Express for streaming purposes.
+2. Client side - React.
+
+## Screenshots
+asdqweqwe
